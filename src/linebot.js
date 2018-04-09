@@ -541,7 +541,7 @@ module.exports = class LineBot {
   askphonereply(){
     const confirm = {
       "type": "imagemap",
-      "baseUrl": "https://orig00.deviantart.net/20d7/f/2018/026/e/e/ee2c71cad0c05ebee810023aa6cd7af8-dc17vvo.jpg",
+      "baseUrl": "https://i.imgur.com/opV3f3t.jpg",
       "altText": "This is an imagemap",
       "baseSize": {
           "height": 1040,
