@@ -109,13 +109,8 @@ module.exports = class LineBot {
         if (!this._sessionIds.has(chatId)) {
           this._sessionIds.set(chatId, uuid.v4());
         }
-        // ====================local check=============================
-        mongo.findUser(message.source.userId,(err, res) => {
-            const status = res;
-            // create a echoing text message
-            //const confirm = this.PUBG(message,status);
 
-            this.PUBG(message,status).then((value) => {
+            this.PUBG(message).then((value) => {
               console.log(value);
                 if(value == 0){
                   console.log("I'm in");
@@ -140,7 +135,7 @@ module.exports = class LineBot {
               }
             })
             .catch(err => console.log(err));
-        });
+        //});
       }
       else {
         this.log('Empty message 2 ');
@@ -166,11 +161,6 @@ module.exports = class LineBot {
         }
         else if (postback.postback.data === "action=vertifyagain"){
 
-          mongo.findUser(postback.source.userId,(err, res) => {
-            const status = res;
-            var p = this.phoneSignupAPI(status.accessKey,status.BNuserid,status.phoneNumber);
-            p.catch(err => console.log(err))            
-          })
           const confirm = this.vertifyagain();
            // =======================================================fuck
           return this.reply(postback.replyToken, [confirm]); //重新發送
@@ -550,8 +540,35 @@ module.exports = class LineBot {
   }
   askphonereply(){
     const confirm = {
-      type: "text",
-      text: "請傳送電話號碼給我 稍後將有驗證碼至您的手機 Ex:0912345678"
+      "type": "imagemap",
+      "baseUrl": "https://orig00.deviantart.net/20d7/f/2018/026/e/e/ee2c71cad0c05ebee810023aa6cd7af8-dc17vvo.jpg",
+      "altText": "This is an imagemap",
+      "baseSize": {
+          "height": 1040,
+          "width": 1040
+      },
+      "actions": [
+          {
+              "type": "message",
+              "text": "Helloooooooooo",
+              "area": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 520,
+                  "height": 1040
+              }
+          },
+          {
+              "type": "message",
+              "text": "Hello",
+              "area": {
+                  "x": 520,
+                  "y": 0,
+                  "width": 520,
+                  "height": 1040
+              }
+          }
+      ]
     }; // end confirm
     return confirm;
   }
@@ -603,10 +620,6 @@ module.exports = class LineBot {
   }
 
   wrongphone(message){
-    mongo.updateStatus(message.source.userId, 1, (err, res) => {
-      if(err) console.log(err);
-      else console.log(res);
-    });
 
     return this.askphonereply();
   }
@@ -619,73 +632,12 @@ module.exports = class LineBot {
     }; // end confirm
     return confirm;
   }
-  PUBG(message,status){
+  PUBG(message){
     //return Promise.resolve(0)
     if(message.message.text === "return"){
-      mongo.updateStatus(message.source.userId, 0, (err, res) => {  
-          if(err) console.log(err);
-          else console.log(res);
-      });
       return Promise.resolve(0);
     }
-    else if(status.registrationStatus == 2){
-      //API check code
-      return new Promise((resolve,reject) => {
-        this.phoneVerifyAPI(status.accessKey,status.BNuserid,status.phoneNumber,message.message.text)
-        .then((result) => {
-          console.log("result ===== " + result);
-          if(result == 0){
-            mongo.updateStatus(message.source.userId, 3, (err, res) => {  
-              if(err) console.log(err);
-              else console.log(res);
-            });
-            return resolve(this.verifysucessreply());
-          }else{
-            console.log("WWWWW " + result);
-            return resolve(this.verifyagainreply()); 
-          }
-        })
-        .catch((err) => {
-          console.log(err)        
-        })     
-      })
-
-    }else if(status.registrationStatus == 1){
-      if(this.rule(message.message.text)){
-
-        var p = this.phoneSignupAPI(status.accessKey,status.BNuserid,message.message.text);
-        p.catch(err => console.log(err));
-
-        mongo.updateStatus(message.source.userId, 2, (err, res) => {
-          if(err) console.log(err);
-          else console.log(res);
-        });
-        mongo.updatePhone(message.source.userId, message.message.text, (err, res) => {
-          if(err) console.log(err);
-          else console.log(res);
-        });
-        return Promise.resolve(this.askverifycodereply(message.message.text));
-      }else { 
-        return Promise.resolve(this.phonewrongreply());     
-      }
-    }else if(message.message.text === "準備好了" ){
-
-      this.GuestKey(message.source.userId)
-      .then((body) => {
-        console.log("The guestKey = " + JSON.parse(body).guestKey);
-
-        this.registerSigninAPI(message.source.userId,JSON.parse(body).guestKey)
-        .catch((err) => console.log(err));        
-
-        this.registerNewUserAPI(message.source.userId,JSON.parse(body).guestKey)
-        .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-
-      mongo.updateStatus(message.source.userId, 1, (err, res) => {
-        if(err) console.log(err);
-        else console.log(res);
-      });
+    else if(message.message.text === "給我圖片" ){
       return Promise.resolve(this.askphonereply());
     }else{       
       return Promise.resolve(0);
@@ -786,15 +738,7 @@ module.exports = class LineBot {
 
         if(body.status == 0){
           this.log('body accessKey = ',body.results.accessKey); 
-        }
-        mongo.updateBNuserid(LineUserId, body.results.userID, (err, res) => {
-        if(err) console.log(err);
-        else console.log(res);
-        });   
-        mongo.updateAccessKey(LineUserId,body.results.accessKey,(error,response) => {
-            if(error) console.log(error);
-            else console.log(response);
-          });   
+        }   
 
         this.log('Send registerSignin succeeded');       
         resolve();
