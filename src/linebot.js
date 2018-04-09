@@ -574,9 +574,72 @@ module.exports = class LineBot {
   }
   phonewrongreply(){
     const confirm = {
-      type: "text",
-      text: " 您輸入的號碼格式有點怪喔 請再輸入一次喔 "
-    }; // end confirm
+        "type": "template",
+        "altText": "this is a carousel template",
+        "template": {
+            "type": "carousel",
+            "columns": [
+                {
+                  "thumbnailImageUrl": "https://i.imgur.com/qGnooDu.jpg",
+                  "imageBackgroundColor": "#FFFFFF",
+                  "title": "this is menu",
+                  "text": "description",
+                  "defaultAction": {
+                      "type": "uri",
+                      "label": "View detail",
+                      "uri": "http://bootstrap.hexschool.com/docs/4.0/utilities/flex/"
+                  },
+                  "actions": [
+                      {
+                          "type": "postback",
+                          "label": "Buy",
+                          "data": "action=buy&itemid=111"
+                      },
+                      {
+                          "type": "postback",
+                          "label": "Add to cart",
+                          "data": "action=add&itemid=111"
+                      },
+                      {
+                          "type": "uri",
+                          "label": "View detail",
+                          "uri": "http://bootstrap.hexschool.com/docs/4.0/utilities/flex/"
+                      }
+                  ]
+                },
+                {
+                  "thumbnailImageUrl": "https://i.imgur.com/4VjHyMA.jpg",
+                  "imageBackgroundColor": "#000000",
+                  "title": "this is menu",
+                  "text": "description",
+                  "defaultAction": {
+                      "type": "uri",
+                      "label": "View detail",
+                      "uri": "http://bootstrap.hexschool.com/docs/4.0/utilities/flex/"
+                  },
+                  "actions": [
+                      {
+                          "type": "postback",
+                          "label": "Buy",
+                          "data": "action=buy&itemid=222"
+                      },
+                      {
+                          "type": "postback",
+                          "label": "Add to cart",
+                          "data": "action=add&itemid=222"
+                      },
+                      {
+                          "type": "uri",
+                          "label": "View detail",
+                          "uri": "http://bootstrap.hexschool.com/docs/4.0/utilities/flex/"
+                      }
+                  ]
+                }
+            ],
+            "imageAspectRatio": "rectangle",
+            "imageSize": "cover"
+        }
+      }; // end confirm
     return confirm;
   }
   askverifycodereply(){
@@ -671,6 +734,9 @@ module.exports = class LineBot {
     }
     else if(message.message.text === "給我更大圖片" ){
       return Promise.resolve(this.askverifycodereply());
+    }
+    else if(message.message.text === "給我更大大圖片" ){
+      return Promise.resolve(this.phonewrongreply());
     }else{       
       return Promise.resolve(0);
     }
