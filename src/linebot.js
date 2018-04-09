@@ -579,11 +579,40 @@ module.exports = class LineBot {
     }; // end confirm
     return confirm;
   }
-  askverifycodereply(phonenumber){
+  askverifycodereply(){
     const confirm = {
-      type: "text",
-      text: "驗證碼已經發至" + phonenumber + "請給我您所收到的驗證碼喔 "
-    }; // end confirm
+        "type": "template",
+        "altText": "this is a image carousel template",
+        "template": {
+            "type": "image_carousel",
+            "columns": [
+                {
+                  "imageUrl": "https://i.imgur.com/4VjHyMA.jpg",
+                  "action": {
+                    "type": "message",
+                    "label": "NO",
+                    "text": "no"
+                  }
+                },
+                {
+                  "imageUrl": "https://i.imgur.com/yKLLiE2.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Yes",
+                    "text": "yes"
+                  }
+                },
+                {
+                  "imageUrl": "https://i.imgur.com/qGnooDu.jpg",
+                  "action": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://bootstrap.hexschool.com/docs/4.0/utilities/flex/"
+                  }
+                }
+            ]
+        }
+      }; // end confirm
     return confirm;
   }
   verifysucessreply(){
@@ -639,6 +668,9 @@ module.exports = class LineBot {
     }
     else if(message.message.text === "給我圖片" ){
       return Promise.resolve(this.askphonereply());
+    }
+    else if(message.message.text === "給我更大圖片" ){
+      return Promise.resolve(this.askverifycodereply());
     }else{       
       return Promise.resolve(0);
     }
