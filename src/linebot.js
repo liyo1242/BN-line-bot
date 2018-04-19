@@ -737,6 +737,23 @@ module.exports = class LineBot {
     }
     else if(message.message.text === "給我更大大圖片" ){
       return Promise.resolve(this.phonewrongreply());
+    }else if(message.message.text === "我想使用日曆功能" ){
+      const confirm = {
+          "type": "template",
+          "altText": "this is a confirm template",
+          "template": {
+              "type": "confirm",
+              "text":"請由此登入google帳號 以開啟日曆功能",
+              "actions": [
+                  {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=872352562762-o4h96p16jiq6k9pe37vev6rbla3e4f1e.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground%2F"
+                  }
+              ]
+          }
+        };
+      return Promise.resolve(confirm);
     }else{       
       return Promise.resolve(0);
     }
