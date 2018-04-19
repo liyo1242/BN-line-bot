@@ -749,6 +749,11 @@ module.exports = class LineBot {
                     "type": "uri",
                     "label": "View detail",
                     "uri": "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=872352562762-o4h96p16jiq6k9pe37vev6rbla3e4f1e.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground%2F"
+                  },
+                  {
+                    "type": "message",
+                    "label": "再考慮一下",
+                    "text": "no"
                   }
               ]
           }
