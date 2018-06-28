@@ -695,4 +695,4 @@ module.exports = class LineBot {
     }else{       
       return Promise.resolve(0);
     }
-
+  }
