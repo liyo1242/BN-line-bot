@@ -135,8 +135,8 @@ module.exports = class LineBot {
             //   }
             // })
             // .catch(err => console.log(err));
-            
-        this.log('Correct message 1 ');
+
+        this.log('Correct message ');
       }
       else {
         this.log('Empty message 2 ');
