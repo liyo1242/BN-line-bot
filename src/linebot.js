@@ -110,31 +110,32 @@ module.exports = class LineBot {
           this._sessionIds.set(chatId, uuid.v4());
         }
 
-            this.PUBG(message).then((value) => {
-              console.log(value);
-                if(value == 0){
-                  console.log("I'm in");
-                  let apiaiRequest = this._apiaiService.textRequest(messageText,{
-                  sessionId: this._sessionIds.get(chatId)
-                });
+            // this.PUBG(message).then((value) => {
+            //   console.log(value);
+            //     if(value == 0){
+            //       console.log("I'm in");
+            //       let apiaiRequest = this._apiaiService.textRequest(messageText,{
+            //       sessionId: this._sessionIds.get(chatId)
+            //     });
 
-                apiaiRequest.on('response', (response) => {
+            //     apiaiRequest.on('response', (response) => {
 
-                let action = response.result.action;
+            //     let action = response.result.action;
 
-                this.processAiResponse(chatId, response, message.replyToken)
-                    .then(() => this.log('Message sent'))
-                    .catch((err) => this.logError(err))
-                });
+            //     this.processAiResponse(chatId, response, message.replyToken)
+            //         .then(() => this.log('Message sent'))
+            //         .catch((err) => this.logError(err))
+            //     });
 
-                apiaiRequest.on('error', (error) => console.error(error));
-                apiaiRequest.end();
-              }else{
-                console.log("Oh no");
-                return this.reply(message.replyToken, [value]);
-              }
-            })
-            .catch(err => console.log(err));
+            //     apiaiRequest.on('error', (error) => console.error(error));
+            //     apiaiRequest.end();
+            //   }else{
+            //     console.log("Oh no");
+            //     return this.reply(message.replyToken, [value]);
+            //   }
+            // })
+            // .catch(err => console.log(err));
+            this.log('correct message 1 ');
         //});
       }
       else {
