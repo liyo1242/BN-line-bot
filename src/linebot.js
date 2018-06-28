@@ -110,33 +110,32 @@ module.exports = class LineBot {
           this._sessionIds.set(chatId, uuid.v4());
         }
 
-            // this.PUBG(message).then((value) => {
-            //   console.log(value);
-            //     if(value == 0){
-            //       console.log("I'm in");
-            //       let apiaiRequest = this._apiaiService.textRequest(messageText,{
-            //       sessionId: this._sessionIds.get(chatId)
-            //     });
+            this.PUBG(message).then((value) => {
+              console.log(value);
+                if(value == 0){
+                  console.log("I'm in");
+                  let apiaiRequest = this._apiaiService.textRequest(messageText,{
+                  sessionId: this._sessionIds.get(chatId)
+                });
 
-            //     apiaiRequest.on('response', (response) => {
+                apiaiRequest.on('response', (response) => {
 
-            //     let action = response.result.action;
+                let action = response.result.action;
 
-            //     this.processAiResponse(chatId, response, message.replyToken)
-            //         .then(() => this.log('Message sent'))
-            //         .catch((err) => this.logError(err))
-            //     });
+                this.processAiResponse(chatId, response, message.replyToken)
+                    .then(() => this.log('Message sent'))
+                    .catch((err) => this.logError(err))
+                });
 
-            //     apiaiRequest.on('error', (error) => console.error(error));
-            //     apiaiRequest.end();
-            //   }else{
-            //     console.log("Oh no");
-            //     return this.reply(message.replyToken, [value]);
-            //   }
-            // })
-            // .catch(err => console.log(err));
-
-        this.log('Correct message ');
+                apiaiRequest.on('error', (error) => console.error(error));
+                apiaiRequest.end();
+              }else{
+                console.log("Oh no");
+                return this.reply(message.replyToken, [value]);
+              }
+            })
+            .catch(err => console.log(err));
+        //});
       }
       else {
         this.log('Empty message 2 ');
@@ -516,6 +515,29 @@ module.exports = class LineBot {
     return obj !== null;
   }
 
+  signupreply(){
+    const confirm = {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+        "type": "confirm",
+        "text": "準備好開始註冊了嗎?! +笑臉",
+        "actions": [
+          {
+            "type": "message",
+            "label": "Yes",
+            "text": "準備好了"
+          },
+          {
+            "type": "message",
+            "label": "no",
+            "text": "甩頭走掉"
+          }
+        ]
+      }
+    }; // end confirm
+    return confirm;
+  }
   askphonereply(){
     const confirm = {
       "type": "imagemap",
@@ -656,43 +678,286 @@ module.exports = class LineBot {
       }; // end confirm
     return confirm;
   }
+  verifysucessreply(){
+    const confirm = {
+      type: "text",
+      text: " 成功驗證 辛苦了 兄滴 "
+    }; // end confirm
+    return confirm;
+  }
+  verifyagainreply(){
+    const confirm = {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+        "type": "confirm",
+        "text": "驗證碼錯了喔 發生了什麼事嗎??",
+        "actions": [
+          {
+            "type": "postback",
+            "label": "不是這支電話",
+            "data":"action=wrongphone"
+            //這裡有可能要用 type : postback 來使 register 狀態 退回
+          },
+          {
+            "type": "postback",
+            "label": "再發一次給我",
+            "data":"action=vertifyagain"
+            // 這裡有可能要用 type : postback 來重新 call 一次 API
+          }
+        ]
+      }
+    }; // end confirm
+    return confirm;
+  }
 
-  // PUBG(message){
-  //   //return Promise.resolve(0)
-  //   if(message.message.text === "return"){
-  //     return Promise.resolve(0);
-  //   }
-  //   else if(message.message.text === "給我圖片" ){
-  //     return Promise.resolve(this.askphonereply());
-  //   }
-  //   else if(message.message.text === "給我更大圖片" ){
-  //     return Promise.resolve(this.askverifycodereply());
-  //   }
-  //   else if(message.message.text === "給我更大大圖片" ){
-  //     return Promise.resolve(this.phonewrongreply());
-  //   }else if(message.message.text === "我想使用日曆功能" ){
-  //     const confirm = {
-  //         "type": "template",
-  //         "altText": "this is a confirm template",
-  //         "template": {
-  //             "type": "confirm",
-  //             "text":"請由此登入google帳號 以開啟日曆功能",
-  //             "actions": [
-  //                 {
-  //                   "type": "uri",
-  //                   "label": "URL",
-  //                   "uri": "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=872352562762-o4h96p16jiq6k9pe37vev6rbla3e4f1e.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground%2F"
-  //                 },
-  //                 {
-  //                   "type": "message",
-  //                   "label": "再考慮一下",
-  //                   "text": "no"
-  //                 }
-  //             ]
-  //         }
-  //       };
-  //     return Promise.resolve(confirm);
-  //   }else{       
-  //     return Promise.resolve(0);
-  //   }
-  // }
+  wrongphone(message){
+
+    return this.askphonereply();
+  }
+
+  vertifyagain(){
+    // call verify API AGAIN
+    const confirm = {
+      type: "text",
+      text: "驗證碼已經重新發至您的手機 記得發給我您所收到的驗證碼喔 "
+    }; // end confirm
+    return confirm;
+  }
+  PUBG(message){
+    //return Promise.resolve(0)
+    if(message.message.text === "return"){
+      return Promise.resolve(0);
+    }
+    else if(message.message.text === "給我圖片" ){
+      return Promise.resolve(this.askphonereply());
+    }
+    else if(message.message.text === "給我更大圖片" ){
+      return Promise.resolve(this.askverifycodereply());
+    }
+    else if(message.message.text === "給我更大大圖片" ){
+      return Promise.resolve(this.phonewrongreply());
+    }else if(message.message.text === "我想使用日曆功能" ){
+      const confirm = {
+          "type": "template",
+          "altText": "this is a confirm template",
+          "template": {
+              "type": "confirm",
+              "text":"請由此登入google帳號 以開啟日曆功能",
+              "actions": [
+                  {
+                    "type": "uri",
+                    "label": "URL",
+                    "uri": "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=872352562762-o4h96p16jiq6k9pe37vev6rbla3e4f1e.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground%2F"
+                  },
+                  {
+                    "type": "message",
+                    "label": "再考慮一下",
+                    "text": "no"
+                  }
+              ]
+          }
+        };
+      return Promise.resolve(confirm);
+    }else{       
+      return Promise.resolve(0);
+    }
+  }
+
+  GuestKey(LineUserId){ 
+    return new Promise((resolve,reject) => {
+      request.get('http://api-dev.bluenet-ride.com/v2_0/GetGuestKey ',(error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          this.log("GuestKey-response-statusCode",response.statusCode);
+          console.log("body = " + body); 
+          resolve(body);
+        }else{
+          reject(error);
+          return;
+        }
+      })
+    })
+  }
+
+  registerNewUserAPI(LineUserId,guestKey){
+    console.log("deep guestKey = " + guestKey);
+    return new Promise((resolve,reject) => {
+      request.post("https://api-dev.bluenet-ride.com/v2_0/register/verify",{ 
+        headers: {
+          'Content-Type' : ' application/json'
+        },
+        json:{
+          "guestKey": guestKey,
+          "kind":4,
+          "uid": LineUserId,
+          "code":this.botConfig.channelAccessToken
+        }
+      },
+      (error, response, body) => {
+        this.log("registerNewUserAPI-response-statusCode",response.statusCode);
+        //this.log("response == ",response);
+        if (error) {
+          this.logError('Error while sending message', error);
+          reject(error);
+          return;
+        }
+
+        if (response.statusCode !== 200) {
+          this.log("body",body);
+          this.logError('Error status code while sending message', body.errMsgs);
+          reject(error);
+          return;
+        }
+
+        this.log('body Status = ',body);
+
+        if(body.status == 0){
+          this.log('body accessKey = ',body.results.accessKey); 
+          
+        }      
+
+        this.log('Send registerPost succeeded');       
+        resolve();
+      })
+    })
+  }
+
+  registerSigninAPI(LineUserId,guestKey){
+    console.log("deep guestKey = " + guestKey);
+    return new Promise((resolve,reject) => {
+      request.post("https://api-dev.bluenet-ride.com/v2_0/register/signin",{ 
+        headers: {
+          'Content-Type' : ' application/json'
+        },
+        json:{
+          "guestKey": guestKey,
+          "kind":4,
+          "uid": LineUserId,
+          "accessToken":this.botConfig.channelAccessToken,
+          "platform":"",
+          "uids":[{"id":LineUserId,"appid":""}]
+        }
+      },
+      (error, response, body) => {
+        this.log("registerSigninAPI-response-statusCode",response.statusCode);
+        //this.log("response == ",response);
+        if (error) {
+          this.logError('Error while sending message', error);
+          reject(error);
+          return;
+        }
+
+        if (response.statusCode !== 200) {
+          this.log("body",body);
+          this.logError('Error status code while sending message', body.errMsgs);
+          reject(error);
+          return;
+        }
+
+        this.log('body Status = ',body);
+
+        if(body.status == 0){
+          this.log('body accessKey = ',body.results.accessKey); 
+        }   
+
+        this.log('Send registerSignin succeeded');       
+        resolve();
+      })
+    })
+  }
+
+  phoneSignupAPI(accessKey,userId,phonenumber){
+      console.log("deep guestKey = " + accessKey);
+      console.log("deep phonenumber = " + phonenumber);
+      console.log("deep userId = " + userId);
+    return new Promise((resolve,reject) => {
+
+       request.post("https://api-dev.bluenet-ride.com/v2_0/user/phone/signup", { 
+          headers: {
+            'Content-Type' : ' application/json'
+          },
+          json:{
+            "accessKey": accessKey,
+            "userID":userId,
+            "phoneCountry": 886,
+            "phoneNumber":phonenumber
+          }
+        },
+        (error, response, body) => {
+          this.log("phoneSignupAPI-response-statusCode",response.statusCode);
+          if (error) {
+            this.logError('Error while sending message', error);
+            reject(error);
+            return;
+          }
+
+          if (response.statusCode !== 200) {
+            this.log('body Status = ',body.status);
+            this.logError('Error status code while sending message', body.errMsgs);
+            reject(error);
+            return;
+          }
+
+          this.log('Send registerPost succeeded');
+          this.log('body Status = ',body.status);
+          this.log('body errMsgs = ',body.errMsgs);
+          resolve(body.status);
+        })
+    })
+  }
+
+  phoneVerifyAPI(accessKey,userId,phonenumber,code){
+    return new Promise((resolve,reject) => {
+        request.post("https://api-dev.bluenet-ride.com/v2_0/user/phone/verify", { 
+          headers: {
+            'Content-Type' : ' application/json'
+          },
+          json:{
+            "accessKey": accessKey,
+            "userID":userId,
+            "phoneCountry":886,
+            "phoneNumber":phonenumber,
+            "code":code
+          }
+        }, (error, response, body) => {
+          this.log("phoneVerifyAPI-response-statusCode",response.statusCode);
+          if (error) {
+            this.logError('Error while sending message', error);
+            reject(error);
+            return;
+          }
+
+          if (response.statusCode !== 200) {
+            this.log('body Status = ',body.status);
+            this.logError('Error status code while sending message', body.errMsgs);
+            reject(error);
+            return;
+          }
+
+            this.log('Send phoneVerifyAPI succeeded');
+            this.log('phoneVerifyAPI body Status = ',body.status);
+            resolve(body.status);
+        })
+    });
+  }
+
+  rule(phone){
+    var i,jd,phonetemp;
+
+    phonetemp = "0123456789-+ ";
+    if(phone.length == 10){
+      if( (phone.charAt(0) + phone.charAt(1)) === "09" ){
+        for (i = 0;i<phone.length;i++){
+          jd = phonetemp.indexOf(phone.charAt(i));
+          if(jd == -1)
+            return 0;
+        }
+        return 1 ;
+      }else{
+        return 0 ;
+      }
+    }else{
+      return 0 ;
+    }
+  }
+};
