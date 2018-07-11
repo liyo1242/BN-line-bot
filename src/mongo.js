@@ -9,6 +9,7 @@ const dbName = 'bn-linebot';
 const colName = 'Persons';
 
 exports.findUser = function (userId, callback) {
+    console.log(' userId = ' + userId + ' , dbName =' + dbName + " , colName" + colName);
     MongoClient.connect(url, (err, client) => {
         if (err) callback(err.message, null);
         else {
@@ -18,8 +19,13 @@ exports.findUser = function (userId, callback) {
             }
 db.collection(colName).findOne(query, (err, res) => {
                 client.close();
-                if (err) callback(err.message, null);
+                console.log("err == " + err);
+                console.log("res == " + res);
+                if (err) {
+                    callback(err.message, null);
+                }
                 else {
+                    console.log("Hello World");
                     callback(null, res);
                 };
             });
@@ -49,7 +55,7 @@ db.collection(colName).updateOne(query, update, (err, res) => {
                             //assert.equal(1, res.modifiedCount);
                             else {
                                 client.close();
-                                callback(null, res.result);
+                                callback(null, res);
                             };
                         });
 } else {
@@ -64,7 +70,7 @@ db.collection(colName).insertOne(doc, (err, res) => {
                             //assert.equal(1, res.insertedCount);
                             else {
                                 client.close();
-                                callback(null, res.result);
+                                callback(null, res);
                             };
                         });
                     };
@@ -195,6 +201,23 @@ db.collection(colName).updateOne(query, update, (err, res) => {
                     callback(null, res.result);
                 };
             });
+        };
+    });
+}
+
+exports.insertNew = (event,callback) => {
+    var doc = {
+        userId: event.source.userId,
+        registrationStatus: 0,
+        eventLog: [event],
+        block: false
+    };
+    db.collection(colName).insertOne(doc, (err, res) => {
+        if (err) callback(err.message, null);
+        //assert.equal(1, res.insertedCount);
+        else {
+            client.close();
+            callback(null, res.result);
         };
     });
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 'use strict';
 
 const express = require('express');
@@ -92,6 +92,9 @@ app.post('/webhook', (req, res) => {
 
                 bot.processPostback(item, res)
                     //.catch(err => console.error(err));
+            } else if (item.type === "follow") {
+
+                bot.processPostback(item, res)
             }
     });
 
