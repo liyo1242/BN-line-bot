@@ -150,8 +150,21 @@ module.exports = class LineBot {
 
         let chatId = this.getChatId(postback);
         //let messageText = postback.postback.params.datetime;
+        if (postback.type === 'follow'){  //點級圖片 換
 
-        if(postback.postback.data === "action=wrongphone"){
+          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
+          .then((richMenuId) => {
+            eroPicture.linkUser(this.botConfig.channelAccessToken,richMenuId,postback.source.userId);
+          });
+
+          const sticker = {
+            type: "sticker",
+            packageId: "2",
+            stickerId: "164"
+          };
+          return this.reply(postback.replyToken, [sticker]);
+        }
+        else if(postback.postback.data === "action=wrongphone"){
           const confirm = this.wrongphone(postback);
           return this.reply(postback.replyToken, [confirm]);
         }
@@ -166,20 +179,6 @@ module.exports = class LineBot {
            // =======================================================fuck
           return this.reply(postback.replyToken, [confirm]);
         }else if (postback.postback.data === `action=one`){  //點級圖片 換
-
-          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
-          .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,richMenuId,postback.source.userId);
-          });
-
-          const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "164"
-          };
-          return this.reply(postback.replyToken, [sticker]);
-        }
-        else if (postback.type === 'follow'){  //點級圖片 換
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
