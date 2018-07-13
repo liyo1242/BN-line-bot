@@ -570,8 +570,36 @@ module.exports = class LineBot {
         "previewImageUrl": "https://web.metro.taipei/img/all/metrotaipeimap.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
-    }
-    else{
+    }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
+      const confirm = {
+        "type": "image",
+        "originalContentUrl": "https://i.imgur.com/ptT0nIX.jpg",
+        "previewImageUrl": "https://i.imgur.com/ptT0nIX.jpg"
+      }; // end confirm
+      return Promise.resolve(confirm);
+    }else if((message.message.text.indexOf('捷運') != -1)){
+      const confirm = {
+        "type": "template",
+        "altText": "詢問捷運",
+        "template": {
+            "type": "confirm",
+            "text": "您需要北捷地圖還是高捷地圖?",
+            "actions": [
+                {
+                  "type": "message",
+                  "label": "北",
+                  "text": "北捷"
+                },
+                {
+                  "type": "message",
+                  "label": "高",
+                  "text": "高捷"
+                }
+            ]
+        }
+      }; // end confirm
+      return Promise.resolve(confirm);
+    }else{
       return Promise.resolve(0);
     }
   }
