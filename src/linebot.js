@@ -580,19 +580,29 @@ module.exports = class LineBot {
     }else if((message.message.text.indexOf('捷運') != -1)){
       const confirm = {
         "type": "template",
-        "altText": "詢問捷運",
+        "altText": "Ask MRT template",
         "template": {
-            "type": "confirm",
-            "text": "您需要北捷地圖還是高捷地圖?",
+            "type": "buttons",
+            "thumbnailImageUrl": "https://www.bluenet-ride.com/images/drawable/cubeegroup/surprisecubee.png",
+            "imageAspectRatio": "rectangle",
+            "imageSize": "cover",
+            "imageBackgroundColor": "#4898AF",
+            "title": "座捷運嗎 ?",
+            "text": "您要台北捷運還是高雄捷運呢 ?",
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri": "http://example.com/page/123"
+            },
             "actions": [
                 {
                   "type": "message",
-                  "label": "北",
+                  "label": "北捷",
                   "text": "北捷"
                 },
                 {
                   "type": "message",
-                  "label": "高",
+                  "label": "高捷",
                   "text": "高捷"
                 }
             ]
