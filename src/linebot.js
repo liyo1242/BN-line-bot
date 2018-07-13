@@ -573,8 +573,8 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/ptT0nIX.jpg",
-        "previewImageUrl": "https://i.imgur.com/ptT0nIX.jpg"
+        "originalContentUrl": "https://www.tbkc.gov.tw/Upload/WebList/f88ff86c-9ca3-4832-a259-75001036bce8/Images/001.jpg",
+        "previewImageUrl": "https://www.tbkc.gov.tw/Upload/WebList/f88ff86c-9ca3-4832-a259-75001036bce8/Images/001.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if((message.message.text.indexOf('捷運') != -1)){
