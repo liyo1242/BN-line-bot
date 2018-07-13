@@ -566,8 +566,8 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "http://web.metro.taipei/img/all/metrotaipeimap.jpg",
-        "previewImageUrl": "http://web.metro.taipei/img/all/metrotaipeimap.jpg"
+        "originalContentUrl": "https://web.metro.taipei/img/all/metrotaipeimap.jpg",
+        "previewImageUrl": "https://web.metro.taipei/img/all/metrotaipeimap.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }
