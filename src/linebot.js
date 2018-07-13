@@ -587,7 +587,7 @@ module.exports = class LineBot {
             "imageAspectRatio": "rectangle",
             "imageSize": "cover",
             "imageBackgroundColor": "#4898AF",
-            "title": "座捷運嗎 ?",
+            "title": "搭捷運嗎 ?",
             "text": "您要台北捷運還是高雄捷運呢 ?",
             "defaultAction": {
                 "type": "uri",
