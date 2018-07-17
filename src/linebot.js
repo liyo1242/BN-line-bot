@@ -182,13 +182,26 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,richMenuId,postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-974c494b3d98c00b829d3ffe689e98f5",postback.source.userId);
           });
 
           const sticker = {
             type: "sticker",
             packageId: "2",
             stickerId: "164"
+          };
+          return this.reply(postback.replyToken, [sticker]);
+        }else if (postback.postback.data === `action=alpha`){  //點級圖片 換
+
+          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
+          .then((richMenuId) => {
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9e7a2f0f028401eede57b9448567e441",postback.source.userId);
+          });
+
+          const sticker = {
+            type: "sticker",
+            packageId: "2",
+            stickerId: "155"
           };
           return this.reply(postback.replyToken, [sticker]);
         }
@@ -609,6 +622,8 @@ module.exports = class LineBot {
         }
       }; // end confirm
       return Promise.resolve(confirm);
+    }else if (message.message.text === "老鐵回家了"){
+      return Promise.resolve(eroFunction.selftest());
     }else{
       return Promise.resolve(0);
     }
