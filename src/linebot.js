@@ -195,7 +195,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9e7a2f0f028401eede57b9448567e441",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-52ad61f9192154ea3b2331b4fa6f9bf5",postback.source.userId);
           });
 
           const sticker = {
