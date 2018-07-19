@@ -8,10 +8,10 @@ module.exports.chooseMenu = () => {
 		      	"type": "image_carousel",
 		      	"columns": [
 		          {
-		            "imageUrl": "https://i.imgur.com/CK6wfnJ.png",
+		            "imageUrl": "https://www.bluenet-ride.com/images/drawable/cubeegroup/surprisecubee.png",
 		            "action": {
 		              	"type": "postback",
-              			"label": "1",
+              			"label": "Update to the latest version of the menu",
               			"data": "action=one"
 		            }
 		          }
