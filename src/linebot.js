@@ -175,7 +175,7 @@ module.exports = class LineBot {
           //   var p = bnfunction.phoneSignupAPI(status.accessKey,status.BNuserid,status.phoneNumber);
           //   p.catch(err => console.log(err))
           // })
-          const confirm = this.vertifyagain();
+          const confirm = this.vertifyagain(); 
            // =======================================================fuck
           return this.reply(postback.replyToken, [confirm]);
         }else if (postback.postback.data === `action=one`){  //點級圖片 換
