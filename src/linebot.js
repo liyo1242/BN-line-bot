@@ -85,11 +85,11 @@ module.exports = class LineBot {
     let chatId = this.getChatId(message);
     let messageText = this.getText(message);
 
-    const message = {
+    const liyomessage = {
       type: "text",
       text: messageText
     };
-    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[message]);
+    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[liyomessage]);
 
     if (chatId && messageText) {
 
