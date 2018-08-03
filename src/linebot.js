@@ -456,6 +456,7 @@ module.exports = class LineBot {
 
   reply(replyToken, messages) {
     console.log("reply in " + messages);
+    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',messages);
     return new Promise((resolve, reject) => {
       request.post("https://api.line.me/v2/bot/message/reply", {
         forever: true,
