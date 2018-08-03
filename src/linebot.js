@@ -85,6 +85,12 @@ module.exports = class LineBot {
     let chatId = this.getChatId(message);
     let messageText = this.getText(message);
 
+    const message = {
+      type: "text",
+      text: messageText
+    };
+    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[message]);
+
     if (chatId && messageText) {
 
       if (messageText) {
@@ -239,7 +245,6 @@ module.exports = class LineBot {
                 type: "text",
                 text: responseText
             };
-            this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[message]);
             return this.reply(replyToken, [message]);
         } else if (responseText == '' && !this.isDefined(action)) {
             console.log("sec if");
