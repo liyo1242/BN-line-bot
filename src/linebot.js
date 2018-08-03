@@ -221,6 +221,7 @@ module.exports = class LineBot {
         let result = apiaiResponse.result.fulfillment;
         console.log(action);
         console.log(result);
+        this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',messages);
         let contexts = apiaiResponse.result.contexts;
         let parameters = apiaiResponse.result.parameters;
 
@@ -456,7 +457,6 @@ module.exports = class LineBot {
 
   reply(replyToken, messages) {
     console.log("reply in " + messages);
-    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',messages);
     return new Promise((resolve, reject) => {
       request.post("https://api.line.me/v2/bot/message/reply", {
         forever: true,
