@@ -221,7 +221,6 @@ module.exports = class LineBot {
         let result = apiaiResponse.result.fulfillment;
         console.log(action);
         console.log(result);
-        this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',messages);
         let contexts = apiaiResponse.result.contexts;
         let parameters = apiaiResponse.result.parameters;
 
@@ -240,6 +239,7 @@ module.exports = class LineBot {
                 type: "text",
                 text: responseText
             };
+            this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',message);
             return this.reply(replyToken, [message]);
         } else if (responseText == '' && !this.isDefined(action)) {
             console.log("sec if");
@@ -487,6 +487,7 @@ module.exports = class LineBot {
   }
 
   replyPush(receiverId, messages) {
+    console.log("liyo hack");
     return new Promise((resolve, reject) => {
       request.post("https://api.line.me/v2/bot/message/push", {
         forever: true,
