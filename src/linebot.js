@@ -87,7 +87,7 @@ module.exports = class LineBot {
 
     const liyomessage = {
       type: "text",
-      text: messageText
+      text: chatId + " 用戶說了 : " + messageText
     };
     this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[liyomessage]);
 
