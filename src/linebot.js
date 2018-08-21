@@ -166,7 +166,7 @@ module.exports = class LineBot {
           const sticker = {
             type: "sticker",
             packageId: "2",
-            stickerId: "164"
+            stickerId: "165"
           };
           return this.reply(postback.replyToken, [sticker]);
         }
