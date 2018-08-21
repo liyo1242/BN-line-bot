@@ -160,7 +160,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-52ad61f9192154ea3b2331b4fa6f9bf5",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-2faa8f9efca465662c3ab414e40ff353",postback.source.userId);
           });
 
           const sticker = {
@@ -194,7 +194,7 @@ module.exports = class LineBot {
           const sticker = {
             type: "sticker",
             packageId: "2",
-            stickerId: "164"
+            stickerId: "165"
           };
           return this.reply(postback.replyToken, [sticker]);
         }else if (postback.postback.data === `action=alpha`){  //點級圖片 換
@@ -574,7 +574,7 @@ module.exports = class LineBot {
 
   PUBG(message,status){
     //return Promise.resolve(0)
-    if(message.message.text === "BlueNet功能 敬請期待"){
+    if(message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####"){
 
       return Promise.resolve(eroFunction.chooseMenu());
     }else if(message.message.text === "查詢" ){
