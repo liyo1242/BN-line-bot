@@ -111,7 +111,7 @@ app.get('/api',(req, res) => {
     stickerId: "167"
   };
   // req need userId and type
-  bot.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[sticker]);
+  bot.replyPush('Uc408210c1b234ef0412f36ab7702b6c0',[sticker]);
   return res.status(200).send('Gandalf comming Gandalf comming');
 });
 
