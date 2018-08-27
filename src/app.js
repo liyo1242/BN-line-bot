@@ -108,7 +108,7 @@ app.post('/api',(req, res) => {
   const userid = req.userid;
   const messageType = req.messageType;
   const forUserMessage = req.forUserMessage;
-  console(req.userid + " Gandalf " + req.messageType + " Gandalf " + req.forUserMessage);
+  console.log(req.userid + " Gandalf " + req.messageType + " Gandalf " + req.forUserMessage);
 
   const sticker = {
     type: "sticker",
