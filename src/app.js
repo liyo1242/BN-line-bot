@@ -103,6 +103,18 @@ app.post('/webhook', (req, res) => {
   }
 });
 
+app.post('/api',(req, res) => {
+  console.log('Gandalf comming');
+
+  const sticker = {
+    type: "sticker",
+    packageId: "2",
+    stickerId: "167"
+  };
+  // req need userId and type
+  bot.replyPush('Ue2b706a7936e38a777f4d946c88c482a',sticker);
+});
+
 app.listen(REST_PORT, function () {
   console.log(`Service is ready on port ${REST_PORT}`);
 });

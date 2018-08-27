@@ -99,9 +99,6 @@ module.exports = class LineBot {
         }
 
         // ====================local check=============================
-        // mongo.findUser(message.source.userId,(err, res) => {
-            // const status = res;
-            // create a echoing text message
             if(res == null){
               console.log(err);
               console.log('event null');
@@ -163,11 +160,7 @@ module.exports = class LineBot {
             eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-2faa8f9efca465662c3ab414e40ff353",postback.source.userId);
           });
 
-          const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "165"
-          };
+
           return this.reply(postback.replyToken, [sticker]);
         }
         else if(postback.postback.data === "action=wrongphone"){
