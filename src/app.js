@@ -103,7 +103,7 @@ app.post('/webhook', (req, res) => {
   }
 });
 
-app.post('/api',(req, res) => {
+app.get('/api',(req, res) => {
   console.log('Gandalf comming');
 
   const sticker = {
