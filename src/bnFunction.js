@@ -20,7 +20,7 @@ module.exports = {
 	registerNewUserAPI: (LineUserId,guestKey,channelAccessToken) => {
 	    console.log("deep guestKey = " + guestKey);
 	    return new Promise((resolve,reject) => {
-	      request.post("https://api-dev.bluenet-ride.com/v2_0/register/verify",{ 
+	      request.post("https://api-dev.bluenet-ride.com/v2_0/register/verify",{
 	        headers: {
 	          'Content-Type' : ' application/json'
 	        },

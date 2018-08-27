@@ -103,22 +103,20 @@ app.post('/webhook', (req, res) => {
   }
 });
 
-app.get('/api',(req, res) => {
+app.post('/api',(req, res) => {
   console.log('Gandalf comming');
+  const userid = req.userid;
+  const messageType = req.messageType;
+  const forUserMessage = req.forUserMessage;
+  console(req.userid + " Gandalf " + req.messageType + " Gandalf " + req.forUserMessage);
+
   const sticker = {
     type: "sticker",
     packageId: "2",
     stickerId: "167"
   };
-  const message = {
-    type: "text",
-    text: "早安 今天你也被4+壓榨了嗎"
-  };
   // req need userId and type
-  bot.replyPush('Ud73350b08742e9e4bad1c48c08bdc90b',[sticker]);
-  bot.replyPush('Ud73350b08742e9e4bad1c48c08bdc90b',[message]);
-  bot.replyPush('Uc408210c1b234ef0412f36ab7702b6c0',[sticker]);
-  bot.replyPush('Uc408210c1b234ef0412f36ab7702b6c0',[message]);
+  bot.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[sticker]);
   return res.status(200).send('Gandalf comming Gandalf comming');
 });
 
