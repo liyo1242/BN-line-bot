@@ -105,7 +105,6 @@ app.post('/webhook', (req, res) => {
 
 app.get('/api',(req, res) => {
   console.log('Gandalf comming');
-
   const sticker = {
     type: "sticker",
     packageId: "2",
@@ -113,6 +112,7 @@ app.get('/api',(req, res) => {
   };
   // req need userId and type
   bot.replyPush('Ue2b706a7936e38a777f4d946c88c482a',sticker);
+  return res.status(200).send('Gandalf comming Gandalf comming');
 });
 
 app.listen(REST_PORT, function () {
