@@ -108,20 +108,20 @@ app.post('/webhook', (req, res) => {
 
 app.post('/api',(req, res) => {
   console.log('Gandalf comming');
-  console.log(req);
   const userid = req.body.userid;
   const messageType = req.body.messageType;
   const forUserMessage = req.body.forUserMessage;
   console.log(userid + " Gandalf " + messageType + " Gandalf " + forUserMessage);
 
-  const sticker = {
-    type: "sticker",
-    packageId: "2",
-    stickerId: "167"
-  };
   // req need userId and type
-  bot.replyPush(userid,[forUserMessage]);
-  return res.status(200).send('Gandalf comming Gandalf comming');
+  bot.replyPush(userid,[forUserMessage])
+  .then((value) => {
+    // fulfillment
+    return res.status(200).send('Gandalf comming Gandalf comming');
+  }, (reason) => {
+    // rejection
+    return res.status(400).send('Dont fuckin mess with input');
+  });
 });
 
 app.listen(REST_PORT, function () {
