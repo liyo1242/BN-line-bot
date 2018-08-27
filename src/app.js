@@ -110,8 +110,15 @@ app.get('/api',(req, res) => {
     packageId: "2",
     stickerId: "167"
   };
+  const message = {
+    type: "text",
+    text: "早安 今天你也被4+壓榨了嗎"
+  };
   // req need userId and type
+  bot.replyPush('Ud73350b08742e9e4bad1c48c08bdc90b',[sticker]);
+  bot.replyPush('Ud73350b08742e9e4bad1c48c08bdc90b',[message]);
   bot.replyPush('Uc408210c1b234ef0412f36ab7702b6c0',[sticker]);
+  bot.replyPush('Uc408210c1b234ef0412f36ab7702b6c0',[message]);
   return res.status(200).send('Gandalf comming Gandalf comming');
 });
 
