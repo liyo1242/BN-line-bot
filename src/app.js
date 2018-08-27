@@ -105,10 +105,11 @@ app.post('/webhook', (req, res) => {
 
 app.post('/api',(req, res) => {
   console.log('Gandalf comming');
-  const userid = req.userid;
-  const messageType = req.messageType;
-  const forUserMessage = req.forUserMessage;
-  console.log(req.userid + " Gandalf " + req.messageType + " Gandalf " + req.forUserMessage);
+  console.log(req);
+  const userid = req.body.userid;
+  const messageType = req.body.messageType;
+  const forUserMessage = req.body.forUserMessage;
+  console.log(userid + " Gandalf " + messageType + " Gandalf " + forUserMessage);
 
   const sticker = {
     type: "sticker",
