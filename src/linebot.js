@@ -89,7 +89,7 @@ module.exports = class LineBot {
       type: "text",
       text: chatId + " 用戶說了 : " + messageText
     };
-    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a',[liyomessage]);
+    this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
 
     if (chatId && messageText) {
 
@@ -157,7 +157,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-2faa8f9efca465662c3ab414e40ff353",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
           });
 
 
@@ -181,7 +181,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-52ad61f9192154ea3b2331b4fa6f9bf5",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
           });
 
           const sticker = {
@@ -194,7 +194,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-52ad61f9192154ea3b2331b4fa6f9bf5",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
           });
 
           const sticker = {
