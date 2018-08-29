@@ -157,7 +157,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
           });
 
 
@@ -181,7 +181,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
           });
 
           const sticker = {
@@ -194,7 +194,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-74a17c1f4acaf3c491c66f370d5c71cb",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
           });
 
           const sticker = {
@@ -567,6 +567,13 @@ module.exports = class LineBot {
 
   PUBG(message,status){
     //return Promise.resolve(0)
+    if(message.message.text === "安安 cubee"){
+      const confirm = {
+        type: "text",
+        text: "這個功能晚點才會有喔"
+      }; // end confirm
+      return Promise.resolve(confirm);
+    }
     if(message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####"){
 
       return Promise.resolve(eroFunction.chooseMenu());
