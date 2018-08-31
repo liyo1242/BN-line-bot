@@ -84,7 +84,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 		        "contents": [
 		          {
 		            "type": "text",
-		            "text": userName + `(${userid}) : ` + userMessage,
+		            "text": "sadsa",
 		            "gravity": "top",
 		            "wrap": true,
 		            "size": "xs",
