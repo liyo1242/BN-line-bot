@@ -53,9 +53,9 @@ module.exports.selftest = () => {
 module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 	console.log("in eavesdropper");
 	const confirm = {
-	  "type": "flex",
-      "altText": "eavesdropper",
-      "contents":{
+		"type": "flex",
+	    "altText": "eavesdropper",
+	    "contents":{
 		  "type": "bubble",
 		  "body": {
 		    "type": "box",
@@ -69,7 +69,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 		        "contents": [
 		          {
 		            "type": "image",
-		            "url": imgurl,
+		            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
 		            "aspectMode": "cover",
 		            "aspectRatio": "4:3",
 		            "size": "sm",
@@ -84,7 +84,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 		        "contents": [
 		          {
 		            "type": "text",
-		            "text": "sadsa",
+		            "text": "7 Things to Knoor Today",
 		            "gravity": "top",
 		            "wrap": true,
 		            "size": "xs",
