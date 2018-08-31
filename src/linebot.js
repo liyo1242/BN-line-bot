@@ -247,7 +247,7 @@ module.exports = class LineBot {
                 };
                 return this.reply(replyToken, [message]);
               }else {
-                return 0;
+                return Promise.resolve(0);
               }
             }
             // sp
