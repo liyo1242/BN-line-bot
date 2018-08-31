@@ -85,11 +85,16 @@ module.exports = class LineBot {
     let chatId = this.getChatId(message);
     let messageText = this.getText(message);
 
-    const liyomessage = {
-      type: "text",
-      text: chatId + " 用戶說了 : " + messageText
-    };
-    this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
+    this.getProfile(chatId)
+    .then((data) => {
+      // const liyomessage = {
+      //   type: "text",
+      //   text: data.displayName + " 用戶說了 : " + messageText
+      // };
+      this.replyPush('U506c7426ba192e705210a874b97b40ca',[eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)]);
+    })
+
+
 
     if (chatId && messageText) {
 
@@ -174,7 +179,7 @@ module.exports = class LineBot {
           //   var p = bnfunction.phoneSignupAPI(status.accessKey,status.BNuserid,status.phoneNumber);
           //   p.catch(err => console.log(err))
           // })
-          const confirm = this.vertifyagain(); 
+          const confirm = this.vertifyagain();
            // =======================================================fuck
           return this.reply(postback.replyToken, [confirm]);
         }else if (postback.postback.data === `action=one`){  //點級圖片 換
@@ -495,6 +500,32 @@ module.exports = class LineBot {
         json: {
           to: receiverId,
           messages: messages
+        }
+      }, (error, response, body) => {
+        if (error) {
+          this.logError('Error while sending message', error);
+          reject(error);
+          return;
+        }
+
+        if (response.statusCode !== 200) {
+          this.logError('Error status code while sending message', body);
+          reject(error);
+          return;
+        }
+
+        this.log('Send message succeeded');
+        resolve(body);
+      });
+    });
+  }
+
+  getProfile(userid) {
+    console.log("fuckin user =" + userid);
+    return new Promise((resolve, reject) => {
+      request.get(`https://api.line.me/v2/bot/profile/${userid}` , {
+        headers: {
+          'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
         }
       }, (error, response, body) => {
         if (error) {
