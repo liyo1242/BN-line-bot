@@ -162,7 +162,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
           });
 
 
@@ -186,7 +186,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
           });
 
           const sticker = {
@@ -199,7 +199,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-9273f36cdf557166342cc7bf6934685e",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
           });
 
           const sticker = {
