@@ -603,6 +603,11 @@ module.exports = class LineBot {
         type: "text",
         text: "這個功能晚點才會有喔"
       }; // end confirm
+      const pushConfirm = {
+        type: "text",
+        text: "要不要先下載我們的貼圖阿 https://line.me/S/sticker/3998963"
+      };
+      replyPush(message.source.userId,pushConfirm);
       return Promise.resolve(confirm);
     }
     if(message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####"){
