@@ -620,37 +620,37 @@ module.exports = class LineBot {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3998963"
       };
-      this.replyPush(message.source.userId, [pushConfirm]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm]);
       const pushConfirm1 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4357617"
       };
-      this.replyPush(message.source.userId, [pushConfirm1]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm1]);
       const pushConfirm2 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3998963"
       };
-      this.replyPush(message.source.userId, [pushConfirm2]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm2]);
       const pushConfirm3 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212262"
       };
-      this.replyPush(message.source.userId, [pushConfirm3]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
       const pushConfirm4 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212262"
       };
-      this.replyPush(message.source.userId, [pushConfirm4]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm4]);
       const pushConfirm5 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3662781"
       };
-      this.replyPush(message.source.userId, [pushConfirm5]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm5]);
       const pushConfirm6 = {
         type: "text",
         text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212408"
       };
-      this.replyPush(message.source.userId, [pushConfirm6]);
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm6]);
       return Promise.resolve(confirm);
     }
     // sp==========
