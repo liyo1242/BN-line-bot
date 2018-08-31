@@ -111,7 +111,6 @@ module.exports = class LineBot {
             this.PUBG(message,0).then((value) => {
               console.log(value);
                 if(value == 0){
-                  if(chatId != "C81ac7493174152cc41cf6aaaf3f1257a"){
                       console.log("I'm in");
                       let apiaiRequest = this._apiaiService.textRequest(messageText,{
                       sessionId: this._sessionIds.get(chatId)
@@ -128,7 +127,6 @@ module.exports = class LineBot {
 
                     apiaiRequest.on('error', (error) => console.error(error));
                     apiaiRequest.end();
-                  }
               }else{
                 console.log("Oh no");
                 return this.reply(message.replyToken, [value]);
@@ -240,6 +238,19 @@ module.exports = class LineBot {
                 previousType = messages[i].type;
 
             }
+            // sp ================
+            if(chatId == "C81ac7493174152cc41cf6aaaf3f1257a"){
+              if(action != "input.unknown"){
+                const message = {
+                  type: "text",
+                  text: responseText
+                };
+                return this.reply(replyToken, [message]);
+              }else {
+                return 0;
+              }
+            }
+            // sp
             const message = {
                 type: "text",
                 text: responseText
