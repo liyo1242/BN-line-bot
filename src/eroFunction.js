@@ -51,6 +51,7 @@ module.exports.selftest = () => {
 }
 
 module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
+	console.log("in eavesdropper");
 	const confirm = {
 	  "type": "flex",
       "altText": "eavesdropper",
