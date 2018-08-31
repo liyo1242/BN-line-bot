@@ -69,7 +69,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 		        "contents": [
 		          {
 		            "type": "image",
-		            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
+		            "url": imgurl,
 		            "aspectMode": "cover",
 		            "aspectRatio": "4:3",
 		            "size": "sm",
@@ -84,7 +84,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
 		        "contents": [
 		          {
 		            "type": "text",
-		            "text": "7 Things to Knoor Today",
+		            "text": `${userName} -- (${userid}) says ${userMessage}`,
 		            "gravity": "top",
 		            "wrap": true,
 		            "size": "xs",
