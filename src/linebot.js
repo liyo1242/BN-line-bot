@@ -87,11 +87,9 @@ module.exports = class LineBot {
 
     this.getProfile(chatId)
     .then((data) => {
-      // const liyomessage = {
-      //   type: "text",
-      //   text: data.displayName + " 用戶說了 : " + messageText
-      // };
-      this.replyPush('U506c7426ba192e705210a874b97b40ca',[eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)]);
+      console.log(data);
+      const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+      this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
     })
 
 
