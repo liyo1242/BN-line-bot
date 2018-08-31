@@ -87,7 +87,7 @@ module.exports = class LineBot {
 
     this.getProfile(chatId)
     .then((profiledata) => {
-      console.log(data);
+      // console.log(data);
       console.log('user says : ' + messageText);
       const data = JSON.parse(profiledata);
       const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
