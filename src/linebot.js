@@ -257,6 +257,17 @@ module.exports = class LineBot {
                 text: responseText
             };
             return this.reply(replyToken, [message]);
+        } else if (messages.length > 1){
+            var ran = messages[Math.floor(Math.random() * (messages.length - 1))];
+            if(ran.type == 0){
+              const message = {
+                  type: "text",
+                  text: ran.speech
+              };
+              return this.reply(replyToken, [message]);
+            }else{
+              return this.reply(replyToken, [ran.payload]);
+            }
         } else if (messages[0].type != 0 || !this.isDefined(action)) {
             console.log("sec if");
             return this.reply(replyToken, [messages[0].payload]);
@@ -267,7 +278,7 @@ module.exports = class LineBot {
         } else if (this.isDefined(responseText)) {
             const message = {
                 type: "text",
-                text: responseText
+                text: "系統錯誤"
             };
             return this.reply(replyToken, [message]);
         }
