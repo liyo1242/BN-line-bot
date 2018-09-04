@@ -228,7 +228,7 @@ module.exports = class LineBot {
         let contexts = apiaiResponse.result.contexts;
         let parameters = apiaiResponse.result.parameters;
 
-        if (this.isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1)) {
+        if (responseText && this.isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1)) {
             console.log("first if");
             let timeoutInterval = 1100;
             let previousType ;
@@ -268,17 +268,7 @@ module.exports = class LineBot {
             return this.reply(replyToken, [message]);
 
         } else if (this.isDefined(action)) {
-
-            if (shutup == 0 ){
-                console.log("deep wakeup");
-                return this.handleApiAiAction(replyToken, action, responseText, contexts, messages);
-            } else {
-                const message = {
-                    type: "text",
-                    text: "shutdown bye~~"
-                };
-                return this.reply(replyToken, [message]);
-            }
+                return this.reply(replyToken, [messages[0].payload]);
         } else if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
           //no facebook
         } else if (this.isDefined(responseText)) {
