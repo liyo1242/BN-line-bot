@@ -259,18 +259,11 @@ module.exports = class LineBot {
             return this.reply(replyToken, [message]);
         } else if (responseText == '' && !this.isDefined(action)) {
             console.log("sec if");
-            //api ai could not evaluate input.
-            console.log('Unknown query' + apiaiResponse.result.resolvedQuery);
-            const message = {
-                type: "text",
-                text: responseText
-            };
-            return this.reply(replyToken, [message]);
-
+            return this.reply(replyToken, [messages[0].payload]);
         } else if (this.isDefined(action)) {
-                return this.reply(replyToken, [messages[0].payload]);
-        } else if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
-          //no facebook
+            console.log("3 gandalf");
+            return this.reply(replyToken, [messages[0].payload]);
+
         } else if (this.isDefined(responseText)) {
             const message = {
                 type: "text",
