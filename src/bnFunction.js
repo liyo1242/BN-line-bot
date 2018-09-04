@@ -59,11 +59,11 @@ module.exports = {
 	      })
 	    })
 	},
-
+	// this one is good
 	registerSigninAPI: (LineUserId,guestKey,channelAccessToken) => {
 	    console.log("deep guestKey = " + guestKey);
 	    return new Promise((resolve,reject) => {
-	      request.post("https://api-dev.bluenet-ride.com/v2_0/register/signin",{ 
+	      request.post("https://api-dev.bluenet-ride.com/v2_0/register/signin",{
 	        headers: {
 	          'Content-Type' : ' application/json'
 	        },
