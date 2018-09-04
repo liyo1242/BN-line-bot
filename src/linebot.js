@@ -228,7 +228,7 @@ module.exports = class LineBot {
         let contexts = apiaiResponse.result.contexts;
         let parameters = apiaiResponse.result.parameters;
 
-        if (responseText && this.isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1)) {
+        if (this.isDefined(messages) && (messages.length == 1 && messages[0].type != 0 || messages.length > 1)) {
             console.log("first if");
             let timeoutInterval = 1100;
             let previousType ;
