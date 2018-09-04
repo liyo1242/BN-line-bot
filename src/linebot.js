@@ -258,7 +258,7 @@ module.exports = class LineBot {
             };
             return this.reply(replyToken, [message]);
         } else if (messages.length > 1){
-            var ran = messages[Math.floor(Math.random() * messages.length];
+            var ran = messages[Math.floor(Math.random() * messages.length)];
             if(ran.type == 0){
               const message = {
                   type: "text",
