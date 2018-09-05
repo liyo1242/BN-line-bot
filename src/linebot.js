@@ -718,6 +718,27 @@ module.exports = class LineBot {
       return Promise.resolve(confirm);
     }else if (message.message.text === "老鐵回家了"){
       return Promise.resolve(eroFunction.selftest());
+    }else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('地點') != -1)) {
+      const confirm = {
+        "type": "template",
+        "altText": "ffbn",
+        "template": {
+            "type": "confirm",
+            "text": "要加進日曆嗎?",
+            "actions": [
+                {
+                   "type":"uri",
+                   "label":"Yes",
+                   "uri":"http://bn-calendar.herokuapp.com"
+                },
+                {
+                  "type": "message",
+                  "label": "No",
+                  "text": "no"
+                }
+            ]
+        }
+      }
     }else{
       return Promise.resolve(0);
     }
