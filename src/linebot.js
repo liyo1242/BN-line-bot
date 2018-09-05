@@ -739,6 +739,7 @@ module.exports = class LineBot {
             ]
         }
       }
+      return Promise.resolve(confirm);
     }else{
       return Promise.resolve(0);
     }
