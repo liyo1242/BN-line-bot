@@ -146,11 +146,11 @@ module.exports = class LineBot {
       }
     } else {
             //return this.reply(message.replyToken, [confirm]);
-      const message = {
+      const messages = {
         type: "text",
         text: "傳三小貼圖阿 欠扁是不是"
       };
-      return this.reply(message.replyToken, [message]);
+      return this.reply(message.replyToken, [messages]);
       this.log('Empty message 3 ');
     }
   }
