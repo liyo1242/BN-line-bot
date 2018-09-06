@@ -146,11 +146,19 @@ module.exports = class LineBot {
       }
     } else {
             //return this.reply(message.replyToken, [confirm]);
-      const messages = {
-        type: "text",
-        text: "傳三小貼圖阿 欠扁是不是"
-      };
-      return this.reply(message.replyToken, [messages]);
+      if(message.message.type == "sticker"){
+        const messages = {
+          type: "text",
+          text: "傳三小貼圖阿 欠扁是不是"
+        };
+        return this.reply(message.replyToken, [messages]);
+      }else if(message.message.type == "image"){
+        const messages = {
+          type: "text",
+          text: "請不要隨便傳垃圾訊息 大撒B"
+        };
+        return this.reply(message.replyToken, [messages]);
+      }
       this.log('Empty message 3 ');
     }
   }
