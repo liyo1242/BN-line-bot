@@ -184,6 +184,10 @@ module.exports = class LineBot {
           const confirm = this.wrongphone(postback);
           return this.reply(postback.replyToken, [confirm]);
         }
+        else if(postback.postback.data === "action=menu"){ // wait to fix
+          const confirm = this.wrongphone(postback);
+          return this.reply(postback.replyToken, [confirm]);
+        }
         else if (postback.postback.data === "action=vertifyagain"){
 
           // mongo.findUser(postback.source.userId,(err, res) => {
@@ -628,6 +632,47 @@ module.exports = class LineBot {
         text: "要不要先下載我們的貼圖阿 https://line.me/S/sticker/3998963"
       };
       this.replyPush(message.source.userId, [pushConfirm]);
+      return Promise.resolve(confirm);
+    }else if((message.message.text.indexOf('TaxiGo') != -1)){
+      const confirm = {
+        type: "text",
+        text: "TaxiGo 我兄弟啦 "
+      };
+      const pushConfirm = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3998963"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
+      const pushConfirm1 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4357617"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
+      const pushConfirm2 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3998963"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
+      const pushConfirm3 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212262"
+      };
+      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
+      const pushConfirm4 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212262"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
+      const pushConfirm5 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3662781"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
+      const pushConfirm6 = {
+        type: "text",
+        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212408"
+      };
+      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
       return Promise.resolve(confirm);
     }
     // sp
