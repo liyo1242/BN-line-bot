@@ -184,7 +184,7 @@ module.exports = {
       "type": "template",
       "altText": "cubee新聞關心您",
       "template": {
-          "type": "carousel",
+          "type": "carousel", 
           "columns": [
               {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",

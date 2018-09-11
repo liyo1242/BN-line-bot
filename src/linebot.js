@@ -208,19 +208,23 @@ module.exports = class LineBot {
           };
           return this.reply(postback.replyToken, [sticker]);
         }else if (postback.postback.data === `action=news`){
-          const confirm = bnreply.cubeeNews()
+          console.log(bnreply.cubeeNews());
+          const confirm = bnreply.cubeeNews();
           return this.reply(postback.replyToken, confirm);
         }
         else if (postback.postback.data === `action=traffic`){
-          const confirm = bnreply.cubeeTraffic()
+          console.log(bnreply.cubeeTraffic());
+          const confirm = bnreply.cubeeTraffic();
           return this.reply(postback.replyToken, confirm);
         }
         else if (postback.postback.data === `action=entertainment`){
-          const confirm = bnreply.cubeeEntertainment()
+          console.log(bnreply.cubeeEntertainment());
+          const confirm = bnreply.cubeeEntertainment();
           return this.reply(postback.replyToken, confirm);
         }
         else if (postback.postback.data === `action=learn`){
-          const confirm = bnreply.cubeeLearn()
+          console.log(bnreply.cubeeLearn());
+          const confirm = bnreply.cubeeLearn();
           return this.reply(postback.replyToken, confirm);
         }
         const sticker = {
