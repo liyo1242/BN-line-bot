@@ -177,26 +177,9 @@ module.exports = class LineBot {
             eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
           });
 
-
           return this.reply(postback.replyToken, [sticker]);
-        }
-        else if(postback.postback.data === "action=wrongphone"){
+        }else if(postback.postback.data === "action=menu"){ // wait to fix
           const confirm = this.wrongphone(postback);
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === "action=menu"){ // wait to fix
-          const confirm = this.wrongphone(postback);
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === "action=vertifyagain"){
-
-          // mongo.findUser(postback.source.userId,(err, res) => {
-          //   const status = res;
-          //   var p = bnfunction.phoneSignupAPI(status.accessKey,status.BNuserid,status.phoneNumber);
-          //   p.catch(err => console.log(err))
-          // })
-          const confirm = this.vertifyagain();
-           // =======================================================fuck
           return this.reply(postback.replyToken, [confirm]);
         }else if (postback.postback.data === `action=one`){  //點級圖片 換
 
@@ -224,6 +207,17 @@ module.exports = class LineBot {
             stickerId: "155"
           };
           return this.reply(postback.replyToken, [sticker]);
+        }else if (postback.postback.data === `action=news`){
+          return this.reply(postback.replyToken, [bnreply.cubeeNews()]);
+        }
+        else if (postback.postback.data === `action=traffic`){
+          return this.reply(postback.replyToken, [bnreply.cubeeTraffic()]);
+        }
+        else if (postback.postback.data === `action=entertainment`){
+          return this.reply(postback.replyToken, [bnreply.cubeeEntertainment()]);
+        }
+        else if (postback.postback.data === `action=learn`){
+          return this.reply(postback.replyToken, [bnreply.cubeeLearn()]);
         }
         const sticker = {
             type: "sticker",
@@ -623,10 +617,7 @@ module.exports = class LineBot {
   PUBG(message,status){
     //return Promise.resolve(0)
     if(message.message.text === "Cubee 安安"){
-      const confirm = {
-        type: "text",
-        text: "這個功能晚點才會有喔"
-      }; // end confirm
+      const confirm = bnreply.cubee() // end confirm
       const pushConfirm = {
         type: "text",
         text: "要不要先下載我們的貼圖阿 https://line.me/S/sticker/3998963"
