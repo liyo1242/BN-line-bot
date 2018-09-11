@@ -184,13 +184,13 @@ module.exports = {
       "type": "template",
       "altText": "cubee新聞關心您",
       "template": {
-          "type": "carousel", 
+          "type": "carousel",
           "columns": [
               {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "頭條新聞",
-                "text": "",
+                "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -208,7 +208,7 @@ module.exports = {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "娛樂新聞",
-                "text": "",
+                "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -226,7 +226,7 @@ module.exports = {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "國際新聞",
-                "text": "",
+                "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -244,7 +244,7 @@ module.exports = {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "體育新聞",
-                "text": "",
+                "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -262,7 +262,7 @@ module.exports = {
                 "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "財經新聞",
-                "text": "",
+                "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
