@@ -275,7 +275,7 @@ module.exports = {
                        "uri":"https://tw.news.appledaily.com/headline/daily/"
                     }
                 ]
-              },
+              }
           ],
           "imageAspectRatio": "rectangle",
           "imageSize": "cover"
