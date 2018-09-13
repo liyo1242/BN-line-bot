@@ -553,6 +553,31 @@ module.exports = {
         const randomLimit = response.totalResults;
         const confirm = {
           "type": "template",
+          "altText": "This is a buttons template",
+          "template": {
+              "type": "buttons",
+              "thumbnailImageUrl": response.articles[0].urlToImage != null ? (response.articles[0].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
+              "imageAspectRatio": "rectangle",
+              "imageSize": "cover",
+              "imageBackgroundColor": "#FFFFFF",
+              "title": response.articles[0].title.substring(0,39),
+              "text": response.articles[0].description != null ? response.articles[0].description.substring(0,59) : "cubee真博學",
+              "defaultAction": {
+                  "type": "uri",
+                  "label": "XD",
+                  "uri": response.articles[0].url || "https://open.163.com/"
+              },
+              "actions": [
+                  {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[0].url || "https://open.163.com/"
+                        }
+              ]
+          }
+}
+        /*const confirm = {
+          "type": "template",
           "altText": "cubee關心您",
           "template": {
               "type": "carousel",
@@ -592,7 +617,7 @@ module.exports = {
                             "uri": response.articles[1].url || "https://open.163.com/"
                         }
                     ]
-                  }/*,
+                  },
                   {
                     "thumbnailImageUrl": response.articles[2].urlToImage != null ? (response.articles[2].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
@@ -646,12 +671,12 @@ module.exports = {
                             "uri": response.articles[4].url || "https://open.163.com/"
                         }
                     ]
-                  }*/
+                  }
               ],
               "imageAspectRatio": "rectangle",
               "imageSize": "cover"
           }
-        } // end confirm
+        } // end confirm*/
         console.log(response.articles[0].urlToImage);
         console.log(response.articles[1].urlToImage);
         console.log(response.articles[2].urlToImage);
