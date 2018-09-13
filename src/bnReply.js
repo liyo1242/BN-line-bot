@@ -576,7 +576,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[1].urlToImage != null ? response.articles[1].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[1].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[1].description.substring(0,59) || "cubee真博學",
@@ -652,6 +652,11 @@ module.exports = {
               "imageSize": "cover"
           }
         } // end confirm
+        console.log(response.articles[0].urlToImage);
+        console.log(response.articles[1].urlToImage);
+        console.log(response.articles[2].urlToImage);
+        console.log(response.articles[3].urlToImage);
+        console.log(response.articles[4].urlToImage);
         return confirm;
 
         //response.articles[]
