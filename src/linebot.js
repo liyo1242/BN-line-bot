@@ -225,6 +225,7 @@ module.exports = class LineBot {
         }
         else if(postback.postback.data === 'action=businessNews'){
           const confirm = bnreply.cubeeBusinessNews();
+          console.log(confirm);
           return this.reply(postback.replyToken, [confirm]);
         }
         const sticker = {
