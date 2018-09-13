@@ -174,7 +174,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
           });
 
           return this.reply(postback.replyToken, [sticker]);
@@ -185,7 +185,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
           });
 
           const sticker = {
@@ -198,7 +198,7 @@ module.exports = class LineBot {
 
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-6bc02a52c5f6f05347205b3588a00000",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
           });
 
           const sticker = {
