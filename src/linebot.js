@@ -224,9 +224,10 @@ module.exports = class LineBot {
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=businessNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          console.log(confirm);
-          return this.reply(postback.replyToken, [confirm]);
+          bnreply.cubeeBusinessNews().then((data) => {
+            console.log(data);
+            return this.reply(postback.replyToken, [data]);
+          })
         }
         const sticker = {
             type: "sticker",
