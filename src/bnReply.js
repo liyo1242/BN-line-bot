@@ -547,7 +547,9 @@ module.exports = {
       // language: 'en',
       country: 'tw'
     }).then(response => {
+      console(response);
       if(response.status == 'ok'){
+        
         const randomLimit = response.totalResults;
         const confirm = {
           "type": "template",
@@ -654,7 +656,12 @@ module.exports = {
 
         //response.articles[]
       } else {
-        return "";
+        const sticker = {
+            type: "sticker",
+            packageId: "2",
+            stickerId: "164"
+        };
+        return sticker;
       }
     });
   }
