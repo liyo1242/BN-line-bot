@@ -224,8 +224,10 @@ module.exports = class LineBot {
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=businessNews'){
-          bnreply.cubeeBusinessNews().then((data) => {
+          const cubeePromise = bnreply.cubeeBusinessNews();
+          cubeePromise.then((data) => {
             console.log(data);
+            console.log(postback.replyToken);
             return this.reply(postback.replyToken, [data]);
           })
         }
