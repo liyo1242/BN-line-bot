@@ -558,7 +558,7 @@ module.exports = {
               "type": "carousel",
               "columns": [
                   {
-                    "thumbnailImageUrl": response.articles[0].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[0].urlToImage != null ? (response.articles[0].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[0].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[0].description.substring(0,59) || "cubee真博學",
@@ -576,7 +576,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[1].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[1].urlToImage != null ? (response.articles[1].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[1].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[1].description.substring(0,59) || "cubee真博學",
@@ -594,7 +594,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[2].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[2].urlToImage != null ? (response.articles[2].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[2].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[2].description.substring(0,59) || "cubee真博學",
@@ -612,7 +612,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[3].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[3].urlToImage != null ? (response.articles[3].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[3].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[3].description.substring(0,59) || "cubee真博學",
@@ -630,7 +630,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[4].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[4].urlToImage != null ? (response.articles[4].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[4].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[4].description.substring(0,59) || "cubee真博學",
