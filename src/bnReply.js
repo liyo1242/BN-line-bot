@@ -549,6 +549,7 @@ module.exports = {
     }).then(response => {
       // console.log(response);
       if(response.status == 'ok'){
+        console.log('fuckfuckfuckfuck 4');
         const randomLimit = response.totalResults;
         const confirm = {
           "type": "template",
@@ -658,7 +659,7 @@ module.exports = {
         const sticker = {
             type: "sticker",
             packageId: "2",
-            stickerId: "164"
+            stickerId: "159"
         };
         return sticker;
       }
