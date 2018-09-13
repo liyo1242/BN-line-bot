@@ -547,7 +547,7 @@ module.exports = {
       // language: 'en',
       country: 'tw'
     }).then(response => {
-      console(response);
+      console.log(response);
       if(response.status == 'ok'){
         
         const randomLimit = response.totalResults;
