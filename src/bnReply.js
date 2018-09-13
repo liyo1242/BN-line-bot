@@ -592,7 +592,7 @@ module.exports = {
                             "uri": response.articles[1].url || "https://open.163.com/"
                         }
                     ]
-                  },
+                  }/*,
                   {
                     "thumbnailImageUrl": response.articles[2].urlToImage != null ? (response.articles[2].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
@@ -646,7 +646,7 @@ module.exports = {
                             "uri": response.articles[4].url || "https://open.163.com/"
                         }
                     ]
-                  }
+                  }*/
               ],
               "imageAspectRatio": "rectangle",
               "imageSize": "cover"
