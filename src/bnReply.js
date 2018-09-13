@@ -541,7 +541,7 @@ module.exports = {
   },
 
   cubeeBusinessNews: () => {
-    newsapi.v2.topHeadlines({
+    return newsapi.v2.topHeadlines({
       // q: 'trump',
       category: 'business',
       // language: 'en',
