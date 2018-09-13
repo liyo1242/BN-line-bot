@@ -231,12 +231,6 @@ module.exports = class LineBot {
             return this.reply(postback.replyToken, [data]);
           })
         }
-        const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "164"
-        };
-        return this.reply(postback.replyToken, [sticker]);
   }
     // ====================================================================================================
   processAiResponse(chatId, apiaiResponse,replyToken) {
