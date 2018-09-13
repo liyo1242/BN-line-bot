@@ -576,7 +576,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[1].urlToImage != undefined ? response.articles[1].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[1].urlToImage != null ? response.articles[1].urlToImage : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[1].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[1].description.substring(0,59) || "cubee真博學",
@@ -594,7 +594,7 @@ module.exports = {
                     ]
                   },
                   {
-                    "thumbnailImageUrl": response.articles[2].urlToImage != undefined ? response.articles[2].urlToImage : "https://i.imgur.com/kAKSNNy.png",
+                    "thumbnailImageUrl": response.articles[2].urlToImage != null ? response.articles[2].urlToImage : "https://i.imgur.com/kAKSNNy.png",
                     "imageBackgroundColor": "#FFFFFF",
                     "title": response.articles[2].title.substring(0,39) || "綜合性線上學習網",
                     "text": response.articles[2].description.substring(0,59) || "cubee真博學",
