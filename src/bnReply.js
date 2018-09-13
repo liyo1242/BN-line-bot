@@ -1,3 +1,6 @@
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('377710b3f4ac43b48ac4dc77d97eea2b');
+
 module.exports = {
 
   signupreply: () => {
@@ -100,7 +103,7 @@ module.exports = {
           "type": "carousel",
           "columns": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/KcialbA.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "新聞",
                 "text": "cubee真博學",
@@ -187,7 +190,7 @@ module.exports = {
           "type": "carousel",
           "columns": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/qlqijxv.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "頭條新聞",
                 "text": "cubee新聞",
@@ -198,16 +201,16 @@ module.exports = {
                 },
                 "actions": [
                     {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                      "type": "postback",
+                      "label": "更多",
+                      "data":"action=businessNews"
                     }
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/PLE80os.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "娛樂新聞",
+                "title": "焦點新聞",
                 "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
@@ -223,7 +226,7 @@ module.exports = {
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/MXj7m5I.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "國際新聞",
                 "text": "cubee新聞",
@@ -241,7 +244,7 @@ module.exports = {
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/yXfqm6O.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "體育新聞",
                 "text": "cubee新聞",
@@ -535,5 +538,124 @@ module.exports = {
       }
     } // end confirm
     return confirm;
+  },
+
+  cubeeBusinessNews: () => {
+    newsapi.v2.topHeadlines({
+      // q: 'trump',
+      category: 'business',
+      // language: 'en',
+      country: 'tw'
+    }).then(response => {
+      if(response.status == 'ok'){
+        const randomLimit = response.totalResults;
+        const confirm = {
+          "type": "template",
+          "altText": "cubee關心您",
+          "template": {
+              "type": "carousel",
+              "columns": [
+                  {
+                    "thumbnailImageUrl": response.articles[0].urlToImage || "https://i.imgur.com/kAKSNNy.png",
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": response.articles[0].title || "綜合性線上學習網",
+                    "text": response.articles[0].description || "cubee真博學",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "XD",
+                        "uri": response.articles[0].url || "https://open.163.com/"
+                    },
+                    "actions": [
+                        {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[0].url || "https://open.163.com/"
+                        }
+                    ]
+                  },
+                  {
+                    "thumbnailImageUrl": response.articles[1].urlToImage || "https://i.imgur.com/kAKSNNy.png",
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": response.articles[1].title || "綜合性線上學習網",
+                    "text": response.articles[1].description || "cubee真博學",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "XD",
+                        "uri": response.articles[1].url || "https://open.163.com/"
+                    },
+                    "actions": [
+                        {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[1].url || "https://open.163.com/"
+                        }
+                    ]
+                  },
+                  {
+                    "thumbnailImageUrl": response.articles[2].urlToImage || "https://i.imgur.com/kAKSNNy.png",
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": response.articles[2].title || "綜合性線上學習網",
+                    "text": response.articles[2].description || "cubee真博學",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "XD",
+                        "uri": response.articles[2].url || "https://open.163.com/"
+                    },
+                    "actions": [
+                        {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[2].url || "https://open.163.com/"
+                        }
+                    ]
+                  },
+                  {
+                    "thumbnailImageUrl": response.articles[3].urlToImage || "https://i.imgur.com/kAKSNNy.png",
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": response.articles[3].title || "綜合性線上學習網",
+                    "text": response.articles[3].description || "cubee真博學",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "XD",
+                        "uri": response.articles[3].url || "https://open.163.com/"
+                    },
+                    "actions": [
+                        {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[3].url || "https://open.163.com/"
+                        }
+                    ]
+                  },
+                  {
+                    "thumbnailImageUrl": response.articles[4].urlToImage || "https://i.imgur.com/kAKSNNy.png",
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": response.articles[4].title || "綜合性線上學習網",
+                    "text": response.articles[4].description || "cubee真博學",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "XD",
+                        "uri": response.articles[4].url || "https://open.163.com/"
+                    },
+                    "actions": [
+                        {
+                            "type": "uri",
+                            "label": "造訪網址",
+                            "uri": response.articles[4].url || "https://open.163.com/"
+                        }
+                    ]
+                  }
+              ],
+              "imageAspectRatio": "rectangle",
+              "imageSize": "cover"
+          }
+        } // end confirm
+        return confirm;
+
+        //response.articles[]
+      } else {
+        return "";
+      }
+    });
   }
 }

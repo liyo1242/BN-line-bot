@@ -20,6 +20,7 @@
     "jquery": "^3.3.1",
     "mongodb": "^3.0.0-rc0",
     "najax": "^1.0.3",
+    "newsapi": "^2.3.0",
     "package.json": "^2.0.1",
     "request": "^2.81.0",
     "request-json": "^0.6.3",

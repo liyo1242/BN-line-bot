@@ -223,6 +223,10 @@ module.exports = class LineBot {
           const confirm = bnreply.cubeeLearn();
           return this.reply(postback.replyToken, [confirm]);
         }
+        else if(postback.postback.data === 'action=businessNews'){
+          const confirm = bnreply.cubeeBusinessNews();
+          return this.reply(postback.replyToken, [confirm]);
+        }
         const sticker = {
             type: "sticker",
             packageId: "2",
