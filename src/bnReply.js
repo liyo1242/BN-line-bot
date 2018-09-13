@@ -648,7 +648,7 @@ module.exports = {
                     ]
                   }
               ],
-              "imageAspectRatio": "rectangle",
+              "imageAspectRatio": "rectangle", 
               "imageSize": "cover"
           }
         } // end confirm
