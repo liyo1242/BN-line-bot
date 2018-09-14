@@ -258,7 +258,7 @@ module.exports = class LineBot {
 
             }
             // sp ================
-            if(chatId == "Caf61348a6ffc05890183e68291e4ca28"){
+            if(chatId == "Caf61348a6ffc05890183e68291e4ca28" || chatId == "C81ac7493174152cc41cf6aaaf3f1257a"){
               if(action != "input.unknown"){
                 const message = {
                   type: "text",
