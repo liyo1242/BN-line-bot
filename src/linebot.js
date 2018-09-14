@@ -258,23 +258,27 @@ module.exports = class LineBot {
 
             }
             // sp ================
-            if(chatId == "Caf61348a6ffc05890183e68291e4ca28" || chatId == "C81ac7493174152cc41cf6aaaf3f1257a"){
-              if(action != "input.unknown"){
-                const message = {
-                  type: "text",
-                  text: responseText
-                };
-                return this.reply(replyToken, [message]);
-              }else {
-                return Promise.resolve(0);
-              }
-            }
+            // if(chatId == "Caf61348a6ffc05890183e68291e4ca28" || chatId == "C81ac7493174152cc41cf6aaaf3f1257a"){
+            //   if(action != "input.unknown"){
+            //     const message = {
+            //       type: "text",
+            //       text: responseText
+            //     };
+            //     return this.reply(replyToken, [message]);
+            //   }else {
+            //     return Promise.resolve(0);
+            //   }
+            // }
             // sp
-            const message = {
+            if(action != "input.unknown"){
+              const message = {
                 type: "text",
                 text: responseText
-            };
-            return this.reply(replyToken, [message]);
+              };
+              return this.reply(replyToken, [message]);
+            } else {
+              return Promise.resolve(0);
+            }
         } else if (messages.length > 1){
             var ran = messages[Math.floor(Math.random() * messages.length)];
             if(ran.type == 0){
