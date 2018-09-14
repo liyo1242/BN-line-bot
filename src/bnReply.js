@@ -394,7 +394,7 @@ module.exports = {
       "type": "bubble",
       "hero": {
         "type": "image",
-        "url": "https://i.imgur.com/38tEl5i.png",
+        "url": "https://i.imgur.com/wFDwUlH.png",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover"
