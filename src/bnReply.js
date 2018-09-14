@@ -782,7 +782,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=headlineNews"
             }
           }
         ]
@@ -878,7 +878,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=focusNews"
             }
           }
         ]
@@ -974,7 +974,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=globalNews"
             }
           }
         ]
@@ -1070,7 +1070,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=businessNews"
             }
           }
         ]
@@ -1166,7 +1166,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=societyNews"
             }
           }
         ]
@@ -1262,7 +1262,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=techNews"
             }
           }
         ]
@@ -1358,7 +1358,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=tourNews"
             }
           }
         ]
@@ -1454,7 +1454,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=entertainmentNews"
             }
           }
         ]
@@ -1550,7 +1550,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=trafficNews"
             }
           }
         ]
@@ -1646,7 +1646,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "更多新聞",
-              "data": "action=buy&itemid=123"
+              "data": "action=sportNews"
             }
           }
         ]

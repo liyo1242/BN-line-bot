@@ -241,11 +241,11 @@ module.exports = class LineBot {
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=trafficNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=sportNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
   }
