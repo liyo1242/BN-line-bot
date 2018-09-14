@@ -172,58 +172,42 @@ module.exports = class LineBot {
         let chatId = this.getChatId(postback);
         //let messageText = postback.postback.params.datetime;
         if (postback.type === 'follow'){  //點級圖片 換
-
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
             eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
           });
-
-          return this.reply(postback.replyToken, [sticker]);
-        }else if(postback.postback.data === "action=menu"){ // wait to fix
-          const confirm = this.wrongphone(postback);
-          return this.reply(postback.replyToken, [confirm]);
-        }else if (postback.postback.data === `action=one`){  //點級圖片 換
-
-          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
-          .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
-          });
-
           const sticker = {
             type: "sticker",
             packageId: "2",
             stickerId: "165"
           };
           return this.reply(postback.replyToken, [sticker]);
-        }else if (postback.postback.data === `action=alpha`){  //點級圖片 換
-
-          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
-          .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-24fe2382a998df6730f45d9af69bd1f2",postback.source.userId);
-          });
-
-          const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "155"
-          };
-          return this.reply(postback.replyToken, [sticker]);
-        }else if (postback.postback.data === `action=news`){
+        }// =============== Layer 1
+        else if (postback.postback.data === `action=news`){
           const confirm = bnreply.cubeeNews();
           return this.reply(postback.replyToken, [confirm]);
         }
-        else if (postback.postback.data === `action=traffic`){
-          const confirm = bnreply.cubeeTraffic();
+        else if (postback.postback.data === `action=food`){
+          const confirm = bnreply.cubeeFood();
           return this.reply(postback.replyToken, [confirm]);
         }
-        else if (postback.postback.data === `action=entertainment`){
-          const confirm = bnreply.cubeeEntertainment();
+        else if (postback.postback.data === `action=shop`){
+          const confirm = bnreply.cubeeShop();
           return this.reply(postback.replyToken, [confirm]);
         }
-        else if (postback.postback.data === `action=learn`){
-          const confirm = bnreply.cubeeLearn();
+        else if (postback.postback.data === `action=gossip`){
+          const confirm = bnreply.cubeeGossip();
           return this.reply(postback.replyToken, [confirm]);
         }
+        else if (postback.postback.data === `action=ticket`){
+          const confirm = bnreply.cubeeTicket();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if (postback.postback.data === `action=tour`){
+          const confirm = bnreply.cubeeTour();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        //================= Layer 2
         else if(postback.postback.data === 'action=businessNews'){
           const cubeePromise = bnreply.cubeeBusinessNews();
           cubeePromise.then((data) => {
@@ -257,19 +241,6 @@ module.exports = class LineBot {
                 previousType = messages[i].type;
 
             }
-            // sp ================
-            // if(chatId == "Caf61348a6ffc05890183e68291e4ca28" || chatId == "C81ac7493174152cc41cf6aaaf3f1257a"){
-            //   if(action != "input.unknown"){
-            //     const message = {
-            //       type: "text",
-            //       text: responseText
-            //     };
-            //     return this.reply(replyToken, [message]);
-            //   }else {
-            //     return Promise.resolve(0);
-            //   }
-            // }
-            // sp
             if(action != "input.unknown"){
               const message = {
                 type: "text",
@@ -684,15 +655,15 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://web.metro.taipei/img/all/metrotaipeimap.jpg",
-        "previewImageUrl": "https://web.metro.taipei/img/all/metrotaipeimap.jpg"
+        "originalContentUrl": "https://i.imgur.com/0xLQvYk.jpg",
+        "previewImageUrl": "https://i.imgur.com/0xLQvYk.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://www.tbkc.gov.tw/Upload/WebList/f88ff86c-9ca3-4832-a259-75001036bce8/Images/001.jpg",
-        "previewImageUrl": "https://www.tbkc.gov.tw/Upload/WebList/f88ff86c-9ca3-4832-a259-75001036bce8/Images/001.jpg"
+        "originalContentUrl": "https://i.imgur.com/U354Cqx.jpg",
+        "previewImageUrl": "https://i.imgur.com/U354Cqx.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if((message.message.text.indexOf('捷運') != -1)){

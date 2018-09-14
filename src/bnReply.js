@@ -177,8 +177,26 @@ module.exports = {
               {
                 "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "八卦",
-                "text": "cubee真壞",
+                "title": "機票",
+                "text": "cubee真會賺",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://example.com/page/123"
+                },
+                "actions": [
+                    {
+                        "type": "postback",
+                        "label": "了解更多",
+                        "data": "action=learn"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "旅遊住宿",
+                "text": "cubee真會住",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -395,256 +413,43 @@ module.exports = {
     return confirm;
   },
 
-  cubeeTraffic: () => {
+  cubeeFood: () => {
     const confirm = {
-      "type": "template",
-      "altText": "cubee交通關心您",
-      "template": {
-          "type": "carousel",
-          "columns": [
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "捷運路線圖",
-                "text": "cubee真博學",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                       "type":"message",
-                       "label":"台北 / 桃園捷運",
-                       "text":"北捷"
-                    },
-                    {
-                       "type":"message",
-                       "label":"高雄捷運",
-                       "text":"高捷"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "火車 / 高鐵 訂票",
-                "text": "cubee真守法",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "台鐵",
-                        "uri": "http://railway.hinet.net/Foreign/TW/etno1.html"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "高鐵",
-                        "uri": "https://irs.thsrc.com.tw/IMINT/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kkTPxfx.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "機票比價網",
-                "text": "cubee真愛玩",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "skyscanner",
-                        "uri": "https://www.skyscanner.com.tw/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "wego",
-                        "uri": "https://www.wego.tw"
-                    }
-
-                ]
-              }
-          ],
-          "imageAspectRatio": "rectangle",
-          "imageSize": "cover"
-      }
-    } // end confirm
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
     return confirm;
   },
 
-  cubeeEntertainment: () => {
+  cubeeShop: () => {
     const confirm = {
-      "type": "template",
-      "altText": "cubee交通關心您",
-      "template": {
-          "type": "carousel",
-          "columns": [
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "線上瘋追劇",
-                "text": "cubee真博學",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "netflix",
-                        "uri": "https://www.netflix.com"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "愛奇藝",
-                        "uri": "https://tw.iqiyi.com/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "線上瘋購物",
-                "text": "cubee真守法",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "蝦皮",
-                        "uri": "https://shopee.tw/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "PC home",
-                        "uri": "https://shopping.pchome.com.tw/"
-                    }
-                ]
-              }
-          ],
-          "imageAspectRatio": "rectangle",
-          "imageSize": "cover"
-      }
-    } // end confirm
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
     return confirm;
   },
 
-  cubeeLearn: () => {
+  cubeeGossip: () => {
     const confirm = {
-      "type": "template",
-      "altText": "cubee學習關心您",
-      "template": {
-          "type": "carousel",
-          "columns": [
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "綜合性線上學習網",
-                "text": "cubee真博學",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "網易",
-                    "uri": "https://open.163.com/"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "網易",
-                        "uri": "https://open.163.com/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "udemy",
-                        "uri": "https://www.udemy.com/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "語言課程線上學習網",
-                "text": "cubee真守法",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "duolingo",
-                        "uri": "https://www.duolingo.com/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "lemu",
-                        "uri": "https://lernu.net/zh-tw"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "大學課程線上學習網",
-                "text": "cubee真守法",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "台大",
-                        "uri": "http://ocw.aca.ntu.edu.tw/ntu-ocw/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "交大",
-                        "uri": "http://ocw.nctu.edu.tw/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "程式課程線上學習網",
-                "text": "cubee真守法",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "uri",
-                        "label": "code.org",
-                        "uri": "https://code.org/"
-                    },
-                    {
-                        "type": "uri",
-                        "label": "codecademy",
-                        "uri": "https://www.codecademy.com/"
-                    }
-                ]
-              }
-          ],
-          "imageAspectRatio": "rectangle",
-          "imageSize": "cover"
-      }
-    } // end confirm
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
+    return confirm;
+  },
+
+  cubeeTicket: () => {
+    const confirm = {
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
+    return confirm;
+  },
+
+  cubeeTour: () => {
+    const confirm = {
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
     return confirm;
   },
 
@@ -655,135 +460,19 @@ module.exports = {
       // language: 'en',
       country: 'tw'
     }).then(response => {
-      // console.log(response);
       if(response.status == 'ok'){
-        console.log('fuckfuckfuckfuck 4');
         const randomLimit = response.totalResults;
         const confirm = {
-          "type": "template",
-          "altText": "This is a buttons template",
-          "template": {
-              "type": "carousel",
-              "columns":[
-              ]
-          }
-}
-        /*const confirm = {
-          "type": "template",
-          "altText": "cubee關心您",
-          "template": {
-              "type": "carousel",
-              "columns": [
-                  {
-                    "thumbnailImageUrl": response.articles[0].urlToImage != null ? (response.articles[0].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-                    "imageBackgroundColor": "#FFFFFF",
-                    "title": response.articles[0].title.substring(0,39) || "綜合性線上學習網",
-                    "text": response.articles[0].description != null ? response.articles[0].description.substring(0,59) : "cubee真博學",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "XD",
-                        "uri": response.articles[0].url || "https://open.163.com/"
-                    },
-                    "actions": [
-                        {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[0].url || "https://open.163.com/"
-                        }
-                    ]
-                  },
-                  {
-                    "thumbnailImageUrl": response.articles[1].urlToImage != null ? (response.articles[1].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-                    "imageBackgroundColor": "#FFFFFF",
-                    "title": response.articles[1].title.substring(0,39) || "綜合性線上學習網",
-                    "text": response.articles[1].description != null ? response.articles[1].description.substring(0,59) : "cubee真博學",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "XD",
-                        "uri": response.articles[1].url || "https://open.163.com/"
-                    },
-                    "actions": [
-                        {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[1].url || "https://open.163.com/"
-                        }
-                    ]
-                  },
-                  {
-                    "thumbnailImageUrl": response.articles[2].urlToImage != null ? (response.articles[2].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-                    "imageBackgroundColor": "#FFFFFF",
-                    "title": response.articles[2].title.substring(0,39) || "綜合性線上學習網",
-                    "text": response.articles[2].description != null ? response.articles[2].description.substring(0,59) : "cubee真博學",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "XD",
-                        "uri": response.articles[2].url || "https://open.163.com/"
-                    },
-                    "actions": [
-                        {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[2].url || "https://open.163.com/"
-                        }
-                    ]
-                  },
-                  {
-                    "thumbnailImageUrl": response.articles[3].urlToImage != null ? (response.articles[3].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-                    "imageBackgroundColor": "#FFFFFF",
-                    "title": response.articles[3].title.substring(0,39) || "綜合性線上學習網",
-                    "text": response.articles[3].description != null ? response.articles[3].description.substring(0,59) : "cubee真博學",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "XD",
-                        "uri": response.articles[3].url || "https://open.163.com/"
-                    },
-                    "actions": [
-                        {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[3].url || "https://open.163.com/"
-                        }
-                    ]
-                  },
-                  {
-                    "thumbnailImageUrl": response.articles[4].urlToImage != null ? (response.articles[4].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-                    "imageBackgroundColor": "#FFFFFF",
-                    "title": response.articles[4].title.substring(0,39) || "綜合性線上學習網",
-                    "text": response.articles[4].description != null ? response.articles[4].description.substring(0,59) : "cubee真博學",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "XD",
-                        "uri": response.articles[4].url || "https://open.163.com/"
-                    },
-                    "actions": [
-                        {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[4].url || "https://open.163.com/"
-                        }
-                    ]
-                  }
-              ],
-              "imageAspectRatio": "rectangle",
-              "imageSize": "cover"
-          }
-        } // end confirm*/
-        console.log(response.articles[0].urlToImage);
-        console.log(response.articles[1].urlToImage);
-        console.log(response.articles[2].urlToImage);
-        console.log(response.articles[3].urlToImage);
-        console.log(response.articles[4].urlToImage);
+            "type": "text",
+            "text": "Cubee趕工中"
+        }
         return confirm;
-
-        //response.articles[]
       } else {
-        const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "159"
-        };
-        return sticker;
+        const confirm = {
+            "type": "text",
+            "text": "Cubee發生錯誤"
+        }
+        return confirm;
       }
     });
   }
