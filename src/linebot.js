@@ -208,13 +208,49 @@ module.exports = class LineBot {
           return this.reply(postback.replyToken, [confirm]);
         }
         //================= Layer 2
-        else if(postback.postback.data === 'action=businessNews'){
+        else if(postback.postback.data === 'action=globalNews'){
           const cubeePromise = bnreply.cubeeBusinessNews();
           cubeePromise.then((data) => {
             console.log(data);
             console.log(postback.replyToken);
             return this.reply(postback.replyToken, [data]);
           })
+        }
+        else if(postback.postback.data === 'action=focusNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=businessNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=societyNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=techNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=headlineNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=tourNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=entertainmentNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=trafficNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
+        }
+        else if(postback.postback.data === 'action=sportNews'){
+          const confirm = bnreply.cubeeFood();
+          return this.reply(postback.replyToken, [confirm]);
         }
   }
     // ====================================================================================================

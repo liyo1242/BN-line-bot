@@ -96,125 +96,592 @@ module.exports = {
 
   cubee: () => {
     // call verify API AGAIN
-    const confirm = {
-      "type": "template",
-      "altText": "cubee 關心您",
-      "template": {
-          "type": "carousel",
-          "columns": [
+    const confirm = { 
+    "type": "flex",
+    "altText": "this is a flex message",
+    "contents": {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/38tEl5i.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/8giBrZp.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "新聞",
-                "text": "cubee真博學",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=news"
-                    }
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "美食",
-                "text": "cubee真愛吃",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=traffic"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kkTPxfx.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "購物",
-                "text": "cubee Shopping",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=entertainment"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "八卦",
-                "text": "cubee真壞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=learn"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "機票",
-                "text": "cubee真會賺",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=learn"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "旅遊住宿",
-                "text": "cubee真會住",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                },
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "了解更多",
-                        "data": "action=learn"
-                    }
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "頭條新聞",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "焦點新聞",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
                 ]
               }
-          ],
-          "imageAspectRatio": "rectangle",
-          "imageSize": "cover"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "新聞分類",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
       }
-    } // end confirm
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://img.chinatimes.com/newsphoto/2017-11-26/656/20171126003369.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "美食",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.1111.com.tw/15sp/delicacy/delicacy_img/activImg/index_852_.jpg",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://pic.pimg.tw/mystussy/1498144779-2497766737_n.jpg",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "隨機美食",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "隨機美食",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "地區分類",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://png.clipart.me/istock/previews/6767/67677003-shopping-store-icon.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "購物",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://buzzorange.com/techorange/wp-content/uploads/sites/2/2018/02/4570.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/66/52/b8/6652b831-4ad9-4604-840e-fdf2b56fabdc/AppIcon-1x_U007emarketing-85-220-4.png/1024x1024bb.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "pchome",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "蝦皮拍賣",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "網站排行",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/38tEl5i.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "八卦",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://static.newmobilelife.com/wp-content/uploads/2015/04/ptt-push-icon.jpeg",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://p2.bahamut.com.tw/HOME/creationCover/82/0003893682_B.JPG",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ptt",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "dcard",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "網站分類",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://pic.pimg.tw/cherrytcj/1477557883-3412659381.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "機票",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://uupon.tw/upload/store/2195f725f30000029a5e.jpg",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://img.hongkongcard.com/v6/d//2014/08/merchant/thumbnail/ml_1272.jpg",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "長榮航空",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "中華航空",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "網站分類",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://www.liontravel.com/promotion/tkt/cheaptickets/FileUpLoad/PictureAndWord/Model/8161/22591/ae065251-7cb8-4790-8caf-e6d421036c8d.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "旅遊",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://expediagroup-b54c.kxcdn.com/wp-content/uploads/2013/06/logo-trivago-v2.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://www.kkday.com/assets/img/kkday_logo_final.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "trivago",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "kkday",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "網站分類",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
+}
     return confirm;
   },
 
@@ -454,26 +921,10 @@ module.exports = {
   },
 
   cubeeBusinessNews: () => {
-    return newsapi.v2.topHeadlines({
-      // q: 'trump',
-      category: 'business',
-      // language: 'en',
-      country: 'tw'
-    }).then(response => {
-      if(response.status == 'ok'){
-        const randomLimit = response.totalResults;
-        const confirm = {
-            "type": "text",
-            "text": "Cubee趕工中"
-        }
-        return confirm;
-      } else {
-        const confirm = {
-            "type": "text",
-            "text": "Cubee發生錯誤"
-        }
-        return confirm;
-      }
-    });
+    const confirm = {
+      "type": "text",
+      "text": "Cubee趕工中"
+    }
+    return confirm;
   }
 }
