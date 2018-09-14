@@ -686,197 +686,976 @@ module.exports = {
   },
 
   cubeeNews: () => {
-    const confirm = {
-      "type": "template",
-      "altText": "cubee新聞關心您",
-      "template": {
-          "type": "carousel",
-          "columns": [
+    const confirm = { 
+    "type": "flex",
+    "altText": "this is a flex message",
+    "contents": {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/57lIOx1.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "頭條新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/8giBrZp.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "國際新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                      "type": "postback",
-                      "label": "更多",
-                      "data":"action=businessNews"
-                    }
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/38tEl5i.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "焦點新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/cQJgaLc.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "財經新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/0o5fnMG.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "社會新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/OEWxVSa.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "科技新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/57lIOx1.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "頭條新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/GtnlVTM.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "旅遊新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/iAYMXkf.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "娛樂新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/wFDwUlH.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "八卦新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/O3nHXv6.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "體育新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
                 ]
               }
-          ],
-          "imageAspectRatio": "rectangle",
-          "imageSize": "cover"
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
       }
-    } // end confirm
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/38tEl5i.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "焦點新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/8giBrZp.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "國際新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/cQJgaLc.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "財經新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/0o5fnMG.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "社會新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/OEWxVSa.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "科技新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/GtnlVTM.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "旅遊新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/iAYMXkf.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "娛樂新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/mKJ7uKm.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "交通新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/O3nHXv6.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "體育新聞",
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "size": "sm",
+                    "gravity": "bottom"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "aspectMode": "cover",
+                    "aspectRatio": "4:3",
+                    "margin": "md",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 2,
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "text",
+                    "text": "標題",
+                    "size": "md",
+                    "flex": 1
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "更多新聞",
+              "data": "action=buy&itemid=123"
+            }
+          }
+        ]
+      }
+    }
+  ]
+
+}
+}
     return confirm;
   },
 

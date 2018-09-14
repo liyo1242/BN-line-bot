@@ -209,35 +209,31 @@ module.exports = class LineBot {
         }
         //================= Layer 2
         else if(postback.postback.data === 'action=globalNews'){
-          const cubeePromise = bnreply.cubeeBusinessNews();
-          cubeePromise.then((data) => {
-            console.log(data);
-            console.log(postback.replyToken);
-            return this.reply(postback.replyToken, [data]);
-          })
+          const confirm = bnreply.cubeeBusinessNews();
+          return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=focusNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=businessNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=societyNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=techNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=headlineNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=tourNews'){
-          const confirm = bnreply.cubeeFood();
+          const confirm = bnreply.cubeeBusinessNews();
           return this.reply(postback.replyToken, [confirm]);
         }
         else if(postback.postback.data === 'action=entertainmentNews'){
