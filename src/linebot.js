@@ -148,8 +148,9 @@ module.exports = class LineBot {
             //return this.reply(message.replyToken, [confirm]);
       if(message.message.type == "sticker"){
         const messages = {
-          type: "text",
-          text: "傳三小貼圖阿 欠扁是不是"
+            "type": "image",
+            "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
+            "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
         };
         return this.reply(message.replyToken, [messages]);
       }else if(message.message.type == "image"){

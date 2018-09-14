@@ -555,24 +555,8 @@ module.exports = {
           "type": "template",
           "altText": "This is a buttons template",
           "template": {
-              "type": "buttons",
-              "thumbnailImageUrl": response.articles[0].urlToImage != null ? (response.articles[0].urlToImage.substring(0,5) == "https" ? response.articles[0].urlToImage : "https://i.imgur.com/kAKSNNy.png") : "https://i.imgur.com/kAKSNNy.png",
-              "imageAspectRatio": "rectangle",
-              "imageSize": "cover",
-              "imageBackgroundColor": "#FFFFFF",
-              "title": response.articles[0].title.substring(0,39),
-              "text": response.articles[0].description != null ? response.articles[0].description.substring(0,59) : "cubee真博學",
-              "defaultAction": {
-                  "type": "uri",
-                  "label": "XD",
-                  "uri": response.articles[0].url || "https://open.163.com/"
-              },
-              "actions": [
-                  {
-                            "type": "uri",
-                            "label": "造訪網址",
-                            "uri": response.articles[0].url || "https://open.163.com/"
-                        }
+              "type": "carousel",
+              "columns":[
               ]
           }
 }
