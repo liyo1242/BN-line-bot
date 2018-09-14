@@ -633,85 +633,41 @@ module.exports = class LineBot {
       };
       const pushConfirm = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3998963"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
       const pushConfirm1 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4357617"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4357617"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
       const pushConfirm2 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3998963"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
       const pushConfirm3 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212262"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
       };
       this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
       const pushConfirm4 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212262"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
       const pushConfirm5 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/3662781"
+        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3662781"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
       const pushConfirm6 = {
         type: "text",
-        text: "找我兄弟不如買我們的貼圖 廢物拉基  https://line.me/S/sticker/4212408"
+        text: "找我兄弟不如買我們的貼圖 https://line.me/S/sticker/4212408"
       };
       this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
       return Promise.resolve(confirm);
     }
-    // sp
-    if((message.message.text.indexOf('斂財') != -1)){
-      const confirm = {
-        type: "text",
-        text: "給我花錢買貼圖 不夠就去賣屁股 "
-      }; // end confirm
-      const pushConfirm = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3998963"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
-      const pushConfirm1 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4357617"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
-      const pushConfirm2 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3998963"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
-      const pushConfirm3 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212262"
-      };
-      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
-      const pushConfirm4 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212262"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
-      const pushConfirm5 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/3662781"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
-      const pushConfirm6 = {
-        type: "text",
-        text: "買我們的貼圖阿 窮逼垃圾  https://line.me/S/sticker/4212408"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
-      return Promise.resolve(confirm);
-    }
-    // sp==========
     if(message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####"){
 
       return Promise.resolve(eroFunction.chooseMenu());
