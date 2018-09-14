@@ -103,7 +103,7 @@ module.exports = {
           "type": "carousel",
           "columns": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/KcialbA.png",
+                "thumbnailImageUrl": "https://i.imgur.com/8giBrZp.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "新聞",
                 "text": "cubee真博學",
@@ -123,8 +123,8 @@ module.exports = {
               {
                 "thumbnailImageUrl": "https://i.imgur.com/WJ5Cjn4.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "交通",
-                "text": "cubee真守法",
+                "title": "美食",
+                "text": "cubee真愛吃",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -141,8 +141,8 @@ module.exports = {
               {
                 "thumbnailImageUrl": "https://i.imgur.com/kkTPxfx.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "娛樂",
-                "text": "cubee真愛玩",
+                "title": "購物",
+                "text": "cubee Shopping",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -159,8 +159,26 @@ module.exports = {
               {
                 "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "學習",
-                "text": "cubee真聰明",
+                "title": "八卦",
+                "text": "cubee真壞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://example.com/page/123"
+                },
+                "actions": [
+                    {
+                        "type": "postback",
+                        "label": "了解更多",
+                        "data": "action=learn"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/9Q9jofg.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "八卦",
+                "text": "cubee真壞",
                 "defaultAction": {
                     "type": "uri",
                     "label": "View detail",

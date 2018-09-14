@@ -147,18 +147,18 @@ module.exports = class LineBot {
     } else {
             //return this.reply(message.replyToken, [confirm]);
       if(message.message.type == "sticker"){
-        const messages = {
-            "type": "image",
-            "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
-            "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
-        };
-        return this.reply(message.replyToken, [messages]);
+        // const messages = {
+        //     "type": "image",
+        //     "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
+        //     "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
+        // };
+        // return this.reply(message.replyToken, [messages]);
       }else if(message.message.type == "image"){
-        const messages = {
-          type: "text",
-          text: "請不要隨便傳垃圾訊息 大撒B"
-        };
-        return this.reply(message.replyToken, [messages]);
+        // const messages = {
+        //   type: "text",
+        //   text: "請不要隨便傳垃圾訊息 大撒B"
+        // };
+        // return this.reply(message.replyToken, [messages]);
       }
       this.log('Empty message 3 ');
     }
@@ -624,12 +624,7 @@ module.exports = class LineBot {
   PUBG(message,status){
     //return Promise.resolve(0)
     if(message.message.text === "Cubee 安安"){
-      const confirm = bnreply.cubee() // end confirm
-      const pushConfirm = {
-        type: "text",
-        text: "要不要先下載我們的貼圖阿 https://line.me/S/sticker/3998963"
-      };
-      this.replyPush(message.source.userId, [pushConfirm]);
+      const confirm = bnreply.cubee(); // end confirm
       return Promise.resolve(confirm);
     }else if((message.message.text.indexOf('TaxiGo') != -1)){
       const confirm = {
