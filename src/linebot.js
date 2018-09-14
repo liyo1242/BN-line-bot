@@ -687,15 +687,15 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/0xLQvYk.jpg",
-        "previewImageUrl": "https://i.imgur.com/0xLQvYk.jpg"
+        "originalContentUrl": "https://i.imgur.com/Nil7e4G.png",
+        "previewImageUrl": "https://i.imgur.com/Nil7e4G.png"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/U354Cqx.jpg",
-        "previewImageUrl": "https://i.imgur.com/U354Cqx.jpg"
+        "originalContentUrl": "https://i.imgur.com/G491Zyo.png",
+        "previewImageUrl": "https://i.imgur.com/G491Zyo.png"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if((message.message.text.indexOf('捷運') != -1)){

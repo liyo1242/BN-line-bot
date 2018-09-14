@@ -192,7 +192,7 @@ module.exports = {
             "action": {
               "type": "postback",
               "label": "新聞分類",
-              "data": "action=buy&itemid=123"
+              "data": "action=news"
             }
           }
         ]
@@ -1701,9 +1701,71 @@ module.exports = {
 
   cubeeBusinessNews: () => {
     const confirm = {
-      "type": "text",
-      "text": "Cubee趕工中"
-    }
+    "type": "flex",
+    "altText": "this is a flex message",
+    "contents": {
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "url": "https://img.appledaily.com.tw/images/twapple/640pix/20180829/LA01/LA01_002.jpg"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "標題",
+            "weight": "bold",
+            "size": "md",
+            "flex": 0
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "內文",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xs",
+            "flex": 0
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "separator"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "下則新聞",
+          "data": "action=buy&itemid=123"
+        }
+      }
+    ]
+  }
+}
+
+}
     return confirm;
   }
 }
