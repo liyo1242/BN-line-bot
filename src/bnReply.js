@@ -190,9 +190,9 @@ module.exports = {
           "type": "carousel",
           "columns": [
               {
-                "thumbnailImageUrl": "https://i.imgur.com/qlqijxv.png",
+                "thumbnailImageUrl": "https://i.imgur.com/8giBrZp.png",
                 "imageBackgroundColor": "#FFFFFF",
-                "title": "頭條新聞",
+                "title": "國際新聞",
                 "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
@@ -208,7 +208,7 @@ module.exports = {
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/PLE80os.png",
+                "thumbnailImageUrl": "https://i.imgur.com/38tEl5i.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "焦點新聞",
                 "text": "cubee新聞",
@@ -226,45 +226,135 @@ module.exports = {
                 ]
               },
               {
-                "thumbnailImageUrl": "https://i.imgur.com/MXj7m5I.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "國際新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/yXfqm6O.png",
-                "imageBackgroundColor": "#FFFFFF",
-                "title": "體育新聞",
-                "text": "cubee新聞",
-                "defaultAction": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://tw.news.appledaily.com/headline/daily/"
-                },
-                "actions": [
-                    {
-                       "type":"uri",
-                       "label":"前往",
-                       "uri":"https://tw.news.appledaily.com/headline/daily/"
-                    }
-                ]
-              },
-              {
-                "thumbnailImageUrl": "https://i.imgur.com/kAKSNNy.png",
+                "thumbnailImageUrl": "https://i.imgur.com/cQJgaLc.png",
                 "imageBackgroundColor": "#FFFFFF",
                 "title": "財經新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/0o5fnMG.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "社會新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/OEWxVSa.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "科技新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/57lIOx1.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "頭條新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/GtnlVTM.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "旅遊新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/iAYMXkf.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "娛樂新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/wFDwUlH.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "八卦新聞",
+                "text": "cubee新聞",
+                "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://tw.news.appledaily.com/headline/daily/"
+                },
+                "actions": [
+                    {
+                       "type":"uri",
+                       "label":"前往",
+                       "uri":"https://tw.news.appledaily.com/headline/daily/"
+                    }
+                ]
+              },
+              {
+                "thumbnailImageUrl": "https://i.imgur.com/O3nHXv6.png",
+                "imageBackgroundColor": "#FFFFFF",
+                "title": "體育新聞",
                 "text": "cubee新聞",
                 "defaultAction": {
                     "type": "uri",
