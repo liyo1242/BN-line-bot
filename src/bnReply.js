@@ -686,7 +686,7 @@ module.exports = {
   },
 
   cubeeNews: () => {
-    const confirm = { 
+    const confirm = {
     "type": "flex",
     "altText": "this is a flex message",
     "contents": {

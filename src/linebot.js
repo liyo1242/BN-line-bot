@@ -687,15 +687,15 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/Nil7e4G.png",
-        "previewImageUrl": "https://i.imgur.com/Nil7e4G.png"
+        "originalContentUrl": "https://i.imgur.com/c5yvWPM.jpg",
+        "previewImageUrl": "https://i.imgur.com/c5yvWPM.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/G491Zyo.png",
-        "previewImageUrl": "https://i.imgur.com/G491Zyo.png"
+        "originalContentUrl": "https://i.imgur.com/jAyj5vY.jpg",
+        "previewImageUrl": "https://i.imgur.com/jAyj5vY.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if((message.message.text.indexOf('捷運') != -1)){
@@ -743,9 +743,10 @@ module.exports = class LineBot {
       var end = message.message.text.slice(index.end + 5, index.location);
       var title = message.message.text.slice(0, index.start);
       var location = message.message.text.slice(index.location + 3, index.content);
+
       const confirm = {
         "type": "template",
-        "altText": "ffbn",
+        "altText": "cubee詢問是否加進日曆",
         "template": {
             "type": "confirm",
             "text": "要加進日曆嗎?",
@@ -756,9 +757,9 @@ module.exports = class LineBot {
                    "uri":`http://bn-calendar.herokuapp.com?title=${title}&start=${start}&end=${end}&location=${location}`
                 },
                 {
-                  "type": "message",
+                  "type": "postback",
                   "label": "No",
-                  "text": "no"
+                  "data": "action=no"
                 }
             ]
         }
