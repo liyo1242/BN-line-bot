@@ -106,7 +106,7 @@ module.exports = {
       "type": "bubble",
       "hero": {
         "type": "image",
-        "url": "https://i.imgur.com/38tEl5i.png",
+        "url": "https://imgur.com/LJC0iaC.jpg",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover"
@@ -132,7 +132,7 @@ module.exports = {
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://i.imgur.com/57lIOx1.png",
+                    "url": "https://imgur.com/LJC0iaC.jpg",
                     "aspectMode": "cover",
                     "aspectRatio": "4:3",
                     "size": "sm",
@@ -143,7 +143,7 @@ module.exports = {
                   },
                   {
                     "type": "image",
-                    "url": "https://i.imgur.com/38tEl5i.png",
+                    "url": "https://imgur.com/LJC0iaC.jpg",
                     "aspectMode": "cover",
                     "aspectRatio": "4:3",
                     "margin": "md",

