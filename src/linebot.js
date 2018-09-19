@@ -178,7 +178,7 @@ module.exports = class LineBot {
           });
           // change menu notify
           //
-          this.getProfile(postback.source.userid)
+          this.getProfile(postback.source.userId)
           .then((profiledata) => {
             const data = JSON.parse(profiledata);
             const messageText = "change Menu";
