@@ -735,17 +735,17 @@ module.exports = class LineBot {
       return Promise.resolve(confirm);
     }else if (message.message.text === "老鐵回家了"){
       return Promise.resolve(eroFunction.selftest());
-    }else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('地點') != -1)) {
+    }else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('活動地點') != -1)) {
       var index = {
         start : message.message.text.indexOf('開始時間'),
         end : message.message.text.indexOf('結束時間'),
-        location : message.message.text.indexOf('地點'),
+        location : message.message.text.indexOf('活動地點'),
         content : message.message.text.indexOf('活動內容')
       }
       var start = message.message.text.slice(index.start + 5, index.end);
       var end = message.message.text.slice(index.end + 5, index.location);
       var title = message.message.text.slice(0, index.start);
-      var location = message.message.text.slice(index.location + 3, index.content);
+      var location = message.message.text.slice(index.location + 5, index.content);
 
       const confirm = {
         "type": "template",
@@ -757,7 +757,7 @@ module.exports = class LineBot {
                 {
                    "type":"uri",
                    "label":"Yes",
-                   "uri":`http://bn-calendar.herokuapp.com?title=${title}&start=${start}&end=${end}&location=${location}`
+                   "uri":`http://bn-calendar.herokuapp.com?title=${message.message.text.slice(0, index.start)}&start=${message.message.text.slice(index.start + 5, index.end)}&end=${message.message.text.slice(index.end + 5, index.location)}&location=${message.message.text.slice(index.location + 5, index.content)}`
                 },
                 {
                   "type": "postback",
