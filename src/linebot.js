@@ -174,7 +174,7 @@ module.exports = class LineBot {
         if (postback.type === 'follow'){  //點級圖片 換
           eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
           .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-822c21c127968ec91f83aecf8a1fbb02",postback.source.userId);
+            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-0338d622b3ab7520414d1c7d7afafefe",postback.source.userId);
           });
           const sticker = {
             type: "sticker",
