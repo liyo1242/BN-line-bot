@@ -49,81 +49,81 @@ const bot = new LineBot(botConfig);
 const app = express();
 
 app.use(bodyParser.json({
-  verify: function (req, res, buf, encoding) {
-    // raw body for signature check
-    req.rawBody = buf.toString();
-  }
+    verify: function(req, res, buf, encoding) {
+        // raw body for signature check
+        req.rawBody = buf.toString();
+    }
 }));
 
-app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.post('/webhook', (req, res) => {
 
-  console.log('POST received');
-  console.log(JSON.stringify(req.body));
+    console.log('POST received');
+    console.log(JSON.stringify(req.body));
 
-  let signature = req.get('X-LINE-Signature');
-  let rawBody = req.rawBody;
-  let hash = crypto.createHmac('sha256', LINE_CHANNEL_SECRET).update(
-      rawBody).digest('base64');
+    let signature = req.get('X-LINE-Signature');
+    let rawBody = req.rawBody;
+    let hash = crypto.createHmac('sha256', LINE_CHANNEL_SECRET).update(
+        rawBody).digest('base64');
 
-  if (hash !== signature) {
-    this.log("Unauthorized request");
-    return res.status(401).send('Wrong request signature');
-  }
+    if (hash !== signature) {
+        this.log("Unauthorized request");
+        return res.status(401).send('Wrong request signature');
+    }
 
-  res.status(200).send("OK");
+    res.status(200).send("OK");
 
-  try {
+    try {
 
-    req.body.events.forEach((item) => {
-        console.log(JSON.stringify(item));
+        req.body.events.forEach((item) => {
+            console.log(JSON.stringify(item));
             console.log('ok');
             console.log(JSON.stringify(item));
 
             if (item.type === "message") {
-                if (item.replyToken !== "00000000000000000000000000000000"
-                    && item.replyToken !== "ffffffffffffffffffffffffffffffff") {
+                if (item.replyToken !== "00000000000000000000000000000000" &&
+                    item.replyToken !== "ffffffffffffffffffffffffffffffff") {
 
                     bot.processMessage(item, res)
-                        //.catch(err => console.error(err));
+                    //.catch(err => console.error(err));
                 }
             } else if (item.type === "postback") {
                 const postbackData = item.postback ? item.postback.data : '';
                 console.log("postbackData", postbackData);
 
                 bot.processPostback(item, res)
-                    //.catch(err => console.error(err));
+                //.catch(err => console.error(err));
             } else if (item.type === "follow") {
 
                 bot.processPostback(item, res)
             }
-    });
+        });
 
-  } catch (err) {
-    console.error('Error while message processing', err);
-  }
+    } catch (err) {
+        console.error('Error while message processing', err);
+    }
 });
 
-app.post('/api',(req, res) => {
-  console.log('Gandalf comming');
-  const userid = req.body.userid;
-  const messageType = req.body.messageType;
-  const forUserMessage = req.body.forUserMessage;
-  console.log(userid + " Gandalf " + messageType + " Gandalf " + forUserMessage);
+app.post('/api', (req, res) => {
+    console.log('Gandalf comming');
+    const userid = req.body.userid;
+    const messageType = req.body.messageType;
+    const forUserMessage = req.body.forUserMessage;
+    console.log(userid + " Gandalf " + messageType + " Gandalf " + forUserMessage);
 
-  // req need userId and type
-  bot.replyPush(userid,[forUserMessage])
-  .then((value) => {
-    // fulfillment
-    return res.status(200).send('Gandalf comming Gandalf comming');
-  }, (reason) => {
-    // rejection
-    return res.status(400).send('Dont fuckin mess with input');
-  });
+    // req need userId and type
+    bot.replyPush(userid, [forUserMessage])
+        .then((value) => {
+            // fulfillment
+            return res.status(200).send('Gandalf comming Gandalf comming');
+        }, (reason) => {
+            // rejection
+            return res.status(400).send('Dont fuckin mess with input');
+        });
 });
 
-app.listen(REST_PORT, function () {
-  console.log(`Service is ready on port ${REST_PORT}`);
+app.listen(REST_PORT, function() {
+    console.log(`Service is ready on port ${REST_PORT}`);
 });

