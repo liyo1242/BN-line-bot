@@ -690,8 +690,8 @@ module.exports = class LineBot {
     }else if( ((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1) ){
       const confirm = {
         "type": "image",
-        "originalContentUrl": "https://i.imgur.com/G8cIHm2.jpg",
-        "previewImageUrl": "https://i.imgur.com/G8cIHm2.jpg"
+        "originalContentUrl": "https://i.imgur.com/oJBhOG4.jpg",
+        "previewImageUrl": "https://i.imgur.com/oJBhOG4.jpg"
       }; // end confirm
       return Promise.resolve(confirm);
     }else if( ((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1) ){

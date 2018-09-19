@@ -96,7 +96,7 @@ module.exports = {
 
   cubee: () => {
     // call verify API AGAIN
-    const confirm = { 
+    const confirm = {
     "type": "flex",
     "altText": "this is a flex message",
     "contents": {
