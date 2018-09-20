@@ -2117,6 +2117,7 @@ module.exports = {
         }
         return confirm;
     },
+
     calendarReply: (title, start, end, location, content) => {
         var gandalfText = {
             "type": "flex",

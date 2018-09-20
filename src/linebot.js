@@ -236,7 +236,7 @@ module.exports = class LineBot {
             const confirm = bnreply.cubeeBusinessNews();
             return this.reply(postback.replyToken, [confirm]);
         } else if (postback.postback.data === 'action=foodLocation') {
-            const confirm = bnreply.cubeeBusinessNews();
+            const confirm = bnreply.cubeeFood();
             return this.reply(postback.replyToken, [confirm]);
         }
     }
