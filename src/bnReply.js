@@ -1650,7 +1650,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=headlineNews"
+                                    "data": "action=food"
                                 }
                             }]
                         }
@@ -1740,7 +1740,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=focusNews"
+                                    "data": "action=food"
                                 }
                             }]
                         }
@@ -1830,7 +1830,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=globalNews"
+                                    "data": "action=food"
                                 }
                             }]
                         }
@@ -1920,7 +1920,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=businessNews"
+                                    "data": "action=food"
                                 }
                             }]
                         }
@@ -2010,7 +2010,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=societyNews"
+                                    "data": "action=food"
                                 }
                             }]
                         }
@@ -2107,6 +2107,70 @@ module.exports = {
                             "action": {
                                 "type": "postback",
                                 "label": "下則新聞",
+                                "data": "action=buy&itemid=123"
+                            }
+                        }
+                    ]
+                }
+            }
+
+        }
+        return confirm;
+    },
+
+    cubeeFoodLocation: () => {
+        const confirm = {
+            "type": "flex",
+            "altText": "this is a flex message",
+            "contents": {
+                "type": "bubble",
+                "hero": {
+                    "type": "image",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "url": "https://i.imgur.com/T1pQCVr.png"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [{
+                            "type": "box",
+                            "layout": "baseline",
+                            "contents": [{
+                                "type": "text",
+                                "text": "標題",
+                                "weight": "bold",
+                                "size": "md",
+                                "flex": 0
+                            }]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "baseline",
+                            "contents": [{
+                                "type": "text",
+                                "text": "內文",
+                                "wrap": true,
+                                "weight": "bold",
+                                "size": "xs",
+                                "flex": 0
+                            }]
+                        }
+                    ]
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [{
+                            "type": "separator"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "postback",
+                                "label": "下則美食",
                                 "data": "action=buy&itemid=123"
                             }
                         }
