@@ -2171,7 +2171,7 @@ module.exports = {
                             "action": {
                                 "type": "postback",
                                 "label": "下則美食",
-                                "data": "action=food"
+                                "data": "action=cubeeFood"
                             }
                         }
                     ]
