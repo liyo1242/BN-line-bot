@@ -96,7 +96,7 @@ module.exports = {
         // call verify API AGAIN
         const confirm = {
             "type": "flex",
-            "altText": "this is a flex message",
+            "altText": "cubee 選單",
             "contents": {
                 "type": "carousel",
                 "contents": [{
@@ -649,7 +649,7 @@ module.exports = {
     cubeeNews: () => {
         const confirm = {
             "type": "flex",
-            "altText": "this is a flex message",
+            "altText": "cubee 新聞",
             "contents": {
                 "type": "carousel",
                 "contents": [{
@@ -1562,7 +1562,7 @@ module.exports = {
     cubeeFood: () => {
         const confirm = {
             "type": "flex",
-            "altText": "this is a flex message",
+            "altText": "cubee 美食",
             "contents": {
                 "type": "carousel",
                 "contents": [{
@@ -2057,7 +2057,7 @@ module.exports = {
     cubeeBusinessNews: () => {
         const confirm = {
             "type": "flex",
-            "altText": "this is a flex message",
+            "altText": "cubee 新聞",
             "contents": {
                 "type": "bubble",
                 "hero": {
@@ -2121,7 +2121,7 @@ module.exports = {
     cubeeFoodLocation: () => {
         const confirm = {
             "type": "flex",
-            "altText": "this is a flex message",
+            "altText": "cubee 美食",
             "contents": {
                 "type": "bubble",
                 "hero": {
