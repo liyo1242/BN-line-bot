@@ -2107,7 +2107,7 @@ module.exports = {
                             "action": {
                                 "type": "postback",
                                 "label": "下則新聞",
-                                "data": "action=buy&itemid=123"
+                                "data": "action=businessNews"
                             }
                         }
                     ]
@@ -2171,7 +2171,7 @@ module.exports = {
                             "action": {
                                 "type": "postback",
                                 "label": "下則美食",
-                                "data": "action=buy&itemid=123"
+                                "data": "action=food"
                             }
                         }
                     ]
