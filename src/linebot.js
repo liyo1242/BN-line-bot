@@ -235,6 +235,9 @@ module.exports = class LineBot {
         } else if (postback.postback.data === 'action=sportNews') {
             const confirm = bnreply.cubeeBusinessNews();
             return this.reply(postback.replyToken, [confirm]);
+        } else if (postback.postback.data === 'action=foodLocation') {
+            const confirm = bnreply.cubeeBusinessNews();
+            return this.reply(postback.replyToken, [confirm]);
         }
     }
     // ====================================================================================================

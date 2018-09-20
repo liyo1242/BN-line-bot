@@ -274,7 +274,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "地區分類",
-                                    "data": "action=buy&itemid=123"
+                                    "data": "action=foodLocation"
                                 }
                             }]
                         }
@@ -1561,8 +1561,463 @@ module.exports = {
 
     cubeeFood: () => {
         const confirm = {
-            "type": "text",
-            "text": "Cubee趕工中"
+            "type": "flex",
+            "altText": "this is a flex message",
+            "contents": {
+                "type": "carousel",
+                "contents": [{
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/hdXSiha.png",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                    "type": "text",
+                                    "text": "雲嘉南美食",
+                                    "weight": "bold",
+                                    "size": "lg"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [{
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 1,
+                                            "contents": [{
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/hdXSiha.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "size": "sm",
+                                                    "gravity": "bottom"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/hdXSiha.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "margin": "md",
+                                                    "size": "sm"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 2,
+                                            "contents": [{
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [{
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "更多美食",
+                                    "data": "action=headlineNews"
+                                }
+                            }]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/9a6ZcZZ.png",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                    "type": "text",
+                                    "text": "中彰投美食",
+                                    "weight": "bold",
+                                    "size": "lg"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [{
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 1,
+                                            "contents": [{
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/9a6ZcZZ.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "size": "sm",
+                                                    "gravity": "bottom"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/9a6ZcZZ.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "margin": "md",
+                                                    "size": "sm"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 2,
+                                            "contents": [{
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [{
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "更多美食",
+                                    "data": "action=focusNews"
+                                }
+                            }]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/UpZ9a9g.png",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                    "type": "text",
+                                    "text": "北北基美食",
+                                    "weight": "bold",
+                                    "size": "lg"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [{
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 1,
+                                            "contents": [{
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/UpZ9a9g.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "size": "sm",
+                                                    "gravity": "bottom"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/UpZ9a9g.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "margin": "md",
+                                                    "size": "sm"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 2,
+                                            "contents": [{
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [{
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "更多美食",
+                                    "data": "action=globalNews"
+                                }
+                            }]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/TIYzrrr.png",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                    "type": "text",
+                                    "text": "桃竹苗美食",
+                                    "weight": "bold",
+                                    "size": "lg"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [{
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 1,
+                                            "contents": [{
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/TIYzrrr.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "size": "sm",
+                                                    "gravity": "bottom"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/TIYzrrr.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "margin": "md",
+                                                    "size": "sm"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 2,
+                                            "contents": [{
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [{
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "更多美食",
+                                    "data": "action=businessNews"
+                                }
+                            }]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/VinjKDl.png",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                    "type": "text",
+                                    "text": "宜花東美食",
+                                    "weight": "bold",
+                                    "size": "lg"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [{
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 1,
+                                            "contents": [{
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/VinjKDl.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "size": "sm",
+                                                    "gravity": "bottom"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "image",
+                                                    "url": "https://i.imgur.com/VinjKDl.png",
+                                                    "aspectMode": "cover",
+                                                    "aspectRatio": "4:3",
+                                                    "margin": "md",
+                                                    "size": "sm"
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "flex": 2,
+                                            "contents": [{
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "標題",
+                                                    "size": "md",
+                                                    "flex": 1
+                                                },
+                                                {
+                                                    "type": "separator"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [{
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "更多美食",
+                                    "data": "action=societyNews"
+                                }
+                            }]
+                        }
+                    }
+                ]
+
+            }
         }
         return confirm;
     },
