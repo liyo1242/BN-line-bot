@@ -1650,7 +1650,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=food"
+                                    "data": "action=cubeeFood"
                                 }
                             }]
                         }
@@ -1740,7 +1740,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=food"
+                                    "data": "action=cubeeFood"
                                 }
                             }]
                         }
@@ -1830,7 +1830,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=food"
+                                    "data": "action=cubeeFood"
                                 }
                             }]
                         }
@@ -1920,7 +1920,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=food"
+                                    "data": "action=cubeeFood"
                                 }
                             }]
                         }
@@ -2010,7 +2010,7 @@ module.exports = {
                                 "action": {
                                     "type": "postback",
                                     "label": "更多美食",
-                                    "data": "action=food"
+                                    "data": "action=cubeeFood"
                                 }
                             }]
                         }
