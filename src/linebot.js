@@ -623,7 +623,7 @@ module.exports = class LineBot {
 
     PUBG(message, status) {
         //return Promise.resolve(0)
-        if ((message.message.text.indexOf('Cubee 安安') != -1) || (message.message.text.indexOf('hi Cubee') != -1) || (message.message.text.indexOf('hi cubee') != -1) || (message.message.text.indexOf('Hi Cubee') != -1) || (message.message.text.indexOf('Hi cubee') != -1)) {
+        if ((message.message.text.indexOf('fuck cubee') != -1) || (message.message.text.indexOf('Cubee 安安') != -1) || (message.message.text.indexOf('hi Cubee') != -1) || (message.message.text.indexOf('hi cubee') != -1) || (message.message.text.indexOf('Hi Cubee') != -1) || (message.message.text.indexOf('Hi cubee') != -1)) {
             const confirm = bnreply.cubee(); // end confirm
             return Promise.resolve(confirm);
         } else if ((message.message.text.indexOf('TaxiGo') != -1)) {
