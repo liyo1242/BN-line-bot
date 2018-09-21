@@ -193,7 +193,7 @@ module.exports = {
                         "type": "bubble",
                         "hero": {
                             "type": "image",
-                            "url": "https://img.chinatimes.com/newsphoto/2017-11-26/656/20171126003369.jpg",
+                            "url": "https://i.imgur.com/QEvtNdX.jpg",
                             "size": "full",
                             "aspectRatio": "20:13",
                             "aspectMode": "cover"
@@ -216,7 +216,7 @@ module.exports = {
                                             "flex": 1,
                                             "contents": [{
                                                     "type": "image",
-                                                    "url": "https://www.1111.com.tw/15sp/delicacy/delicacy_img/activImg/index_852_.jpg",
+                                                    "url": "https://i.imgur.com/QEvtNdX.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "size": "sm",
@@ -227,7 +227,7 @@ module.exports = {
                                                 },
                                                 {
                                                     "type": "image",
-                                                    "url": "https://pic.pimg.tw/mystussy/1498144779-2497766737_n.jpg",
+                                                    "url": "https://i.imgur.com/QEvtNdX.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "margin": "md",
@@ -283,7 +283,7 @@ module.exports = {
                         "type": "bubble",
                         "hero": {
                             "type": "image",
-                            "url": "https://png.clipart.me/istock/previews/6767/67677003-shopping-store-icon.jpg",
+                            "url": "https://i.imgur.com/3QtqA5h.jpg",
                             "size": "full",
                             "aspectRatio": "20:13",
                             "aspectMode": "cover"
@@ -306,7 +306,7 @@ module.exports = {
                                             "flex": 1,
                                             "contents": [{
                                                     "type": "image",
-                                                    "url": "https://buzzorange.com/techorange/wp-content/uploads/sites/2/2018/02/4570.png",
+                                                    "url": "https://i.imgur.com/3QtqA5h.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "size": "sm",
@@ -317,7 +317,7 @@ module.exports = {
                                                 },
                                                 {
                                                     "type": "image",
-                                                    "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/66/52/b8/6652b831-4ad9-4604-840e-fdf2b56fabdc/AppIcon-1x_U007emarketing-85-220-4.png/1024x1024bb.png",
+                                                    "url": "https://i.imgur.com/3QtqA5h.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "margin": "md",
@@ -373,97 +373,7 @@ module.exports = {
                         "type": "bubble",
                         "hero": {
                             "type": "image",
-                            "url": "https://i.imgur.com/wFDwUlH.png",
-                            "size": "full",
-                            "aspectRatio": "20:13",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                    "type": "text",
-                                    "text": "八卦",
-                                    "weight": "bold",
-                                    "size": "lg"
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "horizontal",
-                                    "contents": [{
-                                            "type": "box",
-                                            "layout": "vertical",
-                                            "flex": 1,
-                                            "contents": [{
-                                                    "type": "image",
-                                                    "url": "https://static.newmobilelife.com/wp-content/uploads/2015/04/ptt-push-icon.jpeg",
-                                                    "aspectMode": "cover",
-                                                    "aspectRatio": "4:3",
-                                                    "size": "sm",
-                                                    "gravity": "bottom"
-                                                },
-                                                {
-                                                    "type": "separator"
-                                                },
-                                                {
-                                                    "type": "image",
-                                                    "url": "https://p2.bahamut.com.tw/HOME/creationCover/82/0003893682_B.JPG",
-                                                    "aspectMode": "cover",
-                                                    "aspectRatio": "4:3",
-                                                    "margin": "md",
-                                                    "size": "sm"
-                                                },
-                                                {
-                                                    "type": "separator"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "box",
-                                            "layout": "vertical",
-                                            "flex": 2,
-                                            "contents": [{
-                                                    "type": "text",
-                                                    "text": "ptt",
-                                                    "size": "md",
-                                                    "flex": 1
-                                                },
-                                                {
-                                                    "type": "separator"
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "text": "dcard",
-                                                    "size": "md",
-                                                    "flex": 1
-                                                },
-                                                {
-                                                    "type": "separator"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        "footer": {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [{
-                                "type": "button",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "網站分類",
-                                    "data": "action=buy&itemid=123"
-                                }
-                            }]
-                        }
-                    },
-                    {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": "https://pic.pimg.tw/cherrytcj/1477557883-3412659381.jpg",
+                            "url": "https://i.imgur.com/zXUL9Am.jpg",
                             "size": "full",
                             "aspectRatio": "20:13",
                             "aspectMode": "cover"
@@ -486,7 +396,7 @@ module.exports = {
                                             "flex": 1,
                                             "contents": [{
                                                     "type": "image",
-                                                    "url": "https://uupon.tw/upload/store/2195f725f30000029a5e.jpg",
+                                                    "url": "https://i.imgur.com/zXUL9Am.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "size": "sm",
@@ -497,7 +407,7 @@ module.exports = {
                                                 },
                                                 {
                                                     "type": "image",
-                                                    "url": "https://img.hongkongcard.com/v6/d//2014/08/merchant/thumbnail/ml_1272.jpg",
+                                                    "url": "https://i.imgur.com/zXUL9Am.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "margin": "md",
@@ -553,7 +463,7 @@ module.exports = {
                         "type": "bubble",
                         "hero": {
                             "type": "image",
-                            "url": "https://www.liontravel.com/promotion/tkt/cheaptickets/FileUpLoad/PictureAndWord/Model/8161/22591/ae065251-7cb8-4790-8caf-e6d421036c8d.jpg",
+                            "url": "https://i.imgur.com/1xmp6VF.jpg",
                             "size": "full",
                             "aspectRatio": "20:13",
                             "aspectMode": "cover"
@@ -576,7 +486,7 @@ module.exports = {
                                             "flex": 1,
                                             "contents": [{
                                                     "type": "image",
-                                                    "url": "https://expediagroup-b54c.kxcdn.com/wp-content/uploads/2013/06/logo-trivago-v2.png",
+                                                    "url": "https://i.imgur.com/1xmp6VF.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "size": "sm",
@@ -587,7 +497,7 @@ module.exports = {
                                                 },
                                                 {
                                                     "type": "image",
-                                                    "url": "https://www.kkday.com/assets/img/kkday_logo_final.png",
+                                                    "url": "https://i.imgur.com/1xmp6VF.jpg",
                                                     "aspectMode": "cover",
                                                     "aspectRatio": "4:3",
                                                     "margin": "md",
