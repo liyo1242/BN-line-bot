@@ -687,8 +687,8 @@ module.exports = class LineBot {
         } else if (((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1)) {
             const confirm = {
                 "type": "image",
-                "originalContentUrl": "https://i.imgur.com/45OKiSd.jpg",
-                "previewImageUrl": "https://i.imgur.com/45OKiSd.jpg"
+                "originalContentUrl": "https://i.imgur.com/v0FOoW8.jpg",
+                "previewImageUrl": "https://i.imgur.com/v0FOoW8.jpg"
             }; // end confirm
             return Promise.resolve(confirm);
         } else if ((message.message.text.indexOf('捷運') != -1)) {
