@@ -170,7 +170,7 @@ module.exports = class LineBot {
         if (postback.type === 'follow') { //點級圖片 換
             eroPicture.eroMenuList(this.botConfig.channelAccessToken, 0)
                 .then((richMenuId) => {
-                    eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-b15704e04717fb30c7b63af74f3e2916", postback.source.userId);
+                    eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-3ba259947b097e4f2511d26310533ada", postback.source.userId);
                 });
             // change menu notify
             //
