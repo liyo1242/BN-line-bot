@@ -120,7 +120,7 @@ app.post('/api', (req, res) => {
             return res.status(200).send('Gandalf comming Gandalf comming');
         }, (reason) => {
             // rejection
-            return res.status(400).send('Dont fuckin mess with input');
+            return res.status(400).send(`Dont fuckin mess with input`);
         });
 });
 

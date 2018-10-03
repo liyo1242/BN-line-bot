@@ -159,7 +159,7 @@ module.exports = class LineBot {
             this.log('Empty message 3 ');
         }
     }
-    // ====================================================================================================
+
     processPostback(postback, res) {
         if (this._botConfig.devConfig) {
             this.log("message", postback);
@@ -240,7 +240,7 @@ module.exports = class LineBot {
             return this.reply(postback.replyToken, [confirm]);
         }
     }
-    // ====================================================================================================
+
     processAiResponse(chatId, apiaiResponse, replyToken) {
         let responseText = apiaiResponse.result.fulfillment.speech;
         let responseData = apiaiResponse.result.fulfillment.data;
@@ -297,186 +297,6 @@ module.exports = class LineBot {
                 text: "系統錯誤"
             };
             return this.reply(replyToken, [message]);
-        }
-    }
-
-    // ====================================================================================================
-
-    handleApiAiAction(replyToken, action, responseText, contexts, messages) {
-        console.log(action);
-        const message = {
-            type: "text",
-            text: responseText
-        };
-        return this.reply(replyToken, [message]);
-    }
-
-    convertToLineMessages(responseMessages) {
-        try {
-
-            const lineMessages = [];
-
-            for (let messageIndex = 0; messageIndex < responseMessages.length; messageIndex++) {
-                let message = responseMessages[messageIndex];
-
-                switch (message.type) {
-                    case 0:
-                        if (message.speech) {
-                            let lineMessage = {
-                                type: "text",
-                                text: message.speech
-                            };
-                            lineMessages.push(lineMessage);
-                        }
-                        break;
-                    case 1:
-                        {
-                            let lineMessage = {
-                                type: "template",
-                                altText: "Cards are not supported in this client",
-                                template: {
-                                    type: "buttons"
-                                }
-                            };
-
-                            if (message.title) {
-                                lineMessage.template.title = message.title;
-                            }
-
-                            if (message.subtitle) {
-                                lineMessage.template.text = message.subtitle;
-                            } else {
-                                lineMessage.template.text = message.title;
-                                delete lineMessage.template.title;
-                            }
-
-                            if (message.imageUrl) {
-                                lineMessage.template.thumbnailImageUrl = message.imageUrl;
-                            }
-
-                            if (message.buttons.length > 0) {
-                                let actions = [];
-                                for (let buttonIndex = 0; buttonIndex < message.buttons.length; buttonIndex++) {
-                                    let button = message.buttons[buttonIndex];
-                                    let text = button.text;
-                                    let postback = button.postback;
-
-                                    if (text) {
-
-                                        if (!postback) {
-                                            postback = text;
-                                        }
-
-                                        if (postback.startsWith('http')) {
-                                            actions.push({
-                                                type: "uri",
-                                                label: text,
-                                                uri: postback
-                                            });
-                                        } else {
-                                            actions.push({
-                                                type: "postback",
-                                                label: text,
-                                                data: postback,
-                                                text: postback
-                                            });
-                                        }
-                                    }
-                                }
-
-                                if (actions.length > 0 && lineMessage.template.text) {
-                                    lineMessage.template.actions = actions;
-                                    lineMessages.push(lineMessage);
-                                }
-                            }
-                        }
-                        break;
-                    case 2:
-                        {
-                            let lineMessage = {
-                                type: "template",
-                                altText: "Cards are not supported in this client",
-                                template: {
-                                    type: "buttons"
-                                }
-                            };
-                            lineMessage.template.text = message.title ? message.title :
-                                'Choose an item';
-
-                            let actions = [];
-                            for (let replyIndex = 0; replyIndex < message.replies.length; replyIndex++) {
-                                let actionText = message.replies[replyIndex];
-                                actions.push({
-                                    type: "postback",
-                                    label: actionText,
-                                    data: actionText,
-                                    text: actionText
-                                });
-                            }
-
-                            if (actions.length > 0) {
-                                lineMessage.template.actions = actions;
-                                lineMessages.push(lineMessage);
-                            }
-                        }
-                        break;
-                    case 3:
-                        {
-                            if (message.imageUrl) {
-                                let lineMessage = {
-                                    type: "image",
-                                    originalContentUrl: message.imageUrl,
-                                    previewImageUrl: message.imageUrl
-                                };
-
-                                lineMessages.push(lineMessage);
-                            }
-                        }
-                        break;
-                    case 4:
-                        if (message.payload && message.payload.line) {
-                            lineMessages.push(message.payload.line);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            return lineMessages;
-        } catch (err) {
-            return [];
-        }
-    }
-
-    replyWithMessages(chatId, replyToken, lineMessages) {
-        if (lineMessages && lineMessages.length > 0) {
-
-            if (lineMessages.length <= 5) {
-                // Line reply limit
-                return this.reply(replyToken, lineMessages);
-            } else {
-                return new Promise((resolve, reject) => {
-                    async.eachSeries(lineMessages, (msg, callback) => {
-
-                        Promise.resolve()
-                            .then(() => this.replyPush(chatId, [msg]))
-                            .then(() => this.sleep(this._sendMessageInterval))
-                            .then(() => callback())
-                            .catch(err => callback(err));
-
-                    }, (err) => {
-                        if (err) {
-                            this.logError(err);
-                            reject(err);
-                        } else {
-                            resolve();
-                        }
-                    });
-                });
-            }
-        } else {
-            return Promise.resolve();
         }
     }
 
@@ -568,18 +388,6 @@ module.exports = class LineBot {
         });
     }
 
-    filterPlatformMessages(messages, platform) {
-        if (messages) {
-            let platformMessages = messages.filter(m => m.platform === platform);
-            if (platformMessages.length === 0) {
-                platformMessages = messages.filter(m => !this.isDefined(m.platform));
-            }
-            return platformMessages;
-        } else {
-            return [];
-        }
-    }
-
     sleep(delay) {
         return new Promise((resolve, reject) => {
             setTimeout(() => resolve(), delay);
@@ -607,16 +415,6 @@ module.exports = class LineBot {
 
         return obj !== null;
     }
-
-    wrongphone(message) {
-        mongo.updateStatus(message.source.userId, 1, (err, res) => {
-            if (err) console.log(err);
-            else console.log(res);
-        });
-
-        return bnreply.askphonereply();
-    }
-
 
     PUBG(message, status) {
         //return Promise.resolve(0)
@@ -678,15 +476,15 @@ module.exports = class LineBot {
         } else if (((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1)) {
             const confirm = {
                 "type": "image",
-                "originalContentUrl": "https://i.imgur.com/lhjRtD1.jpg",
-                "previewImageUrl": "https://i.imgur.com/lhjRtD1.jpg"
+                "originalContentUrl": "https://i.imgur.com/sWZca1G.jpg",
+                "previewImageUrl": "https://i.imgur.com/sWZca1G.jpg"
             }; // end confirm
             return Promise.resolve(confirm);
         } else if (((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1)) {
             const confirm = {
                 "type": "image",
-                "originalContentUrl": "https://i.imgur.com/v0FOoW8.jpg",
-                "previewImageUrl": "https://i.imgur.com/v0FOoW8.jpg"
+                "originalContentUrl": "https://i.imgur.com/Dubzevw.jpg",
+                "previewImageUrl": "https://i.imgur.com/Dubzevw.jpg"
             }; // end confirm
             return Promise.resolve(confirm);
         } else if ((message.message.text.indexOf('捷運') != -1)) {
@@ -734,48 +532,9 @@ module.exports = class LineBot {
             var title = message.message.text.slice(0, index.start);
             var location = message.message.text.slice(index.location + 5, index.content);
             const confirm = bnreply.calendarReply(title, start, end, location);
-            // const confirm = {
-            //     "type": "template",
-            //     "altText": "cubee詢問是否加進日曆",
-            //     "template": {
-            //         "type": "confirm",
-            //         "text": "要加進日曆嗎?",
-            //         "actions": [{
-            //                 "type": "uri",
-            //                 "label": "Yes",
-            //                 "uri": `http://bn-calendar.herokuapp.com?title=${title}&start=${start}&end=${end}&location=${location}`
-            //             },
-            //             {
-            //                 "type": "postback",
-            //                 "label": "No",
-            //                 "data": "action=no"
-            //             }
-            //         ]
-            //     }
-            // }
             return Promise.resolve(confirm);
         } else {
             return Promise.resolve(0);
         }
     }
-
-    // rule(phone){
-    //   var i,jd,phonetemp;
-
-    //   phonetemp = "0123456789-+ ";
-    //   if(phone.length == 10){
-    //     if( (phone.charAt(0) + phone.charAt(1)) === "09" ){
-    //       for (i = 0;i<phone.length;i++){
-    //         jd = phonetemp.indexOf(phone.charAt(i));
-    //         if(jd == -1)
-    //           return 0;
-    //       }
-    //       return 1 ;
-    //     }else{
-    //       return 0 ;
-    //     }
-    //   }else{
-    //     return 0 ;
-    //   }
-    // }
 };
