@@ -4,10 +4,8 @@ const apiai = require('apiai');
 const uuid = require('uuid');
 const request = require('request');
 const async = require('async');
-const bnreply = require('./bnReply.js');
 const eroPicture = require('./eroPicture.js');
 const eroFunction = require('./eroFunction.js');
-let shutup = 0;
 
 module.exports = class LineBot {
 
@@ -88,7 +86,7 @@ module.exports = class LineBot {
                     console.log('user says : ' + messageText);
                     const data = JSON.parse(profiledata);
                     const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-                    this.replyPush('U506c7426ba192e705210a874b97b40ca', [liyomessage]);
+                    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
                 })
         }
 
@@ -131,30 +129,24 @@ module.exports = class LineBot {
                         })
                         .catch(err => console.log(err));
                 }
-                // });
-
-                // mongo.eventLog(message,(err, res) => {
-                //   console.log('event log');
-                // });
-
             } else {
                 this.log('Empty message 2 ');
             }
         } else {
             //return this.reply(message.replyToken, [confirm]);
             if (message.message.type == "sticker") {
-                // const messages = {
-                //     "type": "image",
-                //     "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
-                //     "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
-                // };
-                // return this.reply(message.replyToken, [messages]);
+                const messages = {
+                    "type": "image",
+                    "originalContentUrl": "https://i.imgur.com/rrKM5HZ.png",
+                    "previewImageUrl": "https://i.imgur.com/xBhVsZS.png"
+                };
+                return this.reply(message.replyToken, [messages]);
             } else if (message.message.type == "image") {
-                // const messages = {
-                //   type: "text",
-                //   text: "請不要隨便傳垃圾訊息 大撒B"
-                // };
-                // return this.reply(message.replyToken, [messages]);
+                const messages = {
+                  type: "text",
+                  text: "請不要隨便傳垃圾訊息 大撒B"
+                };
+                return this.reply(message.replyToken, [messages]);
             }
             this.log('Empty message 3 ');
         }
@@ -179,65 +171,8 @@ module.exports = class LineBot {
                     const data = JSON.parse(profiledata);
                     const messageText = "change Menu";
                     const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-                    this.replyPush('U506c7426ba192e705210a874b97b40ca', [liyomessage]);
+                    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
                 })
-        } // =============== Layer 1
-        else if (postback.postback.data === `action=news`) {
-            const confirm = bnreply.cubeeNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === `action=food`) {
-            const confirm = bnreply.cubeeFood();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === `action=shop`) {
-            const confirm = bnreply.cubeeShop();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === `action=gossip`) {
-            const confirm = bnreply.cubeeGossip();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === `action=ticket`) {
-            const confirm = bnreply.cubeeTicket();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === `action=tour`) {
-            const confirm = bnreply.cubeeTour();
-            return this.reply(postback.replyToken, [confirm]);
-        }
-        //================= Layer 2
-        else if (postback.postback.data === 'action=globalNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=focusNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=businessNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=societyNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=techNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=headlineNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=tourNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=entertainmentNews') {
-            const confirm = bnreply.cubeeFood();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=trafficNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=sportNews') {
-            const confirm = bnreply.cubeeBusinessNews();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=cubeeFood') {
-            const confirm = bnreply.cubeeFoodLocation();
-            return this.reply(postback.replyToken, [confirm]);
-        } else if (postback.postback.data === 'action=foodLocation') {
-            const confirm = bnreply.cubeeFood();
-            return this.reply(postback.replyToken, [confirm]);
         }
     }
 
@@ -417,124 +352,24 @@ module.exports = class LineBot {
     }
 
     PUBG(message, status) {
-        //return Promise.resolve(0)
-        var lowerCase = message.message.text.toLowerCase();
-        if ((lowerCase.indexOf('fuck cubee') != -1) || (lowerCase.indexOf('cubee 安安') != -1) || (lowerCase.indexOf('hi cubee') != -1)) {
-            const confirm = bnreply.cubee(); // end confirm
+        if ((message.message.text.indexOf('develop') != -1)) {
+            const confirm = {
+                type: "text",
+                text: "develop 測試成功"
+            };
             return Promise.resolve(confirm);
         } else if ((message.message.text.indexOf('TaxiGo') != -1)) {
             const confirm = {
                 type: "text",
                 text: "TaxiGo 我兄弟啦 "
             };
-            const pushConfirm = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm]);
-            const pushConfirm1 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4357617"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm1]);
-            const pushConfirm2 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3998963"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm2]);
-            const pushConfirm3 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
-            };
-            this.replyPush(message.source.groupId | message.source.userId, [pushConfirm3]);
-            const pushConfirm4 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/4212262"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm4]);
-            const pushConfirm5 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖  https://line.me/S/sticker/3662781"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm5]);
-            const pushConfirm6 = {
-                type: "text",
-                text: "找我兄弟不如買我們的貼圖 https://line.me/S/sticker/4212408"
-            };
-            this.replyPush(message.source.groupId || message.source.userId, [pushConfirm6]);
             return Promise.resolve(confirm);
-        }
-        if (message.message.text === "BlueNet功能 敬請期待" || message.message.text === "BN 測試 #####") {
-
-            return Promise.resolve(eroFunction.chooseMenu());
         } else if (message.message.text === "查詢") {
             const confirm = {
                 type: "text",
                 text: "your line userid = " + message.source.userId
             }; // end confirm
             return Promise.resolve(confirm);
-        } else if (((message.message.text.indexOf('台北') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('北捷') != -1)) {
-            const confirm = {
-                "type": "image",
-                "originalContentUrl": "https://i.imgur.com/sWZca1G.jpg",
-                "previewImageUrl": "https://i.imgur.com/sWZca1G.jpg"
-            }; // end confirm
-            return Promise.resolve(confirm);
-        } else if (((message.message.text.indexOf('高雄') != -1) && (message.message.text.indexOf('捷運') != -1)) || (message.message.text.indexOf('高捷') != -1)) {
-            const confirm = {
-                "type": "image",
-                "originalContentUrl": "https://i.imgur.com/Dubzevw.jpg",
-                "previewImageUrl": "https://i.imgur.com/Dubzevw.jpg"
-            }; // end confirm
-            return Promise.resolve(confirm);
-        } else if ((message.message.text.indexOf('捷運') != -1)) {
-            const confirm = {
-                "type": "template",
-                "altText": "Ask MRT template",
-                "template": {
-                    "type": "buttons",
-                    "thumbnailImageUrl": "https://www.bluenet-ride.com/images/drawable/cubeegroup/surprisecubee.png",
-                    "imageAspectRatio": "rectangle",
-                    "imageSize": "cover",
-                    "imageBackgroundColor": "#4898AF",
-                    "title": "搭捷運嗎 ?",
-                    "text": "您要台北捷運還是高雄捷運呢 ?",
-                    "defaultAction": {
-                        "type": "uri",
-                        "label": "View detail",
-                        "uri": "http://example.com/page/123"
-                    },
-                    "actions": [{
-                            "type": "message",
-                            "label": "北捷",
-                            "text": "北捷"
-                        },
-                        {
-                            "type": "message",
-                            "label": "高捷",
-                            "text": "高捷"
-                        }
-                    ]
-                }
-            }; // end confirm
-            return Promise.resolve(confirm);
-        } else if (message.message.text === "老鐵回家了") {
-            return Promise.resolve(eroFunction.selftest());
-        } else if ((message.message.text.indexOf('開始時間') != -1) && (message.message.text.indexOf('結束時間') != -1) && (message.message.text.indexOf('地點') != -1)) {
-            var index = {
-                start: message.message.text.indexOf('開始時間'),
-                end: message.message.text.indexOf('結束時間'),
-                location: message.message.text.indexOf('活動地點'),
-                content: message.message.text.indexOf('活動內容')
-            }
-            var start = message.message.text.slice(index.start + 5, index.end);
-            var end = message.message.text.slice(index.end + 5, index.location);
-            var title = message.message.text.slice(0, index.start);
-            var location = message.message.text.slice(index.location + 5, index.content);
-            const confirm = bnreply.calendarReply(title, start, end, location);
-            return Promise.resolve(confirm);
-        } else {
-            return Promise.resolve(0);
         }
     }
 };
