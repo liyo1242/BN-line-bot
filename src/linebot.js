@@ -160,12 +160,8 @@ module.exports = class LineBot {
         let chatId = this.getChatId(postback);
         //let messageText = postback.postback.params.datetime;
         if (postback.type === 'follow') { //點級圖片 換
-            eroPicture.eroMenuList(this.botConfig.channelAccessToken, 0)
-                .then((richMenuId) => {
-                    eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-3ba259947b097e4f2511d26310533ada", postback.source.userId);
-                });
+            eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-3ba259947b097e4f2511d26310533ada", postback.source.userId);
             // change menu notify
-            //
             this.getProfile(postback.source.userId)
                 .then((profiledata) => {
                     const data = JSON.parse(profiledata);
@@ -173,7 +169,19 @@ module.exports = class LineBot {
                     const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
                     this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
                 })
+        } else if (postback.postback.data === 'action=blink'){
+            eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-25bc0217fc3fa8a78bb9b4ea1e50bda6", postback.source.userId);
+        }else if (postback.postback.data === 'action=laugh'){
+            eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-54c07267e2af8dd29879c4294f91e36d", postback.source.userId);
+        }else if (postback.postback.data === 'action=angry'){
+            eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-b71a72d363f626b38f178deb4b0d94c0", postback.source.userId);
+        } else if (postback.postback.data === 'action=unlink'){
+            eroPicture.unlinkUser(this.botConfig.channelAccessToken, postback.source.userId);
         }
+        // blink => richmenu-25bc0217fc3fa8a78bb9b4ea1e50bda6
+        // laugh => richmenu-54c07267e2af8dd29879c4294f91e36d
+        // angry => richmenu-b71a72d363f626b38f178deb4b0d94c0
+        // main  => richmenu-dc75c99a1a98dea4913a18bbd7bb83ff
     }
 
     processAiResponse(chatId, apiaiResponse, replyToken) {
