@@ -76,11 +76,10 @@ app.post('/webhook', (req, res) => {
     res.status(200).send("OK");
 
     try {
-
+        console.log("the truth = " + JSON.stringify(req.body.events) + "\n");
         req.body.events.forEach((item) => {
             console.log(JSON.stringify(item));
             console.log('ok');
-            console.log(JSON.stringify(item));
 
             if (item.type === "message") {
                 if (item.replyToken !== "00000000000000000000000000000000" &&

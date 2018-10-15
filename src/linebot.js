@@ -171,9 +171,9 @@ module.exports = class LineBot {
                 })
         } else if (postback.postback.data === 'action=blink'){
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-25bc0217fc3fa8a78bb9b4ea1e50bda6", postback.source.userId);
-        }else if (postback.postback.data === 'action=laugh'){
+        } else if (postback.postback.data === 'action=laugh'){
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-54c07267e2af8dd29879c4294f91e36d", postback.source.userId);
-        }else if (postback.postback.data === 'action=angry'){
+        } else if (postback.postback.data === 'action=angry'){
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-b71a72d363f626b38f178deb4b0d94c0", postback.source.userId);
         } else if (postback.postback.data === 'action=unlink'){
             eroPicture.unlinkUser(this.botConfig.channelAccessToken, postback.source.userId);
