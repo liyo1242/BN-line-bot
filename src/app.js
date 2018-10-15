@@ -26,7 +26,7 @@ const LineBotConfig = require('./linebotconfig');
 const REST_PORT = (process.env.PORT || 5000);
 const DEV_CONFIG = process.env.DEVELOPMENT_CONFIG == 'true';
 
-const APIAI_ACCESS_TOKEN = "a3f16c93387c4dceb35290c1a7547fe5";
+const APIAI_ACCESS_TOKEN = "1bec9814f35c4518806813eaaabdfa2f";
 const APIAI_LANG = "Chinese (Traditional) — zh-TW";
 
 const LINE_CHANNEL_ID = "1613403231";
