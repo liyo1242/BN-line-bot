@@ -20,7 +20,7 @@ module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
                         "flex": 1,
                         "contents": [{
                             "type": "image",
-                            "url": "https://www.bluenet-ride.com/images/drawable/cubeegroup/hellocubee.png",
+                            "url": imgurl,
                             "aspectMode": "cover",
                             "aspectRatio": "4:3",
                             "size": "sm",
