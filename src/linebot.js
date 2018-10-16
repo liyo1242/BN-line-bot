@@ -103,7 +103,7 @@ module.exports = class LineBot {
                     console.log('event null');
                 }
                 if (res != null) {
-                    this.PUBG(message, 0).then((value) => {
+                    this.PUBG(message).then((value) => {
                             console.log(value);
                             if (value == 0) {
                                 console.log("I'm in");
@@ -359,7 +359,7 @@ module.exports = class LineBot {
         return obj !== null;
     }
 
-    PUBG(message, status) {
+    PUBG(message) {
         if ((message.message.text.indexOf('develop') != -1)) {
             const confirm = {
                 type: "text",
@@ -379,5 +379,6 @@ module.exports = class LineBot {
             }; // end confirm
             return Promise.resolve(confirm);
         }
+        return 0;
     }
 };
