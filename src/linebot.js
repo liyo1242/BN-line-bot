@@ -190,9 +190,10 @@ module.exports = class LineBot {
         let messages = apiaiResponse.result.fulfillment.messages;
         let action = apiaiResponse.result.action;
         let result = apiaiResponse.result.fulfillment;
-        console.log(responseText);
-        console.log(action);
-        console.log(result);
+        console.log("\negg" + apiaiResponse.result.fulfillment + '\n');
+        // console.log(responseText);
+        // console.log(action);
+        // console.log(result);
         let contexts = apiaiResponse.result.contexts;
         let parameters = apiaiResponse.result.parameters;
 
