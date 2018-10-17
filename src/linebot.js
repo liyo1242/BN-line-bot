@@ -143,8 +143,8 @@ module.exports = class LineBot {
                 return this.reply(message.replyToken, [messages]);
             } else if (message.message.type == "image") {
                 const messages = {
-                  type: "text",
-                  text: "請不要隨便傳垃圾訊息 大撒B"
+                    type: "text",
+                    text: "請不要隨便傳垃圾訊息 大撒B"
                 };
                 return this.reply(message.replyToken, [messages]);
             }
@@ -169,13 +169,13 @@ module.exports = class LineBot {
                     const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
                     this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
                 })
-        } else if (postback.postback.data === 'action=blink'){
+        } else if (postback.postback.data === 'action=blink') {
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-25bc0217fc3fa8a78bb9b4ea1e50bda6", postback.source.userId);
-        } else if (postback.postback.data === 'action=laugh'){
+        } else if (postback.postback.data === 'action=laugh') {
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-54c07267e2af8dd29879c4294f91e36d", postback.source.userId);
-        } else if (postback.postback.data === 'action=angry'){
+        } else if (postback.postback.data === 'action=angry') {
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-b71a72d363f626b38f178deb4b0d94c0", postback.source.userId);
-        } else if (postback.postback.data === 'action=unlink'){
+        } else if (postback.postback.data === 'action=unlink') {
             eroPicture.unlinkUser(this.botConfig.channelAccessToken, postback.source.userId);
         }
         // blink => richmenu-25bc0217fc3fa8a78bb9b4ea1e50bda6
@@ -184,43 +184,40 @@ module.exports = class LineBot {
         // main  => richmenu-dc75c99a1a98dea4913a18bbd7bb83ff
     }
 
-    processAiResponse(chatId, {result:{fulfillment:{speech:responseText, messages:messages, data:responseData}, action:action, contexts:contexts, parameters:parameters}}, replyToken) {
-        // let result = apiaiResponse.result.fulfillment;
+    processAiResponse(chatId, {
+            result: {
+                fulfillment: {
+                    speech: sp = "fuck",
+                    messages: mes = [],
+                    data: dt
+                },
+                action: act = "unknown",
+                contexts: ct = [],
+                parameters: p = {}
+            }
+        },
+        replyToken) {
 
-        // let responseData,messages,responseText;
-        // let result,action,contexts,parameters;
-
-        // ({fulfillment:result, action:action, contexts:contexts, parameters:parameters} = apiaiResponse.result);
-        // ({speech:responseText, messages:messages, data:responseData} = result);
-        // let action = apiaiResponse.result.action;
-
-        // console.log(`\nfix = ${JSON.stringify(apiaiResponse.result)}\n`);
-
-        // let contexts = apiaiResponse.result.contexts;
-        // let parameters = apiaiResponse.result.parameters;
-
-        if (this.isDefined(messages) && (messages.length == 1 && messages[0].type == 0)) {
+        if (this.isDefined(mes) && (mes.length == 1 && mes[0].type == 0)) {
             console.log("first if");
             let timeoutInterval = 1100;
             let previousType;
-            let cardTypes = [];
-            let timeout = 0;
-            for (var i = 0; i < messages.length; i++) {
+            for (var i = 0; i < mes.length; i++) {
 
-                previousType = messages[i].type;
+                previousType = mes[i].type;
 
             }
-            if (action != "input.unknown") {
+            if (act != "input.unknown") {
                 const message = {
                     type: "text",
-                    text: responseText
+                    text: sp
                 };
                 return this.reply(replyToken, [message]);
             } else {
                 return Promise.resolve(0);
             }
-        } else if (messages.length > 1) {
-            var ran = messages[Math.floor(Math.random() * messages.length)];
+        } else if (mes.length > 1) {
+            var ran = mes[Math.floor(Math.random() * mes.length)];
             if (ran.type == 0) {
                 const message = {
                     type: "text",
@@ -230,14 +227,14 @@ module.exports = class LineBot {
             } else {
                 return this.reply(replyToken, [ran.payload]);
             }
-        } else if (messages[0].type != 0 || !this.isDefined(action)) {
+        } else if (mes[0].type != 0 || !this.isDefined(act)) {
             console.log("sec if");
-            return this.reply(replyToken, [messages[0].payload]);
-        } else if (this.isDefined(action)) {
+            return this.reply(replyToken, [mes[0].payload]);
+        } else if (this.isDefined(act)) {
             console.log("3 gandalf");
-            return this.reply(replyToken, [messages[0].payload]);
+            return this.reply(replyToken, [mes[0].payload]);
 
-        } else if (this.isDefined(responseText)) {
+        } else if (this.isDefined(sp)) {
             const message = {
                 type: "text",
                 text: "系統錯誤"
