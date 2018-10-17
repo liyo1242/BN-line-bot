@@ -190,7 +190,7 @@ module.exports = class LineBot {
         let messages = apiaiResponse.result.fulfillment.messages;
         let action = apiaiResponse.result.action;
         let result = apiaiResponse.result.fulfillment;
-
+        let responseDataA,messagesA,responseTextA;
         ({speech:responseTextA, messages:messagesA, data:responseDataA} = result);
         console.log("\negg" + JSON.stringify(apiaiResponse.result.fulfillment) + '\n');
         console.log(`\n${responseTextA} ~ ${messagesA} ~ ${responseDataA}\n`);
