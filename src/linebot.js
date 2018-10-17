@@ -185,17 +185,19 @@ module.exports = class LineBot {
     }
 
     processAiResponse(chatId, apiaiResponse, replyToken) {
-        let result = apiaiResponse.result.fulfillment;
+        // let result = apiaiResponse.result.fulfillment;
 
         let responseData,messages,responseText;
+        let result,action,contexts,parameters;
+
+        ({fulfillment:result, action:action, contexts:contexts, parameters:parameters} = apiaiResponse.result);
         ({speech:responseText, messages:messages, data:responseData} = result);
+        // let action = apiaiResponse.result.action;
 
-        let action = apiaiResponse.result.action;
+        // console.log(`\nfix = ${JSON.stringify(apiaiResponse.result)}\n`);
 
-        console.log(`\nfix = ${JSON.stringify(apiaiResponse.result)}\n`);
-
-        let contexts = apiaiResponse.result.contexts;
-        let parameters = apiaiResponse.result.parameters;
+        // let contexts = apiaiResponse.result.contexts;
+        // let parameters = apiaiResponse.result.parameters;
 
         if (this.isDefined(messages) && (messages.length == 1 && messages[0].type == 0)) {
             console.log("first if");
