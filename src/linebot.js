@@ -114,7 +114,7 @@ module.exports = class LineBot {
                                 apiaiRequest.on('response', (response) => {
 
                                     let action = response.result.action;
-
+                                    console.log(JSON.stringify(response));
                                     this.processAiResponse(chatId, response, message.replyToken)
                                         .then(() => this.log('Message sent'))
                                         .catch((err) => this.logError(err))
@@ -187,7 +187,7 @@ module.exports = class LineBot {
     processAiResponse(chatId, {
             result: {
                 fulfillment: {
-                    speech: sp = "fuck",
+                    speech: sp = "Hello World",
                     messages: mes = [],
                     data: dt
                 },
@@ -197,12 +197,12 @@ module.exports = class LineBot {
             }
         },
         replyToken) {
-
-        if (this.isDefined(mes) && (mes.length == 1 && mes[0].type == 0)) {
+        // 這邊的undefine 直會被預設直檢測 那判斷式的存在必要??
+        if (mes.length == 1 && mes[0].type == 0) {
             console.log("first if");
             let timeoutInterval = 1100;
             let previousType;
-            for (var i = 0; i < mes.length; i++) {
+            for (var i = 0; i < mes.length; i++) { // null.length = 0
 
                 previousType = mes[i].type;
 
