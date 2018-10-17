@@ -184,14 +184,14 @@ module.exports = class LineBot {
         // main  => richmenu-dc75c99a1a98dea4913a18bbd7bb83ff
     }
 
-    processAiResponse(chatId, apiaiResponse, replyToken) {
+    processAiResponse(chatId, {result:{fulfillment:{speech:responseText, messages:messages, data:responseData}, action:action, contexts:contexts, parameters:parameters}}, replyToken) {
         // let result = apiaiResponse.result.fulfillment;
 
-        let responseData,messages,responseText;
-        let result,action,contexts,parameters;
+        // let responseData,messages,responseText;
+        // let result,action,contexts,parameters;
 
-        ({fulfillment:result, action:action, contexts:contexts, parameters:parameters} = apiaiResponse.result);
-        ({speech:responseText, messages:messages, data:responseData} = result);
+        // ({fulfillment:result, action:action, contexts:contexts, parameters:parameters} = apiaiResponse.result);
+        // ({speech:responseText, messages:messages, data:responseData} = result);
         // let action = apiaiResponse.result.action;
 
         // console.log(`\nfix = ${JSON.stringify(apiaiResponse.result)}\n`);
