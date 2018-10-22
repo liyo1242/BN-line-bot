@@ -85,8 +85,8 @@ module.exports = class LineBot {
                     // console.log(data);
                     console.log('user says : ' + messageText);
                     const data = JSON.parse(profiledata);
-                    const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-                    this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
+                    // const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+                    // this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
                 })
         }
 
@@ -156,8 +156,8 @@ module.exports = class LineBot {
         if (this._botConfig.devConfig) {
             this.log("message", postback);
         }
-
-        let chatId = this.getChatId(postback);
+        // (source:{type:chatId,userId:uid},type:type,postback:{data:data})
+        let chatId = this.getChatId(postback);//postback.source.type
         //let messageText = postback.postback.params.datetime;
         if (postback.type === 'follow') { //點級圖片 換
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-3ba259947b097e4f2511d26310533ada", postback.source.userId);
@@ -197,7 +197,6 @@ module.exports = class LineBot {
             }
         },
         replyToken) {
-        // 這邊的undefine 直會被預設直檢測 那判斷式的存在必要??
         if (mes.length == 1 && mes[0].type == 0) {
             console.log("first if");
             let timeoutInterval = 1100;
