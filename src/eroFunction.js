@@ -1,10 +1,5 @@
 // const ero = require('./eroPicture.js');
 module.exports.eavesdropper = (userid, imgurl, userName, userMessage) => {
-    console.log("in eavesdropper");
-    console.log(userid);
-    console.log(imgurl);
-    console.log(userName);
-    console.log(userMessage);
     const confirm = {
         "type": "flex",
         "altText": "eavesdropper",

@@ -7,6 +7,22 @@ const async = require('async');
 const eroPicture = require('./eroPicture.js');
 const eroFunction = require('./eroFunction.js');
 
+var Crawler = require("crawler");
+var c = new Crawler({
+    // 在每个请求处理完毕后将调用此回调函数
+    callback : function (error, res, done) {
+        if(error){
+            console.log(error);
+        }else{
+            var $ = res.$;
+            // $ 默认为 Cheerio 解析器
+            // 它是核心jQuery的精简实现，可以按照jQuery选择器语法快速提取DOM元素
+            console.log($("title").text());
+        }
+        done();
+    }
+});
+
 module.exports = class LineBot {
 
     get apiaiService() {
@@ -79,16 +95,12 @@ module.exports = class LineBot {
 
         let chatId = this.getChatId(message);
         var messageText = this.getText(message);
-        if (message.source.groupId == undefined) {
-            this.getProfile(chatId)
-                .then((profiledata) => {
-                    // console.log(data);
-                    console.log('user says : ' + messageText);
-                    const data = JSON.parse(profiledata);
-                    // const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
-                    // this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
-                })
-        }
+        this.getProfile(chatId)
+            .then((profiledata) => {
+                const data = JSON.parse(profiledata);
+                // const liyomessage = eroFunction.eavesdropper(data.userId, data.pictureUrl, data.displayName, messageText)
+                // this.replyPush('Ue2b706a7936e38a777f4d946c88c482a', [liyomessage]);
+            })
 
         if (chatId && messageText) {
 
@@ -112,9 +124,6 @@ module.exports = class LineBot {
                                 });
 
                                 apiaiRequest.on('response', (response) => {
-
-                                    let action = response.result.action;
-                                    console.log(JSON.stringify(response));
                                     this.processAiResponse(chatId, response, message.replyToken)
                                         .then(() => this.log('Message sent'))
                                         .catch((err) => this.logError(err))
@@ -157,7 +166,7 @@ module.exports = class LineBot {
             this.log("message", postback);
         }
         // (source:{type:chatId,userId:uid},type:type,postback:{data:data})
-        let chatId = this.getChatId(postback);//postback.source.type
+        let chatId = this.getChatId(postback); //postback.source.type
         //let messageText = postback.postback.params.datetime;
         if (postback.type === 'follow') { //點級圖片 換
             eroPicture.linkUser(this.botConfig.channelAccessToken, "richmenu-3ba259947b097e4f2511d26310533ada", postback.source.userId);
@@ -377,6 +386,28 @@ module.exports = class LineBot {
                 text: "your line userid = " + message.source.userId
             }; // end confirm
             return Promise.resolve(confirm);
+        } else if (message.message.text === "tenno") {
+            c.queue([{
+                uri: 'https://www.tennoclocknews.com/',
+                jQuery: true,
+                // The global callback won't be called
+                callback : function (error, res, done) {
+                    if(error){
+                        console.log(error);
+                    }else{
+                        var $ = res.$;
+                        // $ 默认为 Cheerio 解析器
+                        // 它是核心jQuery的精简实现，可以按照jQuery选择器语法快速提取DOM元素
+                        console.log($("#main:first-child .entry-content > p > strong > a").attr('href'));
+                        const confirm = {
+                            type: "text",
+                            text: $("#main:first-child .entry-content > p > strong > a").attr('href')
+                        };
+                        return Promise.resolve(confirm);
+                    }
+                    done();
+                }
+            }]);
         }
         return Promise.resolve(0);
     }
