@@ -387,27 +387,31 @@ module.exports = class LineBot {
             }; // end confirm
             return Promise.resolve(confirm);
         } else if (message.message.text === "tenno") {
-            c.queue([{
-                uri: 'https://www.tennoclocknews.com/',
-                jQuery: true,
-                // The global callback won't be called
-                callback : function (error, res, done) {
-                    if(error){
-                        console.log(error);
-                    }else{
-                        var $ = res.$;
-                        // $ 默认为 Cheerio 解析器
-                        // 它是核心jQuery的精简实现，可以按照jQuery选择器语法快速提取DOM元素
-                        console.log($("#main:first-child .entry-content > p > strong > a").attr('href'));
-                        const confirm = {
-                            type: "text",
-                            text: $("#main:first-child .entry-content > p > strong > a").attr('href')
-                        };
-                        return Promise.resolve(confirm);
+            console.log('Tenno');
+            return new Promise((resolve, reject) => {
+                c.queue([{
+                    uri: 'https://www.tennoclocknews.com/',
+                    jQuery: true,
+                    // The global callback won't be called
+                    callback : function (error, res, done) {
+                        if(error){
+                            reject(error);
+                        }else{
+                            var $ = res.$;
+                            // $ 默认为 Cheerio 解析器
+                            // 它是核心jQuery的精简实现，可以按照jQuery选择器语法快速提取DOM元素
+                            console.log($("#main:first-child .entry-content > p > strong > a").attr('href'));
+                            const confirm = {
+                                type: "text",
+                                text: $("#main:first-child .entry-content > p > strong > a").attr('href')
+                            };
+                            resolve(confirm);
+                        }
+                        done();
                     }
-                    done();
-                }
-            }]);
+                }]);
+            })
+            
         }
         return Promise.resolve(0);
     }
