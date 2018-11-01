@@ -386,6 +386,14 @@ module.exports = class LineBot {
                 text: "your line userid = " + message.source.userId
             }; // end confirm
             return Promise.resolve(confirm);
+        } else if (message.message.text === "tennofish"){
+            const confirm = {
+              "type": "image",
+              "originalContentUrl": "https://semlar.com/fishing_map.jpg",
+              "previewImageUrl": "https://semlar.com/fishing_map.jpg",
+              "animated": true
+            };
+            return Promise.resolve(confirm);
         } else if (message.message.text === "tenno") {
             console.log('Tenno');
             return new Promise((resolve, reject) => {
@@ -411,7 +419,6 @@ module.exports = class LineBot {
                     }
                 }]);
             })
-            
         }
         return Promise.resolve(0);
     }
