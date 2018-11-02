@@ -19,6 +19,7 @@
     "express": "^4.15.3",
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "najax": "^1.0.3",
     "package.json": "^2.0.1",
     "request": "^2.81.0",

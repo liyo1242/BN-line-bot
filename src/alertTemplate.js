@@ -1,4 +1,4 @@
-const moment = require('moment');
+var moment = require('moment-timezone');
 module.exports.bubble = ([id, place, planet, way, race, levelS, levelE, start, end, reward1, reward2, reward3] = []) => {
     var m1 = moment(),
     m2 = moment.unix(end),
