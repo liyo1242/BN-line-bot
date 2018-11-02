@@ -6,6 +6,7 @@ const request = require('request');
 const async = require('async');
 const eroPicture = require('./eroPicture.js');
 const eroFunction = require('./eroFunction.js');
+const tennoAlert = require('./alert.js');
 
 var Crawler = require("crawler");
 var c = new Crawler({
@@ -386,6 +387,14 @@ module.exports = class LineBot {
                 text: "your line userid = " + message.source.userId
             }; // end confirm
             return Promise.resolve(confirm);
+        } else if (message.message.text === "tennobait"){
+            const confirm = {
+              "type": "image",
+              "originalContentUrl": "https://i.imgur.com/0rppS8q.gif",
+              "previewImageUrl": "https://i.imgur.com/0rppS8q.gif",
+              "animated": true
+            };
+            return Promise.resolve(confirm);
         } else if (message.message.text === "tennofish"){
             const confirm = {
               "type": "image",
@@ -394,7 +403,9 @@ module.exports = class LineBot {
               "animated": true
             };
             return Promise.resolve(confirm);
-        } else if (message.message.text === "tenno") {
+        } else if (message.message.text === "tennoalert"){
+            return Promise.resolve(tennoAlert.alert());
+        } else if (message.message.text === "tennonews") {
             console.log('Tenno');
             return new Promise((resolve, reject) => {
                 c.queue([{
