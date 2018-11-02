@@ -405,6 +405,14 @@ module.exports = class LineBot {
             return Promise.resolve(confirm);
         } else if (message.message.text === "tennoalert"){
             return Promise.resolve(tennoAlert.alert());
+        }else if (message.message.text === "tennocetus"){
+            return Promise.resolve(tennoAlert.alert());
+        }else if (message.message.text === "tennoinvasion"){
+            return Promise.resolve(tennoAlert.alert());
+        }else if (message.message.text === "Baro'Ki Teel"){
+            return Promise.resolve(tennoAlert.alert());
+        }else if (message.message.text === "tennosortie"){
+            return Promise.resolve(tennoAlert.alert());
         } else if (message.message.text === "tennovoid"){
             return Promise.resolve(tennoAlert.void());
         } else if (message.message.text === "tennonews") {
