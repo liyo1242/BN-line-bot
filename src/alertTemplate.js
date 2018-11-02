@@ -1,4 +1,8 @@
+const moment = require('moment');
 module.exports.bubble = ([id, place, planet, way, race, levelS, levelE, start, end, reward1, reward2, reward3] = []) => {
+    var m1 = moment(),
+    m2 = moment.unix(end),
+    du = moment.tz(m2 - m1, 'Africa/Abidjan');
     const confirm = {
         // "type": "flex",
         // "altText": "Flex Message",
@@ -79,7 +83,7 @@ module.exports.bubble = ([id, place, planet, way, race, levelS, levelE, start, e
                         "margin": "md",
                         "contents": [{
                             "type": "text",
-                            "text": "10:00 - 23:00",
+                            "text": `剩下${du.hour() ? `${du.hour()}時${du.minute()}分` : `${du.minute()}` }`,
                             "flex": 5,
                             "size": "sm",
                             "align": "center",
