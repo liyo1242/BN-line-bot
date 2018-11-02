@@ -94,7 +94,7 @@ module.exports.sortie = function() {
                 }
                 const data = JSON.parse(body);
                 let contentArr = []
-                for (let val of sortie) {
+                for (let val of data.sortie) {
                     contentArr.push(template.sortieBubble(val));
                 }
                 const confirm = {
