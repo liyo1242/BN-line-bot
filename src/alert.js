@@ -32,9 +32,9 @@ module.exports.alert = function() {
                 const data = JSON.parse(body);
                 let contentArr = []
                 for (let val of data.alerts_raw) {
-                    contentArr.push(template.bubble(val));
+                    contentArr.push(template.alertBubble(val));
                 }
-                const consfirm = {
+                const confirm = {
                     "type": "flex",
                     "altText": "Flex Message",
                     "contents": {
@@ -42,7 +42,39 @@ module.exports.alert = function() {
                         "contents": contentArr
                     }
                 }
-                resolve(consfirm);
+                resolve(confirm);
+            })
+    })
+
+};
+
+module.exports.void = function() {
+    return new Promise((resolve, reject) => {
+        request.get("http://wf.poedb.tw/data.php?t=all",
+            (error, response, body) => {
+                console.log("driverData-response-statusCode", response.statusCode);
+                if (error) {
+                    console.log('Error : ' + error);
+                    reject(error);
+                }
+                if (response.statusCode !== 200) {
+                    console.log(`Error status code ${response.statusCode} while sending ${body.errMsgs}`);
+                    reject(response.statusCode);
+                }
+                const data = JSON.parse(body);
+                let contentArr = []
+                for (let val of data.void_raw) {
+                    contentArr.push(template.voidBubble(val));
+                }
+                const confirm = {
+                    "type": "flex",
+                    "altText": "Flex Message",
+                    "contents": {
+                        "type": "carousel",
+                        "contents": contentArr
+                    }
+                }
+                resolve(confirm);
             })
     })
 

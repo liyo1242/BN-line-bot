@@ -405,6 +405,8 @@ module.exports = class LineBot {
             return Promise.resolve(confirm);
         } else if (message.message.text === "tennoalert"){
             return Promise.resolve(tennoAlert.alert());
+        } else if (message.message.text === "tennovoid"){
+            return Promise.resolve(tennoAlert.void());
         } else if (message.message.text === "tennonews") {
             console.log('Tenno');
             return new Promise((resolve, reject) => {
