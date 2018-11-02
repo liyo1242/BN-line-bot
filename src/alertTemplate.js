@@ -83,7 +83,7 @@ module.exports.bubble = ([id, place, planet, way, race, levelS, levelE, start, e
                         "margin": "md",
                         "contents": [{
                             "type": "text",
-                            "text": `剩下${du.hour() ? `${du.hour()}時${du.minute()}分` : `${du.minute()}` }`,
+                            "text": `還剩下${du.hour() ? `${du.hour()}時${du.minute()}分` : `${du.minute()}分鐘` }`,
                             "flex": 5,
                             "size": "sm",
                             "align": "center",
